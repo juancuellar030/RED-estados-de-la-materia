@@ -1,0 +1,15 @@
+# Ignorar la carpeta de dependencias de Node.js
+# Esto es lo más importante si usas herramientas como npm.
+node_modules/
+
+# Ignorar archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos de configuración del editor de código
+# Estos guardan tus preferencias personales, no son parte del proyecto.
+.vscode/
+.idea/
+
+# Ignorar archivos de variables de entorno (por seguridad)
+.env
