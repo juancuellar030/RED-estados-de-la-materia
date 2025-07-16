@@ -1,0 +1,85 @@
+/* Estilos base y fondo Sci-Fi */
+body {
+    background-color: #0a0f2b; /* Azul muy oscuro */
+    color: #e0e0e0; /* Texto casi blanco */
+    font-family: 'Rajdhani', sans-serif; /* Fuente para párrafos */
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Contenedor principal para centrar contenido */
+.welcome-container, .content-container {
+    text-align: center;
+    max-width: 800px;
+}
+
+/* Títulos principales con fuente Sci-Fi */
+.main-title, .page-title {
+    font-family: 'Orbitron', sans-serif;
+    color: #00f6ff; /* Cian neón */
+    font-size: 2.5rem;
+    text-shadow: 0 0 10px #00f6ff, 0 0 20px #00f6ff; /* Efecto de brillo */
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #ff00ff; /* Magenta neón */
+}
+
+/* Estilo para la lista del equipo */
+.team-list {
+    list-style: none;
+    padding: 0;
+    font-size: 1.1rem;
+}
+
+/* Botón de llamada a la acción */
+.cta-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 30px;
+    border: 2px solid #00f6ff;
+    border-radius: 5px;
+    color: #00f6ff;
+    font-family: 'Orbitron', sans-serif;
+    text-decoration: none;
+    font-size: 1.2rem;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #00f6ff;
+    color: #0a0f2b;
+    box-shadow: 0 0 20px #00f6ff;
+}
+
+/* Estilos para las tarjetas del árbol de problemas */
+.problem-section {
+    margin-top: 40px;
+    text-align: left;
+}
+
+.problem-section h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #ff00ff;
+    border-bottom: 2px solid #ff00ff;
+    padding-bottom: 5px;
+}
+
+.problem-card {
+    background-color: rgba(10, 30, 60, 0.5); /* Fondo semitransparente */
+    border: 1px solid #00f6ff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.problem-card h3 {
+    margin-top: 0;
+    color: #e0e0e0;
+}
