@@ -57,28 +57,51 @@ document.addEventListener('DOMContentLoaded', () => {
         const columns = canvas.width / fontSize;
 
         const drops = [];
-        for (let x = 0; x < columns; x++) {
-            drops[x] = 1;
-        }
-
-        const draw = () => {
-            ctx.fillStyle = 'rgba(10, 15, 43, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#00f6ff';
-            ctx.font = fontSize + 'px arial';
-
-            for (let i = 0; i < drops.length; i++) {
-                const text = charactersArray[Math.floor(Math.random() * charactersArray.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                drops[i]++;
-
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-            }
-        };
-
-        setInterval(draw, 45);
+    for (let x = 0; x < columns; x++) {
+        drops[x] = 1;
     }
 
-}); // <-- End of the SINGLE DOMContentLoaded listener
+    const draw = () => {
+        // The semi-transparent background creates the fading trail effect
+        ctx.fillStyle = 'rgba(10, 15, 43, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Loop through each column
+        for (let i = 0; i < drops.length; i++) {
+            // Pick a random character for the trail and the leader
+            const trailChar = charactersArray[Math.floor(Math.random() * charactersArray.length)];
+            const leaderChar = charactersArray[Math.floor(Math.random() * charactersArray.length)];
+
+            // --- 1. DRAW THE TRAIL CHARACTER ---
+            // This character is drawn one step behind the leader.
+            // It has the standard color and no glow.
+            ctx.font = fontSize + 'px arial';
+            ctx.fillStyle = '#00f6ff'; // Standard cyan trail color
+            ctx.shadowBlur = 0; // No glow
+            ctx.shadowColor = 'transparent'; // No glow
+            // We draw it at the previous position of the leader
+            if (drops[i] > 1) { // Avoid drawing at y=0 on the first frame
+                 ctx.fillText(trailChar, i * fontSize, (drops[i] - 1) * fontSize);
+            }
+            
+            // --- 2. DRAW THE LEADING CHARACTER ---
+            // This is the bright, glowing character at the front of the raindrop.
+            ctx.fillStyle = '#ffffff'; // Bright white for the leader
+            ctx.shadowColor = '#00f6ff'; // The color of the glow
+            ctx.shadowBlur = 10; // The intensity of the glow
+            ctx.fillText(leaderChar, i * fontSize, drops[i] * fontSize);
+
+
+            // --- 3. UPDATE THE DROP POSITION ---
+            // Move the drop down for the next frame
+            drops[i]++;
+
+            // Reset the drop to the top if it goes off-screen
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+        }
+    };
+
+    setInterval(draw, 45);
+}
