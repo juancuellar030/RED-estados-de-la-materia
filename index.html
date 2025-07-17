@@ -3,33 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RED: Los Estados de la Materia</title>
-    <!-- Enlace al archivo CSS que crearemos después -->
+    <title>Árbol de Problemas - RED Estados de la Materia</title>
     <link rel="stylesheet" href="style.css">
-    
-    <!-- Enlace a las fuentes de Google para el estilo Sci-Fi -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <main class="welcome-container">
-        <h1 class="main-title">Recurso Educativo Digital</h1>
-        <p class="subtitle">Los Estados y Propiedades de la Materia</p>
+    <div class="content-container">
+        <h1 class="page-title">Árbol de Problemas // Red Neuronal</h1>
         
-        <div class="team-section">
-            <h2>Presentado por:</h2>
-            <ul class="team-list">
-                <li>[Nombre del Integrante 1]</li>
-                <li>[Nombre del Integrante 2]</li>
-                <li>[Nombre del Integrante 3]</li>
-                <li>[Nombre del Integrante 4]</li>
-            </ul>
+        <!-- HOLOGRAM MIND MAP STRUCTURE -->
+        <div class="mind-map-container">
+            <!-- Effects Branch (Top) -->
+            <div class="effects-branch">
+                <div class="node effect" data-title="Efecto 1" data-description="<strong>Incapacidad para Predecir:</strong> Como solo aprenden descripciones, si se les pregunta '¿Qué le pasaría a una crayola de cera si la dejas al sol?', muchos no podrán inferir que se derretiría, porque su conocimiento no se basa en principios.">E1</div>
+                <div class="node effect" data-title="Efecto 2" data-description="<strong>Confusión Propiedad vs. Estado:</strong> Un estudiante podría decir 'el agua es líquida' como una propiedad inseparable. Les cuesta aceptar que el hielo sigue siendo agua, porque para ellos 'agua = líquido'.">E2</div>
+                <div class="node effect" data-title="Efecto 3" data-description="<strong>Gases Inmateriales:</strong> Al no poder experimentar virtualmente cómo el aire (gas) llena un espacio o es comprimido, la idea sigue siendo abstracta. Para ellos, el globo se llena de 'nada'.">E3</div>
+                <div class="node effect" data-title="Efecto 4" data-description="<strong>Falta de Curiosidad:</strong> Un enfoque receptivo no fomenta el pensamiento científico. Una herramienta de RA que permita experimentar invita al niño a preguntar, predecir (hipotetizar) y observar el resultado.">E4</div>
+            </div>
+
+            <div class="core-problem">
+                <span>Problema Principal</span>
+            </div>
+
+            <!-- Causes Branch (Bottom) -->
+            <div class="causes-branch">
+                <div class="node cause" data-title="Causa 1" data-description="<strong>Enfoque Macroscópico:</strong> El texto describe el 'qué' (los líquidos fluyen) pero no explica el 'porqué' a nivel de partículas. Esto lleva a la memorización en lugar de a la comprensión.">C1</div>
+                <div class="node cause" data-title="Causa 2" data-description="<strong>Representación Estática:</strong> Las imágenes son estáticas. No pueden mostrar el proceso de un sólido derritiéndose o un líquido evaporándose. El estudiante se pierde la transformación.">C2</div>
+                <div class="node cause" data-title="Causa 3" data-description="<strong>Separación Conceptual:</strong> El libro separa 'Materiales' de 'Estados'. Al niño le cuesta entender que un material (madera) existe en un estado (sólido).">C3</div>
+                <div class="node cause" data-title="Causa 4" data-description="<strong>Observación Pasiva:</strong> Las actividades son de observación, no de experimentación. El niño no puede 'tocar' virtualmente un gas o 'aplicar calor' a un hielo para ver qué sucede.">C4</div>
+            </div>
         </div>
 
-        <a href="arbol-de-problemas.html" class="cta-button">
-            Analizar Problema
-        </a>
-    </main>
+        <!-- NAVIGATION BUTTONS -->
+        <div class="navigation-buttons">
+            <a href="index.html" class="cta-button back-button">‹ Volver al Inicio</a>
+            <a href="app-ra.html" class="cta-button">Ver Solución con RA ›</a>
+        </div>
+    </div>
+
+    <!-- MODAL / HOLOGRAPHIC PANEL (hidden by default) -->
+    <div id="hologram-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 id="modal-title">Título del Nodo</h2>
+            <p id="modal-description">Aquí va la descripción detallada.</p>
+            <button id="close-modal" class="cta-button back-button">Cerrar [x]</button>
+        </div>
+    </div>
+
+    <!-- Link to the JavaScript file -->
+    <script src="script.js"></script>
 </body>
 </html>
