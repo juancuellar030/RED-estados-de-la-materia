@@ -190,3 +190,19 @@ body {
     70% { transform: scale(1); box-shadow: 0 0 25px #ff00ff, 0 0 50px #ff00ff; }
     100% { transform: scale(0.95); box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff; }
 }
+
+/* === MATRIX RAIN BACKGROUND STYLES === */
+#matrix-canvas {
+    /* Set the background color of the canvas itself */
+    background-color: #0a0f2b; 
+    
+    /* Position it to fill the entire screen */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* This is the key: place it behind everything else */
+    z-index: -1;
+}
