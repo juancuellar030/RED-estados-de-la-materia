@@ -83,3 +83,110 @@ body {
     margin-top: 0;
     color: #e0e0e0;
 }
+
+/* === STYLES FOR INTERACTIVE MIND MAP === */
+.mind-map-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    margin: 60px 0;
+    width: 100%;
+    position: relative;
+}
+
+.core-problem {
+    width: 120px;
+    height: 120px;
+    background-color: #ff00ff;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff;
+    animation: pulse 2s infinite;
+    z-index: 10;
+}
+
+.causes-branch, .effects-branch {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.node {
+    width: 60px;
+    height: 70px;
+    background-color: rgba(0, 246, 255, 0.1);
+    color: #00f6ff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #00f6ff;
+    box-shadow: 0 0 10px #00f6ff;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.node:hover {
+    background-color: rgba(0, 246, 255, 0.3);
+    transform: scale(1.1);
+}
+
+/* === MODAL / HOLOGRAM PANEL STYLES === */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 15, 43, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s, visibility 0.4s;
+}
+
+.modal-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: #0a0f2b;
+    border: 2px solid #ff00ff;
+    box-shadow: 0 0 20px #ff00ff;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 90%;
+    text-align: left;
+}
+
+.modal-content h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #ff00ff;
+    border-bottom: 1px solid #ff00ff;
+    padding-bottom: 10px;
+}
+
+#close-modal {
+    margin-top: 20px;
+}
+
+/* === ANIMATIONS === */
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff; }
+    70% { transform: scale(1); box-shadow: 0 0 25px #ff00ff, 0 0 50px #ff00ff; }
+    100% { transform: scale(0.95); box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff; }
+}
