@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%^&*()';
+        const characters = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
         const charactersArray = characters.split('');
         const fontSize = 16;
         const columns = canvas.width / fontSize;
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        setInterval(draw, 33);
+        setInterval(draw, 45);
     }
 
 }); // <-- End of the SINGLE DOMContentLoaded listener
