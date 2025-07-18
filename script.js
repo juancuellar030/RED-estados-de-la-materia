@@ -85,10 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Carga los archivos de sonido una sola vez
     const hoverSound = new Audio('assets/hover-sound.mp3');
-    const clickSound = new Audio('assets-click-sound.mp3');
+    const clickSound = new Audio('assets/click-sound.mp3');
 
     // Ajusta el volumen si es necesario (0.5 es 50% del volumen)
-    hoverSound.volume = 0.5;
+    hoverSound.volume = 0.3;
     clickSound.volume = 0.6;
 
     // Selecciona todos los elementos que deben tener sonido
