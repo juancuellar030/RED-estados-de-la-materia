@@ -235,3 +235,65 @@ a, button, .node {
     /* La ruta debe coincidir con la ubicación donde subiste las imágenes */
     cursor: url('assets/cursor-pointer.png'), pointer;
 }
+
+/* === ANIMACIÓN DE LA PANTALLA DE BIENVENIDA === */
+
+/* --- 1. Definición de las animaciones --- */
+
+/* Animación para que la consola se deslice desde la izquierda */
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Animación para que la pantalla parezca proyectada */
+@keyframes projectScreen {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* --- 2. Estilos para los elementos animados --- */
+
+/* Estilo para la consola proyectora */
+#console-projector {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 200px; /* Ajusta el tamaño según necesites */
+    z-index: 20;
+    opacity: 0; /* Empieza invisible */
+
+    /* Aplicamos la animación */
+    animation-name: slideInFromLeft;
+    animation-duration: 1.5s; /* Duración de la entrada */
+    animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1); /* Curva de desaceleración suave */
+    animation-fill-mode: forwards; /* Mantiene el estado final de la animación */
+}
+
+/* Estilo para la pantalla de bienvenida que será proyectada */
+#welcome-screen {
+    opacity: 0; /* Empieza invisible */
+    transform-origin: bottom left; /* La animación de escala se originará desde la esquina inferior izquierda */
+
+    /* Aplicamos la animación de proyección */
+    animation-name: projectScreen;
+    animation-duration: 1s; /* Duración de la proyección */
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards; /* Mantiene el estado final */
+    
+    /* ¡LA CLAVE DE LA SECUENCIA! */
+    /* Empieza esta animación después de que la consola haya entrado */
+    animation-delay: 1.2s; 
+}
