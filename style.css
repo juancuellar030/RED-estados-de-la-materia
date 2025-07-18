@@ -12,12 +12,6 @@ body {
     cursor: url('assets/cursor-default.png'), auto;
 }
 
-/* Contenedor principal para centrar contenido */
-.welcome-container, .content-container {
-    text-align: center;
-    max-width: 800px;
-}
-
 /* Títulos principales con fuente Sci-Fi */
 .main-title, .page-title {
     font-family: 'Orbitron', sans-serif;
@@ -83,6 +77,38 @@ body {
 .problem-card h3 {
     margin-top: 0;
     color: #e0e0e0;
+}
+
+/* === FUTURISTIC SCREEN STYLES === */
+.screen-container {
+    /* Set the background image to your SVG */
+    background-image: url('assets/futuristic-screen.svg');
+    background-size: 100% 100%; /* Stretches the SVG to fill the container */
+    background-repeat: no-repeat;
+    background-position: center;
+
+    /* Define the size of the screen */
+    width: 80vw; /* 80% of the viewport width */
+    max-width: 900px; /* A maximum size for large screens */
+    min-height: 500px; /* A minimum height */
+    
+    /* CRUCIAL: Add padding to push the text inside the screen's border */
+    /* You may need to tweak these values to fit your SVG perfectly */
+    padding: 60px 80px;
+    box-sizing: border-box; /* Ensures padding is included in the total width/height */
+
+    /* Use Flexbox to perfectly center the content inside the padded area */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* We still need this for the other pages */
+.content-container {
+    text-align: center;
+    max-width: 800px;
 }
 
 /* === STYLES FOR INTERACTIVE MIND MAP === */
