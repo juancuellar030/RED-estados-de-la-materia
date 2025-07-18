@@ -105,5 +105,68 @@ document.addEventListener('DOMContentLoaded', () => {
             clickSound.play();
         });
     });
-
+    
+    // --- PART 5: TYPEWRITER EFFECT (for index.html) ---
+    
+    // Solo ejecuta esto si estamos en la página de bienvenida
+    const welcomeScreen = document.getElementById('welcome-screen');
+    if (welcomeScreen) {
+        const textElements = document.querySelectorAll('.typewriter-text');
+        let originalTexts = [];
+    
+        // Guarda el texto original y limpia los elementos
+        textElements.forEach(el => {
+            originalTexts.push(el.textContent);
+            el.textContent = '';
+        });
+    
+        // Función que simula la escritura y devuelve una Promesa
+        function typeWriter(element, text, speed) {
+            return new Promise(resolve => {
+                let i = 0;
+                element.classList.add('typing'); // Añade el cursor parpadeante
+    
+                const timer = setInterval(() => {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(timer);
+                        element.classList.remove('typing'); // Quita el cursor
+                        resolve(); // Resuelve la promesa cuando termina
+                    }
+                }, speed);
+            });
+        }
+    
+        // Función asíncrona para ejecutar las animaciones en secuencia
+        async function startTypingSequence() {
+            // Espera a que la animación de la pantalla termine (2.2s)
+            await new Promise(resolve => setTimeout(resolve, 2200));
+    
+            for (let i = 0; i < textElements.length; i++) {
+                const el = textElements[i];
+                const text = originalTexts[i];
+                el.style.visibility = 'visible'; // Haz visible el elemento
+                await typeWriter(el, text, 50); // Escribe el texto a 50ms por caracter
+                await new Promise(resolve => setTimeout(resolve, 200)); // Pequeña pausa entre líneas
+            }
+            
+            // Al final, haz visible el botón
+            const finalButton = document.querySelector('#welcome-screen .cta-button');
+            if (finalButton) {
+                finalButton.style.opacity = '1';
+            }
+        }
+        
+        // Oculta el botón al inicio para que no aparezca antes de tiempo
+        const finalButton = document.querySelector('#welcome-screen .cta-button');
+        if(finalButton) {
+          finalButton.style.opacity = '0';
+          finalButton.style.transition = 'opacity 0.5s';
+        }
+    
+        // Inicia la secuencia
+        startTypingSequence();
+    }
 }); // <-- El final del archivo
