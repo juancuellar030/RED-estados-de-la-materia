@@ -285,7 +285,7 @@ a, button, .node {
 /* Estilo para la pantalla de bienvenida que será proyectada */
 #welcome-screen {
     opacity: 0; /* Empieza invisible */
-    transform-origin: bottom left; /* La animación de escala se originará desde la esquina inferior izquierda */
+    transform-origin: top left; /* La animación de escala se originará desde la esquina inferior izquierda */
 
     /* Aplicamos la animación de proyección */
     animation-name: projectScreen;
