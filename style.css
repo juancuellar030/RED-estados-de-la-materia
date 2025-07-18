@@ -1,6 +1,6 @@
 /* Estilos base y fondo Sci-Fi */
 body {
-    background-color: #0a0f2b; /* Azul muy oscuro */
+    background-color: #000000; /* Azul muy oscuro */
     color: #e0e0e0; /* Texto casi blanco */
     font-family: 'Rajdhani', sans-serif; /* Fuente para párrafos */
     margin: 0;
@@ -193,11 +193,25 @@ body {
 
 /* === MATRIX RAIN BACKGROUND STYLES === */
 #matrix-canvas {
-    background-color: #0a0f2b; 
+    background-color: #000000; 
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
+}
+
+/* === ESTILOS PARA CURSOR PERSONALIZADO === */
+
+/* Cursor por defecto (la flecha) para toda la página */
+body {
+    /* La ruta debe coincidir con la ubicación donde subiste las imágenes */
+    cursor: url('assets/cursor-default.png'), auto;
+}
+
+/* Cursor de puntero (la mano) para elementos interactivos */
+a, button, .node {
+    /* La ruta debe coincidir con la ubicación donde subiste las imágenes */
+    cursor: url('assets/cursor-pointer.png'), pointer;
 }
