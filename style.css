@@ -9,6 +9,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    cursor: url('assets/cursor-default.png'), auto;
 }
 
 /* Contenedor principal para centrar contenido */
@@ -200,14 +201,6 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1;
-}
-
-/* === ESTILOS PARA CURSOR PERSONALIZADO === */
-
-/* Cursor por defecto (la flecha) para toda la página */
-body {
-    /* La ruta debe coincidir con la ubicación donde subiste las imágenes */
-    cursor: url('assets/cursor-default.png'), auto;
 }
 
 /* Cursor de puntero (la mano) para elementos interactivos */
