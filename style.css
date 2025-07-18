@@ -273,7 +273,8 @@ a, button, .node {
     left: 20px;
     width: 200px; /* Ajusta el tamaño según necesites */
     z-index: 20;
-  
+    opacity: 0; /* <-- AÑADE ESTA LÍNEA */
+
     /* Aplicamos la animación */
     animation-name: slideInFromLeft;
     animation-duration: 1.5s; /* Duración de la entrada */
