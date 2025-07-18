@@ -282,6 +282,13 @@ a, button, .node {
     animation-fill-mode: forwards; /* Mantiene el estado final de la animación */
 }
 
+/* Le dice a la imagen que llene el contenedor div */
+#console-projector img {
+    width: 100%;
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block; /* Elimina cualquier espacio extra debajo de la imagen */
+}
+
 /* Estilo para la pantalla de bienvenida que será proyectada */
 #welcome-screen {
     opacity: 0; /* Empieza invisible */
