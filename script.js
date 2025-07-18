@@ -3,9 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- PART 1: MODAL LOGIC (for arbol-de-problemas.html) ---
     
+    // Get all the elements related to the modal
     const allNodes = document.querySelectorAll('.node');
     const modal = document.getElementById('hologram-modal');
     
+    // This part only runs if it's on the page with the modal
     if (modal && allNodes.length > 0) {
         const modalTitle = document.getElementById('modal-title');
         const modalDescription = document.getElementById('modal-description');
@@ -24,27 +26,32 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         allNodes.forEach(node => {
-            node.addEventListener('click', () => { openModal(node); });
+            node.addEventListener('click', () => {
+                openModal(node);
+            });
         });
 
         closeModalButton.addEventListener('click', closeModal);
         
         modal.addEventListener('click', (event) => {
-            if (event.target === modal) { closeModal(); }
+            if (event.target === modal) {
+                closeModal();
+            }
         });
     }
+
 
     // --- PART 2: MATRIX RAIN ANIMATION (for all pages) ---
 
     const canvas = document.getElementById('matrix-canvas');
     
-    if (canvas) { // The 'if' block starts here...
-    
+    // This part only runs if it's on a page with the canvas
+    if (canvas) {
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        const characters = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%^&*()';
         const charactersArray = characters.split('');
         const fontSize = 16;
         const columns = canvas.width / fontSize;
@@ -57,36 +64,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const draw = () => {
             ctx.fillStyle = 'rgba(10, 15, 43, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
+            ctx.fillStyle = '#00f6ff';
+            ctx.font = fontSize + 'px arial';
+
             for (let i = 0; i < drops.length; i++) {
-                const trailChar = charactersArray[Math.floor(Math.random() * charactersArray.length)];
-                const leaderChar = charactersArray[Math.floor(Math.random() * charactersArray.length)];
-
-                // 1. Draw the standard trail character
-                ctx.font = fontSize + 'px arial';
-                ctx.fillStyle = '#00f6ff';
-                ctx.shadowBlur = 0;
-                ctx.shadowColor = 'transparent';
-                if (drops[i] > 1) {
-                     ctx.fillText(trailChar, i * fontSize, (drops[i] - 1) * fontSize);
-                }
-                
-                // 2. Draw the glowing leader character
-                ctx.fillStyle = '#ffffff';
-                ctx.shadowColor = '#00f6ff';
-                ctx.shadowBlur = 10;
-                ctx.fillText(leaderChar, i * fontSize, drops[i] * fontSize);
-
-                // 3. Update drop position
+                const text = charactersArray[Math.floor(Math.random() * charactersArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
                 drops[i]++;
+
                 if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                     drops[i] = 0;
                 }
             }
         };
 
-        setInterval(draw, 45);
+        setInterval(draw, 33);
+    }
 
-    } // <-- ...and the 'if' block correctly closes here, wrapping all the animation logic.
-
-}); // <-- This is the final closing brace for the DOMContentLoaded listener.
+}); // <-- End of the SINGLE DOMContentLoaded listener
