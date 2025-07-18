@@ -296,3 +296,58 @@ a, button, .node {
     /* Empieza esta animación después de que la consola haya entrado */
     animation-delay: 1.2s; 
 }
+
+/* === ANIMACIÓN DE LA LLAMARADA DEL PROYECTOR === */
+
+/* --- 1. Definición de la animación de la llamarada --- */
+@keyframes lens-flare-effect {
+    /* La llamarada empieza pequeña e invisible */
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+    }
+    /* Alcanza su máximo brillo y tamaño a mitad de la animación */
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.2); /* Un poco más grande para un efecto de pulso */
+    }
+    /* Se desvanece por completo al final */
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+}
+
+/* --- 2. Estilo y aplicación de la animación a la llamarada --- */
+#console-projector::after {
+    /* Esencial para que el pseudo-elemento exista */
+    content: '';
+    display: block;
+
+    /* 1. Crea la apariencia de la llamarada */
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* La hace un círculo perfecto */
+    /* Un gradiente radial que va de un cian brillante a transparente */
+    background: radial-gradient(circle, rgba(200, 255, 255, 0.8) 0%, rgba(0, 246, 255, 0) 70%);
+    
+    /* 2. Posiciónala sobre el "ojo" de la consola */
+    position: absolute;
+    top: 50%; /* Centrada verticalmente */
+    left: 75%; /* Aproximadamente sobre el ojo (ajusta si es necesario) */
+    /* Un truco para centrar el origen de la llamarada en el punto exacto */
+    transform: translate(-50%, -50%) scale(0);
+
+    /* 3. Empieza invisible */
+    opacity: 0;
+    
+    /* 4. APLICA LA ANIMACIÓN */
+    animation-name: lens-flare-effect;
+    animation-duration: 1s; /* Una duración corta y nítida */
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards; /* Se queda invisible al final */
+
+    /* 5. ¡LA CLAVE DE LA SINCRONIZACIÓN! */
+    /* Empieza esta animación exactamente al mismo tiempo que la proyección de la pantalla */
+    animation-delay: 1.2s;
+}
