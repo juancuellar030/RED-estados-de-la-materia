@@ -320,13 +320,13 @@ a, button, .node {
 @keyframes pulsating-flare {
     /* Empieza sutil */
     0% {
-        opacity: 0.2;
+        opacity: 0.3;
         transform: translate(-50%, -50%) scale(0.6);
     }
     /* Alcanza un brillo medio */
     50% {
         opacity: 0.5;
-        transform: translate(-50%, -50%) scale(0.8);
+        transform: translate(-50%, -50%) scale(1);
     }
     /* Vuelve al estado sutil para un bucle perfecto */
     100% {
@@ -356,5 +356,5 @@ a, button, .node {
         lens-flare-effect 1s ease-in-out 1.2s forwards,
         
         /* Animación 2: El pulso continuo. Empieza después de la primera y se repite para siempre. */
-        pulsating-flare 4s ease-in-out 2.2s infinite;
+        pulsating-flare 2.5s ease-in-out 2.2s infinite;
 }
