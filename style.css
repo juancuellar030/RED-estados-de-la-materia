@@ -15,21 +15,22 @@ body {
 /* Títulos principales con fuente Sci-Fi */
 .main-title, .page-title {
     font-family: 'Orbitron', sans-serif;
-    color: #00f6ff; /* Cian neón */
+    color: #ffffff; /* Cian neón */
     font-size: 2.5rem;
     text-shadow: 0 0 10px #00f6ff, 0 0 20px #00f6ff; /* Efecto de brillo */
 }
 
 .subtitle {
     font-size: 1.2rem;
-    color: #ff00ff; /* Magenta neón */
+    color: #ffffff; /* Magenta neón */
+    text-shadow: 0 0 8px #ff00ff;
 }
 
 /* Estilo para la lista del equipo */
 .team-list {
     list-style: none;
     padding: 0;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 
 /* Botón de llamada a la acción */
