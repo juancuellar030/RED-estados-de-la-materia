@@ -358,3 +358,26 @@ a, button, .node {
         /* Animación 2: El pulso continuo. Empieza después de la primera y se repite para siempre. */
         pulsating-flare 2.3s ease-in-out 2.2s infinite;
 }
+
+/* === ESTILOS PARA LA ANIMACIÓN DE MÁQUINA DE ESCRIBIR === */
+
+/* 1. Oculta el texto inicialmente */
+#welcome-screen .typewriter-text {
+    visibility: hidden;
+}
+
+/* 2. Estilo para el cursor parpadeante */
+.typing::after {
+    content: '_'; /* Puedes usar '_' o '|' */
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: bottom;
+    animation: blink 0.7s infinite;
+    margin-left: 3px;
+}
+
+/* 3. Animación de parpadeo */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
