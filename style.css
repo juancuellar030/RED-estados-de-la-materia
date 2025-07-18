@@ -305,57 +305,56 @@ a, button, .node {
     animation-delay: 1.2s; 
 }
 
-/* === ANIMACIÓN DE LA LLAMARADA DEL PROYECTOR === */
+/* === ANIMACIÓN DE LA LLAMARADA DEL PROYECTOR (ACTUALIZADO) === */
 
-/* --- 1. Definición de la animación de la llamarada --- */
+/* --- 1. Definición de las animaciones --- */
+
+/* Animación #1: El destello inicial y brillante */
 @keyframes lens-flare-effect {
-    /* La llamarada empieza pequeña e invisible */
+    0%   { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+    50%  { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+}
+
+/* Animación #2: El pulso continuo y sutil */
+@keyframes pulsating-flare {
+    /* Empieza sutil */
     0% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0);
+        opacity: 0.2;
+        transform: translate(-50%, -50%) scale(0.6);
     }
-    /* Alcanza su máximo brillo y tamaño a mitad de la animación */
+    /* Alcanza un brillo medio */
     50% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1.2); /* Un poco más grande para un efecto de pulso */
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(0.8);
     }
-    /* Se desvanece por completo al final */
+    /* Vuelve al estado sutil para un bucle perfecto */
     100% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0.2;
+        transform: translate(-50%, -50%) scale(0.6);
     }
 }
 
-/* --- 2. Estilo y aplicación de la animación a la llamarada --- */
+/* --- 2. Estilo y aplicación de las animaciones a la llamarada --- */
 #console-projector::after {
-    /* Esencial para que el pseudo-elemento exista */
     content: '';
     display: block;
-
-    /* 1. Crea la apariencia de la llamarada */
     width: 80px;
     height: 80px;
-    border-radius: 50%; /* La hace un círculo perfecto */
-    /* Un gradiente radial que va de un cian brillante a transparente */
+    border-radius: 50%;
     background: radial-gradient(circle, rgba(200, 255, 255, 0.8) 0%, rgba(0, 246, 255, 0) 70%);
-    
-    /* 2. Posiciónala sobre el "ojo" de la consola */
     position: absolute;
-    top: 50%; /* Centrada verticalmente */
-    left: 75%; /* Aproximadamente sobre el ojo (ajusta si es necesario) */
-    /* Un truco para centrar el origen de la llamarada en el punto exacto */
+    top: 50%;
+    left: 75%;
     transform: translate(-50%, -50%) scale(0);
-
-    /* 3. Empieza invisible */
     opacity: 0;
     
-    /* 4. APLICA LA ANIMACIÓN */
-    animation-name: lens-flare-effect;
-    animation-duration: 1s; /* Una duración corta y nítida */
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards; /* Se queda invisible al final */
-
-    /* 5. ¡LA CLAVE DE LA SINCRONIZACIÓN! */
-    /* Empieza esta animación exactamente al mismo tiempo que la proyección de la pantalla */
-    animation-delay: 1.2s;
+    /* ¡LA CLAVE! APLICAMOS AMBAS ANIMACIONES ENCADENADAS */
+    /* La sintaxis es: [animación1], [animación2] */
+    animation:
+        /* Animación 1: El destello inicial. Se ejecuta una vez. */
+        lens-flare-effect 1s ease-in-out 1.2s forwards,
+        
+        /* Animación 2: El pulso continuo. Empieza después de la primera y se repite para siempre. */
+        pulsating-flare 4s ease-in-out 2.2s infinite;
 }
