@@ -81,4 +81,29 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(draw, 45);
     }
 
-}); // <-- End of the SINGLE DOMContentLoaded listener
+    // --- PART 3: SOUND EFFECTS (for all pages) ---
+
+    // Carga los archivos de sonido una sola vez
+    const hoverSound = new Audio('assets/hover-sound.mp3');
+    const clickSound = new Audio('assets-click-sound.mp3');
+
+    // Ajusta el volumen si es necesario (0.5 es 50% del volumen)
+    hoverSound.volume = 0.5;
+    clickSound.volume = 0.6;
+
+    // Selecciona todos los elementos que deben tener sonido
+    const interactiveElements = document.querySelectorAll('a, button, .node');
+
+    // Añade los listeners a cada elemento
+    interactiveElements.forEach(element => {
+        element.addEventListener('mouseenter', () => {
+            hoverSound.currentTime = 0;
+            hoverSound.play();
+        });
+        element.addEventListener('click', () => {
+            clickSound.currentTime = 0;
+            clickSound.play();
+        });
+    });
+
+}); // <-- El final del archivo
