@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        setInterval(draw, 33);
+        setInterval(draw, 45);
     }
 
 }); // <-- End of the SINGLE DOMContentLoaded listener
