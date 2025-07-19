@@ -424,10 +424,15 @@ a, button, .node {
 
 /* --- 2. El "Escenario" Principal --- */
 .tablet-container {
-    /* LA REGLA MÁS IMPORTANTE: establece el contexto para las capas */
-    position: relative;
+    /* CLAVE: Forzamos el centrado de forma absoluta en la página */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* El truco de centrado perfecto */
+
+    /* Mantenemos el tamaño y la animación */
     width: 90vw;
-    height: 85vh; /* La altura la define el contenedor, no los hijos */
+    height: 85vh;
     max-width: 1600px;
     opacity: 0;
     animation: fadeInContent 0.5s ease-out 0.2s forwards;
