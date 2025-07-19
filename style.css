@@ -445,11 +445,17 @@ a, button, .node {
 /* --- 3. Contenido de la Pantalla --- */
 .tablet-screen .mind-map-container,
 .tablet-screen .navigation-buttons {
-    opacity: 0;
-    animation: fadeInContent 0.5s ease-out 1.7s forwards;
+    opacity: 0; /* Empieza invisible */
+    animation: fadeInContent 0.5s ease-out 1.7s forwards; /* Aplica la animación final */
 }
-.tablet-screen .mind-map-container { margin-top: 20px; }
-.tablet-screen .navigation-buttons { padding-bottom: 20px; }
+
+/* Ajustes de espaciado que también faltaban */
+.tablet-screen .mind-map-container { 
+    margin-top: 20px; 
+}
+.tablet-screen .navigation-buttons { 
+    padding-bottom: 20px; 
+}
 
 /* --- 4. Barra de Scroll --- */
 .tablet-screen {
