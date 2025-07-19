@@ -1,15 +1,15 @@
 /* Estilos base y fondo Sci-Fi */
 body {
-    background-color: #000000; /* Azul muy oscuro */
-    color: #e0e0e0; /* Texto casi blanco */
-    font-family: 'Rajdhani', sans-serif; /* Fuente para párrafos */
+    background-color: #000000;
+    color: #e0e0e0;
+    font-family: 'Rajdhani', sans-serif;
     margin: 0;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* Quitamos el padding para evitar cualquier desbordamiento */
+    padding: 0; 
     min-height: 100vh;
     cursor: url('assets/cursor-default.png'), auto;
+    /* MUY IMPORTANTE: Evita que aparezcan barras de scroll innecesarias */
+    overflow: hidden; 
 }
 
 /* Títulos principales con fuente Sci-Fi */
@@ -424,15 +424,16 @@ a, button, .node {
 
 /* --- 2. El "Escenario" Principal --- */
 .tablet-container {
-    /* La regla más importante: actúa como ancla para las capas internas */
-    position: relative; 
-    
-    /* El body se encargará de centrarlo, así que solo definimos el tamaño */
+    /* LA CLAVE: El método de centrado absoluto e infalible */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrado perfecto */
+
+    /* Mantenemos el tamaño y la animación */
     width: 90vw;
     height: 85vh;
     max-width: 1600px;
-    
-    /* Mantenemos la animación de entrada */
     opacity: 0;
     animation: fadeInContent 0.5s ease-out 0.2s forwards;
 }
