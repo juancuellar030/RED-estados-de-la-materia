@@ -424,16 +424,15 @@ a, button, .node {
 
 /* --- 2. El "Escenario" Principal --- */
 .tablet-container {
-    /* CLAVE: Forzamos el centrado de forma absoluta en la página */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* El truco de centrado perfecto */
-
-    /* Mantenemos el tamaño y la animación */
+    /* La regla más importante: actúa como ancla para las capas internas */
+    position: relative; 
+    
+    /* El body se encargará de centrarlo, así que solo definimos el tamaño */
     width: 90vw;
     height: 85vh;
     max-width: 1600px;
+    
+    /* Mantenemos la animación de entrada */
     opacity: 0;
     animation: fadeInContent 0.5s ease-out 0.2s forwards;
 }
