@@ -461,3 +461,48 @@ a, button, .node {
 @keyframes fadeInItem {
     to { opacity: 1; }
 }
+
+/* === ESTILOS PARA LA TABLET SCI-FI === */
+
+/* El contenedor que une todas las piezas */
+.tablet-container {
+    display: flex; /* La clave: alinea los elementos horizontalmente */
+    align-items: center; /* Centra los marcos y la pantalla verticalmente */
+    justify-content: center;
+    width: 95vw; /* Ocupa casi todo el ancho de la pantalla */
+    max-width: 1600px; /* Un límite para pantallas muy grandes */
+}
+
+/* Estilo para los marcos izquierdo y derecho */
+.tablet-frame {
+    height: 85vh; /* Hace que los marcos sean altos */
+    width: auto;  /* Mantiene la proporción de la imagen */
+}
+
+/* La pantalla translúcida del centro */
+.tablet-screen {
+    background-color: rgba(0, 246, 255, 0.05); /* Cian muy translúcido */
+    border: 1px solid rgba(0, 246, 255, 0.2);
+    height: 85vh; /* Misma altura que los marcos */
+    width: 100%; /* Ocupa todo el espacio disponible */
+    padding: 20px 40px; /* Espacio interno para que el contenido no toque los bordes */
+    box-sizing: border-box;
+
+    /* LA CLAVE PARA EL CONTENIDO LARGO */
+    /* Si el árbol de problemas es muy alto, aparecerá una barra de scroll */
+    overflow-y: auto; 
+    
+    /* Le damos un estilo sutil a la barra de scroll */
+    scrollbar-width: thin;
+    scrollbar-color: #00f6ff #0a0f2b;
+}
+
+/* Ajustamos el árbol de problemas para que encaje bien */
+.tablet-screen .mind-map-container {
+    margin-top: 20px;
+}
+
+/* Ajustamos los botones dentro de la tablet */
+.tablet-screen .navigation-buttons {
+    padding-bottom: 20px;
+}
