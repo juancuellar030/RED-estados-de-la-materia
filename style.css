@@ -406,65 +406,81 @@ a, button, .node {
     to { opacity: 1; }
 }
 
-/* === ESTILOS Y ANIMACIÓN PARA LA TABLET SCI-FI (VERSIÓN COMPLETA Y FINAL) === */
+/* === ESTILOS Y ANIMACIÓN PARA LA TABLET SCI-FI (VERSIÓN FINAL CON CAPAS) === */
 
-/* --- 1. Definición de las animaciones de entrada (¡LA PARTE QUE FALTABA!) --- */
+/* --- 1. Definición de las animaciones (sin cambios) --- */
 @keyframes slideInFromBottom {
     from { transform: translateY(100%); opacity: 0; }
     to   { transform: translateY(0); opacity: 1; }
 }
-
 @keyframes projectTabletScreen {
-    from { transform: scaleX(0); opacity: 0.5; }
-    to   { transform: scaleX(1); opacity: 1; }
+    from { transform: scale(0.8); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
 }
-
 @keyframes fadeInContent {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
 
-/* --- 2. Contenedor y Marcos --- */
+/* --- 2. El "Escenario" Principal --- */
 .tablet-container {
-    display: flex;
-    align-items: stretch; 
-    justify-content: center;
-    width: 100vw; 
-    max-width: 1200px;
+    /* LA REGLA MÁS IMPORTANTE: establece el contexto para las capas */
+    position: relative;
+    width: 90vw;
+    height: 85vh; /* La altura la define el contenedor, no los hijos */
+    max-width: 1600px;
     opacity: 0;
     animation: fadeInContent 0.5s ease-out 0.2s forwards;
 }
 
+/* --- 3. Los Marcos (Capa Inferior) --- */
 .tablet-frame {
-    width: 100px;
-    object-fit: fill;
+    /* Se posicionan de forma absoluta DENTRO del escenario */
+    position: absolute;
+    top: 0;
+    height: 100%; /* Ocupan el 100% de la altura del escenario */
+    
+    /* SOLUCIÓN AL ESTIRAMIENTO: Damos un ancho fijo y quitamos el object-fit */
+    width: 120px; 
+    
     opacity: 0;
     animation: slideInFromBottom 1s ease-out 0.2s forwards;
 }
+.tablet-frame.left { left: 0; } /* El marco izquierdo se pega a la izquierda */
+.tablet-frame.right { right: 0; } /* El marco derecho se pega a la derecha */
 
-/* --- 3. Pantalla de la Tablet --- */
+/* --- 4. La Pantalla (Capa Superior) --- */
 .tablet-screen {
+    position: absolute;
+    /* Centramos la pantalla en el escenario */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Truco para un centrado perfecto */
+
+    /* CONTROL INDEPENDIENTE DEL TAMAÑO */
+    /* El ancho es el 100% del escenario MENOS el ancho de los dos marcos */
+    width: calc(100% - 240px);
+    /* La altura es un poco menor que la del escenario para un mejor ajuste visual */
+    height: 95%;
+
     background-color: rgba(0, 246, 255, 0.15);
     box-shadow: inset 0 0 30px rgba(0, 246, 255, 0.5);
     border: 1px solid rgba(0, 246, 255, 0.4);
-    width: 100%;
     padding: 20px 40px;
     box-sizing: border-box;
     overflow-y: auto;
+    
     opacity: 0;
-    transform: scaleX(0);
     animation: projectTabletScreen 0.7s ease-out 1s forwards;
 }
 
-/* --- 4. Contenido de la Pantalla --- */
+/* --- 5. Contenido de la Pantalla --- */
 .tablet-screen .mind-map-container,
 .tablet-screen .navigation-buttons {
     opacity: 0;
     animation: fadeInContent 0.5s ease-out 1.7s forwards;
 }
-.tablet-screen .mind-map-container { 
-    margin-top: 20px; 
-}
+.tablet-screen .mind-map-container { margin-top: 20px; }
 .tablet-screen .navigation-buttons { 
     padding-bottom: 20px;
     display: flex;
@@ -472,13 +488,13 @@ a, button, .node {
     gap: 20px;
 }
 
-/* --- 5. Barra de Scroll --- */
+/* --- 6. Barra de Scroll --- */
 .tablet-screen {
     scrollbar-width: thin;
     scrollbar-color: #00f6ff #0a0f2b;
 }
 
-/* --- 6. Corrección Final del Hexágono --- */
+/* --- 7. Hexágono (Sin cambios, pero incluido para que no se borre) --- */
 .node {
     width: 60px;
     height: 70px;
@@ -505,7 +521,7 @@ a, button, .node {
     transform: scale(1.1);
 }
 
-/* --- Estilos restantes del mind map --- */
+/* --- 8. Mind map (Sin cambios, pero incluido) --- */
 .mind-map-container {
     display: flex;
     flex-direction: column;
