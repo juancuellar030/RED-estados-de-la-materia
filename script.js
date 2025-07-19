@@ -106,12 +106,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // --- PART 5: TYPEWRITER EFFECT (for index.html) ---
+    // === PART 5: TYPEWRITER EFFECT (for index.html) (VERSIÓN ROBUSTA) ===
     
-    // Solo ejecuta esto si estamos en la página de bienvenida
     const welcomeScreen = document.getElementById('welcome-screen');
+    // Solo ejecuta esto si estamos en la página de bienvenida
     if (welcomeScreen) {
-        const textElements = document.querySelectorAll('.typewriter-text');
+        const textElements = welcomeScreen.querySelectorAll('.typewriter-text');
         let originalTexts = [];
     
         // Guarda el texto original y limpia los elementos
@@ -120,12 +120,11 @@ document.addEventListener('DOMContentLoaded', () => {
             el.textContent = '';
         });
     
-        // Función que simula la escritura y devuelve una Promesa
+        // Función que simula la escritura
         function typeWriter(element, text, speed) {
             return new Promise(resolve => {
                 let i = 0;
                 element.classList.add('typing'); // Añade el cursor parpadeante
-    
                 const timer = setInterval(() => {
                     if (i < text.length) {
                         element.textContent += text.charAt(i);
@@ -133,23 +132,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                         clearInterval(timer);
                         element.classList.remove('typing'); // Quita el cursor
-                        resolve(); // Resuelve la promesa cuando termina
+                        resolve(); // Avisa que ha terminado
                     }
                 }, speed);
             });
         }
     
-        // Función asíncrona para ejecutar las animaciones en secuencia
+        // Función asíncrona para ejecutar la secuencia
         async function startTypingSequence() {
-            // Espera a que la animación de la pantalla termine (2.2s)
+            // Espera a que la animación de la pantalla termine (2.2 segundos)
             await new Promise(resolve => setTimeout(resolve, 2200));
     
             for (let i = 0; i < textElements.length; i++) {
                 const el = textElements[i];
                 const text = originalTexts[i];
-                el.style.visibility = 'visible'; // Haz visible el elemento
-                await typeWriter(el, text, 50); // Escribe el texto a 50ms por caracter
-                await new Promise(resolve => setTimeout(resolve, 200)); // Pequeña pausa entre líneas
+                el.style.visibility = 'visible'; // Haz visible el elemento justo antes de escribir
+                await typeWriter(el, text, 50);
+                await new Promise(resolve => setTimeout(resolve, 200)); // Pausa entre líneas
             }
             
             // Al final, haz visible el botón
@@ -159,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         
-        // Oculta el botón al inicio para que no aparezca antes de tiempo
+        // Oculta el botón al inicio
         const finalButton = document.querySelector('#welcome-screen .cta-button');
         if(finalButton) {
           finalButton.style.opacity = '0';
