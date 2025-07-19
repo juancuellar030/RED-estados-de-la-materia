@@ -236,106 +236,75 @@ a, button, .node {
     cursor: url('assets/cursor-pointer.png'), pointer;
 }
 
-/* === ANIMACIÓN DE LA PANTALLA DE BIENVENIDA === */
+/* === ANIMACIÓN DE LA PANTALLA DE BIENVENIDA (ESTRUCTURA CORREGIDA) === */
 
-/* --- 1. Definición de las animaciones --- */
-
-/* Animación para que la consola se deslice desde la izquierda */
-@keyframes slideInFromLeft {
-    from {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-/* Animación para que la pantalla parezca proyectada */
-@keyframes projectScreen {
-    from {
-        transform: scale(0.5);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
+/* --- 1. Contenedor de la escena (el nuevo padre) --- */
+.welcome-scene-container {
+    /* La regla más importante: establece el contexto de posicionamiento */
+    position: relative;
+    /* Usamos flexbox para alinear los ítems, pero no es estrictamente necesario */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* --- 2. Estilos para los elementos animados --- */
 
 /* Estilo para la consola proyectora */
 #console-projector {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    width: 200px; /* Ajusta el tamaño según necesites */
+    /* ¡CAMBIO CLAVE! De 'fixed' a 'absolute' */
+    /* Ahora se posiciona relativo a 'welcome-scene-container' */
+    position: absolute;
+    /* Usamos valores negativos para colocarlo FUERA del borde de la pantalla */
+    top: -60px;
+    left: -80px;
+    width: 200px;
     z-index: 20;
-    opacity: 0; /* <-- AÑADE ESTA LÍNEA */
+    opacity: 0;
 
-    /* Aplicamos la animación */
-    animation-name: slideInFromLeft;
-    animation-duration: 1.5s; /* Duración de la entrada */
-    animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1); /* Curva de desaceleración suave */
-    animation-fill-mode: forwards; /* Mantiene el estado final de la animación */
+    animation: slideInFromLeft 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-/* Le dice a la imagen que llene el contenedor div */
+/* Estilo para la imagen dentro del contenedor de la consola */
 #console-projector img {
     width: 100%;
-    height: auto; /* Mantiene la proporción de la imagen */
-    display: block; /* Elimina cualquier espacio extra debajo de la imagen */
+    height: auto;
+    display: block;
 }
 
-/* Estilo para la pantalla de bienvenida que será proyectada */
+/* Estilo para la pantalla de bienvenida */
 #welcome-screen {
-    opacity: 0; /* Empieza invisible */
-    transform-origin: top left; /* La animación de escala se originará desde la esquina inferior izquierda */
+    opacity: 0;
+    transform-origin: top left;
 
-    /* Aplicamos la animación de proyección */
-    animation-name: projectScreen;
-    animation-duration: 1s; /* Duración de la proyección */
-    animation-timing-function: ease-out;
-    animation-fill-mode: forwards; /* Mantiene el estado final */
-    
-    /* ¡LA CLAVE DE LA SECUENCIA! */
-    /* Empieza esta animación después de que la consola haya entrado */
-    animation-delay: 1.2s; 
+    animation: projectScreen 1s ease-out 1.2s forwards;
 }
 
-/* === ANIMACIÓN DE LA LLAMARADA DEL PROYECTOR (ACTUALIZADO) === */
+/* --- 3. Animaciones (sin cambios) --- */
 
-/* --- 1. Definición de las animaciones --- */
+@keyframes slideInFromLeft {
+    from { transform: translateX(-100%); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
+}
 
-/* Animación #1: El destello inicial y brillante */
+@keyframes projectScreen {
+    from { transform: scale(0.5); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+/* --- 4. Animación de la llamarada (sin cambios, seguirá funcionando) --- */
 @keyframes lens-flare-effect {
     0%   { opacity: 0; transform: translate(-50%, -50%) scale(0); }
     50%  { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
     100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
 }
 
-/* Animación #2: El pulso continuo y sutil */
 @keyframes pulsating-flare {
-    /* Empieza sutil */
-    0% {
-        opacity: 0.3;
-        transform: translate(-50%, -50%) scale(0.6);
-    }
-    /* Alcanza un brillo medio */
-    50% {
-        opacity: 0.8;
-        transform: translate(-50%, -50%) scale(1);
-    }
-    /* Vuelve al estado sutil para un bucle perfecto */
-    100% {
-        opacity: 0.3;
-        transform: translate(-50%, -50%) scale(0.6);
-    }
+    0%   { opacity: 0.3; transform: translate(-50%, -50%) scale(0.5); }
+    50%  { opacity: 0.9; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.5); }
 }
 
-/* --- 2. Estilo y aplicación de las animaciones a la llamarada --- */
 #console-projector::after {
     content: '';
     display: block;
@@ -349,14 +318,9 @@ a, button, .node {
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
     
-    /* ¡LA CLAVE! APLICAMOS AMBAS ANIMACIONES ENCADENADAS */
-    /* La sintaxis es: [animación1], [animación2] */
     animation:
-        /* Animación 1: El destello inicial. Se ejecuta una vez. */
         lens-flare-effect 1s ease-in-out 1.2s forwards,
-        
-        /* Animación 2: El pulso continuo. Empieza después de la primera y se repite para siempre. */
-        pulsating-flare 2.3s ease-in-out 2.2s infinite;
+        pulsating-flare 2.5s ease-in-out 2.2s infinite;
 }
 
 /* === ESTILOS PARA LA ANIMACIÓN DE MÁQUINA DE ESCRIBIR === */
