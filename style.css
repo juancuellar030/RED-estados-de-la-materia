@@ -381,3 +381,119 @@ a, button, .node {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
 }
+
+/* === ESTILOS PARA LA PÁGINA DE REALIDAD AUMENTADA === */
+
+.ar-interface-container {
+    width: 90%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+/* --- Panel Principal con Perspectiva --- */
+.ar-main-panel {
+    background-color: rgba(10, 30, 60, 0.7);
+    border: 1px solid #00f6ff;
+    padding: 30px;
+    width: 80%;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    
+    /* Efecto 3D y animación de entrada */
+    transform: perspective(1200px) rotateX(15deg) scale(0.9);
+    opacity: 0;
+    animation: fadeInTilt 1s ease-out 0.5s forwards;
+}
+
+@keyframes fadeInTilt {
+    to {
+        transform: perspective(1200px) rotateX(0deg) scale(1);
+        opacity: 1;
+    }
+}
+
+.ar-main-panel .panel-title {
+    font-family: 'Orbitron', sans-serif;
+    color: #ff00ff;
+    margin-top: 0;
+}
+
+/* --- Panel de Instrucciones con Carga Secuencial --- */
+.ar-instructions-panel {
+    width: 80%;
+}
+.ar-instructions-panel ol {
+    list-style: none;
+    padding: 0;
+}
+.ar-instructions-panel li {
+    background-color: rgba(0, 246, 255, 0.1);
+    border-left: 3px solid #00f6ff;
+    padding: 15px;
+    margin-bottom: 10px;
+
+    /* Animación de entrada para cada item */
+    opacity: 0;
+    transform: translateX(50px);
+    animation: slideInItem 0.5s ease-out forwards;
+}
+
+/* Retraso para cada item de la lista */
+.ar-instructions-panel li:nth-child(1) { animation-delay: 1.2s; }
+.ar-instructions-panel li:nth-child(2) { animation-delay: 1.4s; }
+.ar-instructions-panel li:nth-child(3) { animation-delay: 1.6s; }
+
+@keyframes slideInItem {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* --- Bahía de Marcadores con Efecto de Escaneo --- */
+.ar-marker-bay {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+    margin-top: 20px;
+}
+.marker-slot {
+    width: 200px;
+    height: 200px;
+    border: 2px dashed rgba(0, 246, 255, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(0, 246, 255, 0.6);
+    position: relative;
+    overflow: hidden; /* Importante para el efecto de escaneo */
+    opacity: 0;
+    animation: fadeInItem 1s ease-out 2s forwards;
+}
+
+/* Línea de escaneo animada */
+.marker-slot::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #00f6ff;
+    box-shadow: 0 0 10px #00f6ff;
+    animation: scan-line 3s linear infinite;
+    animation-delay: 2.5s;
+}
+
+@keyframes scan-line {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(197px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes fadeInItem {
+    to { opacity: 1; }
+}
