@@ -11,54 +11,37 @@
 </head>
 <body>
     <canvas id="matrix-canvas"></canvas>
-    
+
+    <!-- 1. El contenedor principal que actúa como "escenario" -->
     <div class="tablet-container">
 
-        <!-- 2. El marco izquierdo -->
-        <img src="assets/tablet-left-frame.png" alt="Marco izquierdo de la tablet" class="tablet-frame left">
+        <!-- 2. Los marcos, que serán la capa del fondo -->
+        <img src="assets/tablet-frame-left.png" alt="Marco izquierdo" class="tablet-frame left">
+        <img src="assets/tablet-frame-right.png" alt="Marco derecho" class="tablet-frame right">
 
-        <!-- 3. La pantalla de la tablet -->
+        <!-- 3. La pantalla, que estará en una capa superior -->
         <div class="tablet-screen">
-            <!-- Todo el contenido del árbol de problemas va aquí dentro -->
             <div class="mind-map-container">
                 <h1 class="page-title">Árbol de Problemas // Red Neuronal</h1>
                 
                 <div class="effects-branch">
-                    <div class="node effect" data-title="Efecto 1: Incapacidad para Predecir" data-description="<strong>Fundamento:</strong> Al solo memorizar descripciones, un estudiante no puede inferir qué le pasaría a una crayola de cera (sólido) si la deja al sol, porque su conocimiento no se basa en principios como 'el calor puede cambiar el estado'.">E1</div>
-                    <div class="node effect" data-title="Efecto 2: Confusión Propiedad vs. Estado" data-description="<strong>Fundamento:</strong> Un estudiante podría decir 'el agua es líquida' como una propiedad inseparable. Le cuesta aceptar que el hielo sigue siendo agua, porque para él 'agua = líquido', en lugar de entenderlo como un estado temporal.">E2</div>
-                    <div class="node effect" data-title="Efecto 3: Gases Considerados Inmateriales" data-description="<strong>Fundamento:</strong> La representación estática es poco convincente. Al no poder experimentar virtualmente cómo el aire (gas) llena un espacio, la idea sigue siendo abstracta y para ellos, el globo se llena de 'nada'.">E3</div>
-                    <div class="node effect" data-title="Efecto 4: Falta de Curiosidad Científica" data-description="<strong>Fundamento:</strong> Un enfoque receptivo no fomenta el pensamiento científico. Una herramienta interactiva que permita experimentar invita al niño a preguntar, predecir (hipotetizar) y observar, construyendo activamente su conocimiento.">E4</div>
+                    <!-- ... tus nodos de efectos aquí ... -->
                 </div>
-            
-                <!-- Problema Central -->
                 <div class="core-problem"><span>Problema Principal</span></div>
-            
-                <!-- Relleno de Causas -->
                 <div class="causes-branch">
-                    <div class="node cause" data-title="Causa 1: Enfoque Macroscópico" data-description="<strong>Evidencia:</strong> El texto describe el 'qué' (los líquidos fluyen) pero no explica el 'porqué' a nivel de partículas. Esto lleva a la memorización en lugar de a la comprensión del mecanismo.">C1</div>
-                    <div class="node cause" data-title="Causa 2: Representación Estática" data-description="<strong>Evidencia:</strong> Las imágenes son estáticas. No pueden mostrar el proceso de un sólido derritiéndose o un líquido evaporándose. El estudiante se pierde la transformación, que es la esencia del concepto.">C2</div>
-                    <div class="node cause" data-title="Causa 3: Separación Conceptual" data-description="<strong>Evidencia:</strong> El libro separa 'Los materiales' de 'Los estados'. Al niño le cuesta entender que un material (madera) existe en un estado (sólido).">C3</div>
-                    <div class="node cause" data-title="Causa 4: Observación Pasiva" data-description="<strong>Evidencia:</strong> Las actividades son de observación y clasificación, no de experimentación. El niño no puede 'tocar' virtualmente un gas o 'aplicar calor' a un hielo para ver qué sucede.">C4</div>
+                    <!-- ... tus nodos de causas aquí ... -->
                 </div>
             </div>
-
-            <!-- Los botones de navegación también van dentro de la pantalla -->
             <div class="navigation-buttons">
                 <a href="index.html" class="cta-button back-button">‹ Volver al Inicio</a>
                 <a href="app-ra.html" class="cta-button">Ver Solución con RA ›</a>
             </div>
         </div>
-
-        <!-- 4. El marco derecho -->
-        <img src="assets/tablet-right-frame.png" alt="Marco derecho de la tablet" class="tablet-frame right">
     </div>
 
+    <!-- El modal sigue fuera, como siempre -->
     <div id="hologram-modal" class="modal-overlay">
-        <div class="modal-content">
-            <h2 id="modal-title">Título del Nodo</h2>
-            <p id="modal-description">Aquí va la descripción detallada.</p>
-            <button id="close-modal" class="cta-button back-button">Cerrar [x]</button>
-        </div>
+        <!-- ... contenido del modal ... -->
     </div>
 
     <script src="script.js"></script>
