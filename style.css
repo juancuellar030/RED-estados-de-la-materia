@@ -1,15 +1,28 @@
 /* Estilos base y fondo Sci-Fi */
+/* === ESTILOS BASE PARA TODAS LAS PÁGINAS === */
 body {
     background-color: #000000;
     color: #e0e0e0;
     font-family: 'Rajdhani', sans-serif;
     margin: 0;
-    /* Quitamos el padding para evitar cualquier desbordamiento */
-    padding: 0; 
     min-height: 100vh;
     cursor: url('assets/cursor-default.png'), auto;
-    /* MUY IMPORTANTE: Evita que aparezcan barras de scroll innecesarias */
-    overflow: hidden; 
+    overflow: hidden; /* Evita barras de scroll innecesarias */
+}
+
+/* === MAQUETACIÓN ESPECÍFICA POR PÁGINA === */
+
+/* Para index.html y app-ra.html, usamos Flexbox para centrar */
+body.home-page, body.ar-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Devolvemos el padding a estas páginas */
+}
+
+/* Para arbol-de-problemas.html, NO usamos Flexbox en el body */
+body.tablet-page {
+    padding: 0;
 }
 
 /* Títulos principales con fuente Sci-Fi */
@@ -424,13 +437,10 @@ a, button, .node {
 
 /* --- 2. El "Escenario" Principal --- */
 .tablet-container {
-    /* LA CLAVE: El método de centrado absoluto e infalible */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Centrado perfecto */
-
-    /* Mantenemos el tamaño y la animación */
+    /* ESTA ES LA REGLA FINAL Y CORRECTA */
+    /* Ahora que el body no interfiere, podemos usar position: relative */
+    position: relative;
+    margin: auto; /* Truco para centrar un bloque con position: relative */
     width: 90vw;
     height: 85vh;
     max-width: 1600px;
