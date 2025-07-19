@@ -1,15 +1,19 @@
-/* Estilos base y fondo Sci-Fi */
-/* === ESTILOS BASE PARA TODAS LAS PÁGINAS === */
+/* === ESTILOS GLOBALES Y DE MAQUETACIÓN (VERSIÓN FINAL Y CORRECTA) === */
+
+/* --- 1. Estilos base para TODAS las páginas --- */
 body {
     background-color: #000000;
     color: #e0e0e0;
     font-family: 'Rajdhani', sans-serif;
     margin: 0;
     min-height: 100vh;
-    cursor: url('assets/cursor-default.svg'), auto;
-    overflow: hidden; /* Evita barras de scroll innecesarias */
+    cursor: url('assets/cursor-default.png'), auto; /* Asegúrate que el nombre del cursor es .png si es un png */
+    overflow: hidden;
+}
 
-    /* LA REGLA CLAVE: Flexbox para centrar en TODAS las páginas */
+/* --- 2. Maquetación para la página de Inicio y de AR --- */
+/* Estas páginas SÍ usan Flexbox para un centrado simple */
+body.home-page, body.ar-page {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,7 +21,8 @@ body {
     box-sizing: border-box;
 }
 
-/* Para arbol-de-problemas.html, NO usamos Flexbox en el body */
+/* --- 3. Maquetación para la página de la Tablet --- */
+/* Esta página NO usa Flexbox en el body, para evitar conflictos */
 body.tablet-page {
     padding: 0;
 }
@@ -434,22 +439,18 @@ a, button, .node {
 
 /* --- 2. El "Escenario" Principal --- */
 .tablet-container {
-    position: relative;
+    /* LA CLAVE: El método de centrado absoluto que ahora SÍ funciona */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrado perfecto */
+
+    /* Mantenemos el tamaño y la animación */
     width: 90vw;
     height: 85vh;
     max-width: 1600px;
     opacity: 0;
     animation: fadeInContent 0.5s ease-out 0.2s forwards;
-}
-
-/* --- 3. Los Marcos (Capa Inferior) --- */
-.tablet-frame {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 120px; 
-    opacity: 0;
-    animation: slideInFromBottom 1s ease-out 0.2s forwards;
 }
 .tablet-frame.left { left: 0; }
 .tablet-frame.right { right: 0; }
