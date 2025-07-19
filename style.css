@@ -421,73 +421,74 @@ a, button, .node {
 }
 
 /* ========================================================================== */
-/* ESTILOS Y ANIMACIÓN PARA LA TABLET SCI-FI (RECONSTRUCCIÓN FINAL) */
+/* ESTILOS Y ANIMACIÓN PARA LA TABLET SCI-FI (RECONSTRUCCIÓN FLEXBOX FINAL) */
 /* ========================================================================== */
 
-/* --- 1. Definición de las animaciones de entrada --- */
+/* --- 1. Definiciones de Animación --- */
 @keyframes slideInFromBottom {
     from { transform: translateY(50px); opacity: 0; }
     to   { transform: translateY(0); opacity: 1; }
 }
 @keyframes projectTabletScreen {
-    from { transform: scale(0.9); opacity: 0; }
-    to   { transform: scale(1); opacity: 1; }
+    from { transform: scaleY(0.9); opacity: 0; }
+    to   { transform: scaleY(1); opacity: 1; }
 }
 @keyframes fadeInContent {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
 
-/* --- 2. El "Escenario" Principal --- */
+/* --- 2. El Contenedor Principal (Flexbox) --- */
 .tablet-container {
-    position: relative; /* Es el ancla para las capas internas */
+    display: flex;
+    /* CLAVE: Estira todos los hijos para que tengan la misma altura */
+    align-items: stretch; 
     width: 90vw;
     height: 85vh;
     max-width: 1600px;
-    
-    /* Usamos Flexbox para alinear los marcos, que son la base */
-    display: flex;
-    justify-content: space-between; /* Pega un marco a cada lado */
-    
     opacity: 0;
     animation: fadeInContent 0.5s ease-out 0.2s forwards;
 }
 
-/* --- 3. Los Marcos (Capa Inferior) --- */
-.tablet-frame {
-    height: 100%; /* Ocupan el 100% de la altura del escenario */
-    width: 120px; /* Ancho fijo para evitar distorsión */
+/* --- 3. Contenedores de los Marcos --- */
+.tablet-frame-container {
+    /* Un contenedor flex para centrar la imagen del marco verticalmente */
+    display: flex;
+    align-items: center;
     opacity: 0;
     animation: slideInFromBottom 1s ease-out 0.5s forwards;
 }
 
-/* --- 4. La Pantalla (Capa Superior) --- */
+/* --- 4. Las Imágenes de los Marcos --- */
+.tablet-frame {
+    height: 100%; /* La imagen llenará la altura del contenedor */
+    width: auto; /* Mantiene la proporción */
+}
+
+/* --- 5. La Pantalla --- */
 .tablet-screen {
-    position: absolute; /* Se superpone a los marcos */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Centrado perfecto */
-
-    /* Ancho y altura independientes */
-    width: calc(100% - 280px); /* 100% del padre menos el espacio de los marcos y un margen */
-    height: 95%; /* Un poco más pequeña que los marcos */
-
+    flex-grow: 1; /* CLAVE: Ocupa todo el espacio sobrante */
+    height: 100%; /* Coincide con la altura de los marcos */
     background-color: rgba(0, 246, 255, 0.15);
     box-shadow: inset 0 0 30px rgba(0, 246, 255, 0.5);
     border: 1px solid rgba(0, 246, 255, 0.4);
     padding: 20px 40px;
     box-sizing: border-box;
     overflow-y: auto;
-    
     opacity: 0;
     animation: projectTabletScreen 0.7s ease-out 1.2s forwards;
 }
 
-/* --- 5. Contenido de la Pantalla --- */
+/* --- 6. Contenido de la Pantalla --- */
 .tablet-screen .mind-map-container,
 .tablet-screen .navigation-buttons {
     opacity: 0;
     animation: fadeInContent 0.5s ease-out 1.9s forwards;
+}
+.tablet-screen .navigation-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 /* --- 6. Barra de Scroll --- */
