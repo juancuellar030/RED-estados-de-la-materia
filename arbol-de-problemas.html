@@ -1,21 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Árbol de Problemas - RED Estados de la Materia</title>
+    
+    <!-- ¡¡ESTA ES LA LÍNEA CRÍTICA QUE FALTABA!! -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Enlaces a las fuentes para mantener la coherencia -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
+</head>
 <body class="tablet-page">
     <canvas id="matrix-canvas"></canvas>
 
     <main>
         <div class="tablet-container">
-
             <!-- Marcos, la capa del fondo -->
             <img src="assets/tablet-frame-left.png" alt="Marco izquierdo" class="tablet-frame left">
             <img src="assets/tablet-frame-right.png" alt="Marco derecho" class="tablet-frame right">
 
             <!-- La pantalla, en una capa superior -->
             <div class="tablet-screen">
-
-                <!-- ¡TODO ESTE CONTENIDO ES EL QUE FALTABA! -->
                 <div class="mind-map-container">
                     <h1 class="page-title">Árbol de Problemas // Red Neuronal</h1>
                     
-                    <!-- Relleno de Efectos -->
                     <div class="effects-branch">
                         <div class="node effect" data-title="Efecto 1: Incapacidad para Predecir" data-description="<strong>Fundamento:</strong> Al solo memorizar descripciones, un estudiante no puede inferir qué le pasaría a una crayola de cera (sólido) si la deja al sol, porque su conocimiento no se basa en principios como 'el calor puede cambiar el estado'.">E1</div>
                         <div class="node effect" data-title="Efecto 2: Confusión Propiedad vs. Estado" data-description="<strong>Fundamento:</strong> Un estudiante podría decir 'el agua es líquida' como una propiedad inseparable. Le cuesta aceptar que el hielo sigue siendo agua, porque para él 'agua = líquido', en lugar de entenderlo como un estado temporal.">E2</div>
@@ -23,10 +34,8 @@
                         <div class="node effect" data-title="Efecto 4: Falta de Curiosidad Científica" data-description="<strong>Fundamento:</strong> Un enfoque receptivo no fomenta el pensamiento científico. Una herramienta interactiva que permita experimentar invita al niño a preguntar, predecir (hipotetizar) y observar, construyendo activamente su conocimiento.">E4</div>
                     </div>
 
-                    <!-- Problema Central -->
                     <div class="core-problem"><span>Problema Principal</span></div>
 
-                    <!-- Relleno de Causas -->
                     <div class="causes-branch">
                         <div class="node cause" data-title="Causa 1: Enfoque Macroscópico" data-description="<strong>Evidencia:</strong> El texto describe el 'qué' (los líquidos fluyen) pero no explica el 'porqué' a nivel de partículas. Esto lleva a la memorización en lugar de a la comprensión del mecanismo.">C1</div>
                         <div class="node cause" data-title="Causa 2: Representación Estática" data-description="<strong>Evidencia:</strong> Las imágenes son estáticas. No pueden mostrar el proceso de un sólido derritiéndose o un líquido evaporándose. El estudiante se pierde la transformación, que es la esencia del concepto.">C2</div>
@@ -43,7 +52,6 @@
         </div>
     </main>
     
-    <!-- El modal sigue fuera, como una superposición global -->
     <div id="hologram-modal" class="modal-overlay">
         <div class="modal-content">
             <h2 id="modal-title">Título del Nodo</h2>
@@ -54,3 +62,4 @@
 
     <script src="script.js"></script>
 </body>
+</html>
