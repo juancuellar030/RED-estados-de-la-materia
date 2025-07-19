@@ -5,15 +5,25 @@ body {
     font-family: 'Rajdhani', sans-serif;
     margin: 0;
     min-height: 100vh;
-    cursor: url('assets/cursor-default.png'), auto;
+    cursor: url('assets/cursor-default.png'), auto; /* Asegúrate que es .png si el archivo es png */
     overflow: hidden; /* Evita barras de scroll innecesarias */
+}
 
-    /* LA REGLA CLAVE: Flexbox para centrar el contenido principal en TODAS las páginas */
+/* --- 2. Maquetación para la página de Inicio y de AR --- */
+/* Estas páginas SÍ usan Flexbox para un centrado simple */
+body.home-page, body.ar-page {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
     box-sizing: border-box;
+}
+
+/* --- 3. Maquetación para la página de la Tablet --- */
+/* Esta página NO usa Flexbox en el body, para evitar conflictos */
+body.tablet-page {
+    /* No necesita ninguna regla de maquetación especial */
+    padding: 0;
 }
 
 /* Títulos principales con fuente Sci-Fi */
@@ -428,18 +438,20 @@ a, button, .node {
 
 /* --- 2. El "Escenario" Principal --- */
 .tablet-container {
-    /* La regla más importante: actúa como el ancla para las capas internas */
-    position: relative; 
-    
-    /* El body ya lo está centrando, así que solo definimos su tamaño */
+    /* LA CLAVE: El método de centrado absoluto que ahora SÍ funciona */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrado perfecto */
+
+    /* Mantenemos el tamaño y la animación */
     width: 90vw;
     height: 85vh;
     max-width: 1600px;
-    
-    /* Mantenemos la animación de entrada */
     opacity: 0;
     animation: fadeInContent 0.5s ease-out 0.2s forwards;
 }
+
 .tablet-frame.left { left: 0; }
 .tablet-frame.right { right: 0; }
 
