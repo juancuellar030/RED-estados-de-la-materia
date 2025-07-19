@@ -145,6 +145,7 @@ body {
     width: 100%;
 }
 
+/* --- 5. CORRECCIÓN DEL CONTORNO DEL HEXÁGONO --- */
 .node {
     width: 60px;
     height: 70px;
@@ -155,14 +156,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid #00f6ff;
-    box-shadow: 0 0 10px #00f6ff;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     cursor: pointer;
     transition: all 0.3s ease;
-    position: relative;
+    
+    /* ¡LA MAGIA! Usamos filter: drop-shadow para crear un contorno perfecto */
+    /* Creamos 4 sombras sin desenfoque, una para cada dirección, simulando un borde */
+    filter: 
+        drop-shadow(0 2px 0 #00f6ff)
+        drop-shadow(0 -2px 0 #00f6ff)
+        drop-shadow(2px 0 0 #00f6ff)
+        drop-shadow(-2px 0 0 #00f6ff);
 }
-
 .node:hover {
     background-color: rgba(0, 246, 255, 0.3);
     transform: scale(1.1);
@@ -508,13 +513,13 @@ a, button, .node {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 95vw;
+    width: 85vw;
     max-width: 1600px;
 }
 
 /* Los marcos izquierdo y derecho */
 .tablet-frame {
-    height: 85vh;
+    height: 80vh;
     width: auto;
     opacity: 0; /* Empiezan invisibles */
 
@@ -525,11 +530,11 @@ a, button, .node {
 /* La pantalla translúcida del centro */
 .tablet-screen {
     /* MÁS VISIBLE Y CON BRILLO INTERNO */
-    background-color: rgba(0, 246, 255, 0.1); /* Hacemos el fondo un poco más opaco */
-    box-shadow: inset 0 0 25px rgba(0, 246, 255, 0.4); /* Añadimos un brillo interior */
+    background-color: rgba(0, 246, 255, 0.15); /* Hacemos el fondo un poco más opaco */
+    box-shadow: inset 0 0 25px rgba(0, 246, 255, 0.5); /* Añadimos un brillo interior */
     border: 1px solid rgba(0, 246, 255, 0.3); /* Un borde sutil para definir */
     
-    height: 85vh;
+    height: 80vh;
     width: 100%;
     padding: 20px 40px;
     box-sizing: border-box;
