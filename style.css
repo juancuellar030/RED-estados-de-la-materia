@@ -201,12 +201,10 @@ a, button, .node {
 
 /* Estilo para la consola proyectora */
 #console-projector {
-    /* ¡CAMBIO CLAVE! De 'fixed' a 'absolute' */
-    /* Ahora se posiciona relativo a 'welcome-scene-container' */
     position: absolute;
     /* Usamos valores negativos para colocarlo FUERA del borde de la pantalla */
     top: -60px;
-    left: -80px;
+    left: -120px;
     width: 200px;
     z-index: 20;
     opacity: 0;
