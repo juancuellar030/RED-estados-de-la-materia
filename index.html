@@ -11,26 +11,34 @@
 </head>
 <body>
     <canvas id="matrix-canvas"></canvas>
-    <div id="console-projector">
-        <img src="assets/console-projector.png" alt="Console Projector">
-    </div>
 
-    <main class="screen-container" id="welcome-screen">
-        <h1 class="main-title typewriter-text">Los Estados y Propiedades de la Materia</h1>
-        <p class="subtitle typewriter-text">Presentado por:</p>
-        
-        <div class="team-section">
-            <ul class="team-list">
-                <li class="typewriter-text">KARLA CABRERA ROA</li>
-                <li class="typewriter-text">ALEXANDRA CATALINA LOSADA</li>
-                <li class="typewriter-text">JUAN DIEGO CUELLAR MAZABEL</li>
-            </ul>
+    <!-- NUEVO CONTENEDOR DE ESCENA QUE ENVUELVE TODO -->
+    <div class="welcome-scene-container">
+
+        <!-- 1. LA CONSOLA, AHORA DENTRO DE LA ESCENA -->
+        <div id="console-projector">
+            <img src="assets/console-projector.png" alt="Console Projector">
         </div>
 
-        <a href="arbol-de-problemas.html" class="cta-button">
-            Analizar Problema ›
-        </a>
-    </main>
+        <!-- 2. LA PANTALLA, TAMBIÉN DENTRO DE LA ESCENA -->
+        <main class="screen-container" id="welcome-screen">
+            <h1 class="main-title">Los Estados y Propiedades de la Materia</h1>
+            
+            <div class="team-section">
+                <h2>Presentado por:</h2>
+                <ul class="team-list">
+                    <li>KARLA CABRERA ROA</li>
+                    <li>ALEXANDRA CATALINA LOSADA</li>
+                    <li>JUAN DIEGO CUELLAR MAZABEL</li>
+                </ul>
+            </div>
+
+            <a href="arbol-de-problemas.html" class="cta-button">
+                Analizar Problema ›
+            </a>
+        </main>
+
+    </div> <!-- FIN DEL CONTENEDOR DE ESCENA -->
 
     <script src="script.js"></script>
 </body>
