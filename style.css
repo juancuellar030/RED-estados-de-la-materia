@@ -462,47 +462,96 @@ a, button, .node {
     to { opacity: 1; }
 }
 
-/* === ESTILOS PARA LA TABLET SCI-FI === */
+/* === ESTILOS Y ANIMACIÓN PARA LA TABLET SCI-FI (ACTUALIZADO) === */
 
-/* El contenedor que une todas las piezas */
-.tablet-container {
-    display: flex; /* La clave: alinea los elementos horizontalmente */
-    align-items: center; /* Centra los marcos y la pantalla verticalmente */
-    justify-content: center;
-    width: 95vw; /* Ocupa casi todo el ancho de la pantalla */
-    max-width: 1600px; /* Un límite para pantallas muy grandes */
+/* --- 1. Definición de las animaciones de entrada --- */
+
+/* Animación para los marcos que se deslizan desde abajo */
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
-/* Estilo para los marcos izquierdo y derecho */
+/* Animación para la pantalla que se expande horizontalmente */
+@keyframes projectTabletScreen {
+    from {
+        transform: scaleX(0);
+        opacity: 0.5;
+    }
+    to {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+/* Animación para que el contenido aparezca al final */
+@keyframes fadeInContent {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* --- 2. Aplicación de los estilos y animaciones --- */
+
+/* El contenedor principal */
+.tablet-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 95vw;
+    max-width: 1600px;
+}
+
+/* Los marcos izquierdo y derecho */
 .tablet-frame {
-    height: 85vh; /* Hace que los marcos sean altos */
-    width: auto;  /* Mantiene la proporción de la imagen */
+    height: 85vh;
+    width: auto;
+    opacity: 0; /* Empiezan invisibles */
+
+    /* Aplicamos la animación de deslizamiento */
+    animation: slideInFromBottom 1s ease-out 0.2s forwards;
 }
 
 /* La pantalla translúcida del centro */
 .tablet-screen {
-    background-color: rgba(0, 246, 255, 0.05); /* Cian muy translúcido */
-    border: 1px solid rgba(0, 246, 255, 0.2);
-    height: 85vh; /* Misma altura que los marcos */
-    width: 100%; /* Ocupa todo el espacio disponible */
-    padding: 20px 40px; /* Espacio interno para que el contenido no toque los bordes */
-    box-sizing: border-box;
-
-    /* LA CLAVE PARA EL CONTENIDO LARGO */
-    /* Si el árbol de problemas es muy alto, aparecerá una barra de scroll */
-    overflow-y: auto; 
+    /* MÁS VISIBLE Y CON BRILLO INTERNO */
+    background-color: rgba(0, 246, 255, 0.1); /* Hacemos el fondo un poco más opaco */
+    box-shadow: inset 0 0 25px rgba(0, 246, 255, 0.4); /* Añadimos un brillo interior */
+    border: 1px solid rgba(0, 246, 255, 0.3); /* Un borde sutil para definir */
     
-    /* Le damos un estilo sutil a la barra de scroll */
+    height: 85vh;
+    width: 100%;
+    padding: 20px 40px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    opacity: 0; /* Empieza invisible */
+    transform: scaleX(0); /* Empieza sin ancho */
+
+    /* Aplicamos la animación de proyección con un retraso */
+    animation: projectTabletScreen 0.7s ease-out 1s forwards;
+}
+
+/* El contenido dentro de la pantalla */
+.tablet-screen .mind-map-container,
+.tablet-screen .navigation-buttons {
+    opacity: 0; /* Empieza invisible */
+
+    /* Aplicamos la animación final de aparición */
+    animation: fadeInContent 0.5s ease-out 1.7s forwards;
+}
+
+/* Estilo para la barra de scroll */
+.tablet-screen {
     scrollbar-width: thin;
     scrollbar-color: #00f6ff #0a0f2b;
-}
-
-/* Ajustamos el árbol de problemas para que encaje bien */
-.tablet-screen .mind-map-container {
-    margin-top: 20px;
-}
-
-/* Ajustamos los botones dentro de la tablet */
-.tablet-screen .navigation-buttons {
-    padding-bottom: 20px;
 }
