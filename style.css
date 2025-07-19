@@ -8,16 +8,13 @@ body {
     min-height: 100vh;
     cursor: url('assets/cursor-default.svg'), auto;
     overflow: hidden; /* Evita barras de scroll innecesarias */
-}
 
-/* === MAQUETACIÓN ESPECÍFICA POR PÁGINA === */
-
-/* Para index.html y app-ra.html, usamos Flexbox para centrar */
-body.home-page, body.ar-page {
+    /* LA REGLA CLAVE: Flexbox para centrar en TODAS las páginas */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px; /* Devolvemos el padding a estas páginas */
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 /* Para arbol-de-problemas.html, NO usamos Flexbox en el body */
@@ -437,10 +434,7 @@ a, button, .node {
 
 /* --- 2. El "Escenario" Principal --- */
 .tablet-container {
-    /* ESTA ES LA REGLA FINAL Y CORRECTA */
-    /* Ahora que el body no interfiere, podemos usar position: relative */
     position: relative;
-    margin: auto; /* Truco para centrar un bloque con position: relative */
     width: 90vw;
     height: 85vh;
     max-width: 1600px;
@@ -450,41 +444,30 @@ a, button, .node {
 
 /* --- 3. Los Marcos (Capa Inferior) --- */
 .tablet-frame {
-    /* Se posicionan de forma absoluta DENTRO del escenario */
     position: absolute;
     top: 0;
-    height: 100%; /* Ocupan el 100% de la altura del escenario */
-    
-    /* SOLUCIÓN AL ESTIRAMIENTO: Damos un ancho fijo y quitamos el object-fit */
+    height: 100%;
     width: 120px; 
-    
     opacity: 0;
     animation: slideInFromBottom 1s ease-out 0.2s forwards;
 }
-.tablet-frame.left { left: 0; } /* El marco izquierdo se pega a la izquierda */
-.tablet-frame.right { right: 0; } /* El marco derecho se pega a la derecha */
+.tablet-frame.left { left: 0; }
+.tablet-frame.right { right: 0; }
 
 /* --- 4. La Pantalla (Capa Superior) --- */
 .tablet-screen {
     position: absolute;
-    /* Centramos la pantalla en el escenario */
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Truco para un centrado perfecto */
-
-    /* CONTROL INDEPENDIENTE DEL TAMAÑO */
-    /* El ancho es el 100% del escenario MENOS el ancho de los dos marcos */
+    transform: translate(-50%, -50%);
     width: calc(100% - 240px);
-    /* La altura es un poco menor que la del escenario para un mejor ajuste visual */
     height: 95%;
-
     background-color: rgba(0, 246, 255, 0.15);
     box-shadow: inset 0 0 30px rgba(0, 246, 255, 0.5);
     border: 1px solid rgba(0, 246, 255, 0.4);
     padding: 20px 40px;
     box-sizing: border-box;
     overflow-y: auto;
-    
     opacity: 0;
     animation: projectTabletScreen 0.7s ease-out 1s forwards;
 }
@@ -495,7 +478,9 @@ a, button, .node {
     opacity: 0;
     animation: fadeInContent 0.5s ease-out 1.7s forwards;
 }
-.tablet-screen .mind-map-container { margin-top: 20px; }
+.tablet-screen .mind-map-container { 
+    margin-top: 20px; 
+}
 .tablet-screen .navigation-buttons { 
     padding-bottom: 20px;
     display: flex;
