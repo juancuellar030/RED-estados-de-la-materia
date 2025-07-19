@@ -429,8 +429,8 @@ a, button, .node {
     display: flex;
     align-items: stretch; 
     justify-content: center;
-    width: 85vw; 
-    max-width: 1400px;
+    width: 100vw; 
+    max-width: 1200px;
     opacity: 0;
     animation: fadeInContent 0.5s ease-out 0.2s forwards;
 }
@@ -483,9 +483,9 @@ a, button, .node {
     width: 60px;
     height: 70px;
     background-color: rgba(0, 246, 255, 0.1);
-    color: #00f6ff;
+    color: #ffffff;
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -511,7 +511,7 @@ a, button, .node {
     flex-direction: column;
     align-items: center;
     gap: 40px;
-    margin: 60px 0;
+    margin: 50px 0;
     width: 100%;
     position: relative;
 }
