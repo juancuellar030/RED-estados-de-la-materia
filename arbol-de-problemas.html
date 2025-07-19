@@ -9,17 +9,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="tablet-page">
     <canvas id="matrix-canvas"></canvas>
 
-    <!-- El "Escenario" principal que se centrará en la página -->
     <main class="tablet-container">
+        <!-- MARCO IZQUIERDO -->
+        <div class="tablet-frame-container">
+            <img src="assets/tablet-left-frame.png" alt="Marco izquierdo" class="tablet-frame">
+        </div>
 
-        <!-- Capa 1: Los Marcos (al fondo) -->
-        <img src="assets/tablet-left-frame.png" alt="Marco izquierdo" class="tablet-frame left">
-        <img src="assets/tablet-right-frame.png" alt="Marco derecho" class="tablet-frame right">
-
-        <!-- Capa 2: La Pantalla (encima de los marcos) -->
+        <!-- PANTALLA -->
         <div class="tablet-screen">
             <div class="mind-map-container">
                 <h1 class="page-title">Árbol de Problemas // Red Neuronal</h1>
@@ -46,8 +45,14 @@
                 <a href="app-ra.html" class="cta-button">Ver Solución con RA ›</a>
             </div>
         </div>
+
+        <!-- MARCO DERECHO -->
+        <div class="tablet-frame-container">
+            <img src="assets/tablet-right-frame.png" alt="Marco derecho" class="tablet-frame">
+        </div>
     </main>
     
+    <!-- Modal -->
     <div id="hologram-modal" class="modal-overlay">
         <div class="modal-content">
             <h2 id="modal-title">Título del Nodo</h2>
