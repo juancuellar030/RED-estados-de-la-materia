@@ -219,12 +219,36 @@ a, button, .node {
     display: block;
 }
 
-/* Estilo para la pantalla de bienvenida */
+/* Estilo para la pantalla de bienvenida (Ahora es un contenedor) */
 #welcome-screen {
-    opacity: 0;
-    transform-origin: top left;
+    /* Lo hacemos un contenedor relativo para su pseudo-elemento */
+    position: relative; 
+    /* Lo hacemos transparente, el pseudo-elemento tendrá el fondo */
+    background-color: transparent; 
+    /* Importante para que la animación de barrido no se desborde */
+    overflow: hidden; 
+}
 
-    animation: projectScreen 1s ease-out 1.2s forwards;
+/* El panel de barrido que contiene la imagen de la pantalla */
+#welcome-screen::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* Le damos la apariencia de la pantalla a este panel */
+    background-image: url('assets/futuristic-screen.svg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    /* LA CLAVE: La animación de barrido */
+    transform-origin: left; /* La animación crece desde la izquierda */
+    opacity: 0; /* Empieza invisible */
+    animation: 
+        wipe-from-left 1s ease-out 1.2s forwards,
+        fadeInContent 1s ease-out 1.2s forwards;
 }
 
 /* --- 3. Animaciones (sin cambios) --- */
@@ -250,6 +274,12 @@ a, button, .node {
     0%   { opacity: 0.3; transform: translate(-50%, -50%) scale(0.5); }
     50%  { opacity: 0.9; transform: translate(-50%, -50%) scale(1); }
     100% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.5); }
+}
+
+/* Nueva animación para el barrido de la pantalla de inicio */
+@keyframes wipe-from-left {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
 }
 
 #console-projector::after {
