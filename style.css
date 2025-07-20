@@ -491,7 +491,7 @@ a, button, .node {
     content: '';
     position: absolute;
     top: 0;
-    width: 50.5%; /* Ligeramente más del 50% para que se superpongan en el centro */
+    width: 50%; /* Ligeramente más del 50% para que se superpongan en el centro */
     height: 100%;
     
     /* Le damos la apariencia de la pantalla a estos paneles */
