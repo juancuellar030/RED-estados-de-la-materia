@@ -206,17 +206,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000); // Empieza a los 2 segundos
     }
 
-    // === PART 7: SCREEN APPEARANCE SOUND EFFECTS ===
+    // === PART 7: SCREEN APPEARANCE SOUND EFFECTS (VERSIÓN CORREGIDA) ===
 
-    // Pre-carga el nuevo sonido
     const screenSound = new Audio('assets/sci-fi-screen.wav');
-    screenSound.volume = 0.4; // Ajusta el volumen
+    screenSound.volume = 0.4;
     
-    // Busca la pantalla de bienvenida y la de la tablet
     const welcomeScreenForSound = document.getElementById('welcome-screen');
     const tabletScreenForSound = document.querySelector('.tablet-screen');
     
-    // Si la pantalla de bienvenida existe, añade el listener
+    // Para la pantalla de bienvenida, el listener funciona bien
     if (welcomeScreenForSound) {
         welcomeScreenForSound.addEventListener('animationstart', () => {
             screenSound.currentTime = 0;
@@ -224,16 +222,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { once: true });
     }
     
-    // Si la pantalla de la tablet existe, busca sus paneles y añade el listener
+    // Para la pantalla de la tablet, usamos un temporizador fiable
     if (tabletScreenForSound) {
-        // Escuchamos la animación en uno de los paneles de barrido
-        const firstPanel = tabletScreenForSound.querySelector('::before');
-        tabletScreenForSound.addEventListener('animationstart', (event) => {
-            // Nos aseguramos de que es la animación de la pantalla y no otra
-            if (event.animationName === 'projectTabletScreen') {
-                screenSound.currentTime = 0;
-                screenSound.play();
-            }
-        }, { once: true });
+        // La animación de la pantalla empieza a los 1.2s (1200ms)
+        setTimeout(() => {
+            screenSound.currentTime = 0;
+            screenSound.play();
+        }, 1200);
     }
 }); // <-- El final del archivo
