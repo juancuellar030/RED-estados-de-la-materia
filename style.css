@@ -763,13 +763,13 @@ a, button, .node {
     position: fixed; 
     
     /* Lo anclamos al borde inferior, con un valor negativo para el efecto de flotado */
-    bottom: -15px; 
+    bottom: -25px; 
     right: 20px;
     z-index: 999;
     
     /* Le damos un tamaño y position: relative para el botón */
     position: relative; 
-    width: 300px;
+    width: 320px;
 }
 
 /* --- 3. La imagen del avatar --- */
