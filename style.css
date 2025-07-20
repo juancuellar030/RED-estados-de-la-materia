@@ -457,11 +457,11 @@ a, button, .node {
 .tablet-screen {
     flex-grow: 1;
     /* AJUSTE DE ALTURA: La hacemos un poco más pequeña que los marcos */
-    height: 90%; 
+    height: 95%; 
     background-color: rgba(0, 246, 255, 0.15);
     box-shadow: inset 0 0 30px rgba(0, 246, 255, 0.5);
     border: 1px solid rgba(0, 246, 255, 0.4);
-    padding: 10px 30px; /* Reducimos el padding vertical */
+    padding: 10px 40px; /* Reducimos el padding vertical */
     box-sizing: border-box;
     
     /* ELIMINAMOS EL SCROLL: Hacemos que el contenido se centre */
