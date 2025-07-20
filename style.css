@@ -735,7 +735,7 @@ a, button, .node {
 }
 
 /* LA CLAVE: Muestra el botón cuando el usuario ha interactuado */
-.cube-scene.user-has-interacted #play-rotation-button {
+.cube-scene.user-has-interacted + #play-rotation-button {
     opacity: 1;
     visibility: visible;
     transform: scale(1);
