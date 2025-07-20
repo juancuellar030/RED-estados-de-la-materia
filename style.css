@@ -204,7 +204,7 @@ a, button, .node {
     position: absolute;
     /* Usamos valores negativos para colocarlo FUERA del borde de la pantalla */
     top: -60px;
-    left: -120px;
+    left: -140px;
     width: 200px;
     z-index: 20;
     opacity: 0;
