@@ -289,69 +289,57 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === PART 9: 3D CUBE DRAG ROTATION ===
+    // === PART 9: 3D CUBE DRAG ROTATION (CON LÓGICA DE BOTÓN COMPLETA) ===
 
     const cubeScene = document.querySelector('.cube-scene');
     const cube = document.querySelector('.cube');
+    // 1. Buscamos el nuevo botón
+    const playRotationButton = document.getElementById('play-rotation-button');
     
-    // Solo ejecuta esto si el cubo existe
-    if (cube && cubeScene) {
+    // Solo ejecuta esto si TODOS los elementos existen
+    if (cube && cubeScene && playRotationButton) {
         let isDragging = false;
         let previousX, previousY;
-        // Empezamos con la inclinación inicial del CSS
         let rotationX = 10; 
         let rotationY = 0;
     
         // --- Evento: Clic para empezar a arrastrar ---
         cubeScene.addEventListener('mousedown', (e) => {
-            e.preventDefault(); // Evita que se seleccione texto al arrastrar
+            e.preventDefault();
             isDragging = true;
             previousX = e.clientX;
             previousY = e.clientY;
             
-            // Detiene la animación automática y permite una rotación suave
             cube.classList.add('is-interactive');
+            
+            // 2. ¡LA CLAVE! Añadimos la clase para que el CSS muestre el botón
+            cubeScene.classList.add('user-has-interacted'); 
         });
     
-        // --- Evento: Mover el ratón mientras se arrastra ---
+        // --- Evento: Mover el ratón mientras se arrastra (sin cambios) ---
         window.addEventListener('mousemove', (e) => {
-            if (!isDragging) return; // Si no estamos arrastrando, no hace nada
-    
+            if (!isDragging) return;
             const deltaX = e.clientX - previousX;
             const deltaY = e.clientY - previousY;
-    
-            // Ajusta los ángulos de rotación basados en cuánto se movió el ratón
-            // El 0.5 es un factor de sensibilidad, puedes ajustarlo
             rotationY += deltaX * 0.5;
-            rotationX -= deltaY * 0.5; // Invertido para una sensación natural
-    
-            // Aplica la nueva rotación al cubo
+            rotationX -= deltaY * 0.5;
             cube.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
-    
-            // Actualiza la posición anterior para el siguiente movimiento
             previousX = e.clientX;
             previousY = e.clientY;
         });
     
-        // --- Evento: Soltar el clic para dejar de arrastrar ---
+        // --- Evento: Soltar el clic (sin cambios) ---
         window.addEventListener('mouseup', () => {
             isDragging = false;
         });
-        
-        // --- Evento extra: Si el ratón sale de la ventana ---
         document.addEventListener('mouseleave', () => {
             isDragging = false;
         });
-
-        // --- ¡NUEVO! Evento para el botón de reanudar animación ---
-        playRotationButton.addEventListener('click', () => {
-            // 1. Oculta el botón de nuevo
-            cubeScene.classList.remove('user-has-interacted');
-            
-            // 2. Resetea la rotación manual. La transición del CSS hará que se mueva suavemente.
-            cube.style.transform = 'rotateX(10deg) rotateY(0deg)';
     
-            // 3. Después de que la transición termine (300ms), reanuda la animación automática.
+        // --- 3. ¡LA CLAVE! Añadimos el listener para el botón de reanudar ---
+        playRotationButton.addEventListener('click', () => {
+            cubeScene.classList.remove('user-has-interacted');
+            cube.style.transform = 'rotateX(10deg) rotateY(0deg)';
             setTimeout(() => {
                 cube.classList.remove('is-interactive');
             }, 300);
