@@ -775,8 +775,15 @@ a, button, .node {
     width: 100%;
     height: auto;
     display: block;
+    
+    /* Estado inicial del brillo */
     filter: drop-shadow(0 0 10px #00f6ff);
-    animation: ava-float 4s ease-in-out infinite;
+    
+    /* LA CLAVE: Una transición muy rápida para que el brillo reaccione instantáneamente */
+    transition: filter 0.1s ease-out; 
+    
+    /* La animación de flotar puede distraer, la hacemos más sutil o la comentamos */
+    animation: ava-float 6s ease-in-out infinite; /* Hacemos el flotado más lento */
 }
 
 /* --- 4. El botón de play/pausa (ahora superpuesto) --- */
