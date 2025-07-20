@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solución AR - RED Estados de la Materia</title>
-    
-    <!-- ¡ESTA ES LA LÍNEA QUE FALTABA! -->
     <link rel="stylesheet" href="style.css">
-    
-    <!-- También añadimos las fuentes para mantener la coherencia -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
@@ -16,41 +12,32 @@
 <body class="ar-page">
     <canvas id="matrix-canvas"></canvas>
 
-    <div class="ar-interface-container">
-        <!-- Panel principal con efecto de perspectiva -->
-        <div class="ar-main-panel">
-            <h2 class="panel-title">Solución Propuesta: Assemblr EDU</h2>
-            <p>Para resolver los problemas detectados, hemos seleccionado Assemblr EDU, una herramienta de Realidad Aumentada que nos permite transformar conceptos abstractos en experiencias 3D interactivas y memorables.</p>
+    <main class="ar-interface-container">
+        <h1 class="page-title">Propuesta de Solución: Delightex</h1>
+        <p class="subtitle">Interactúa con el cubo para descubrir cómo esta herramienta resuelve los problemas detectados.</p>
+
+        <!-- Contenedor para la escena 3D -->
+        <div class="cube-scene">
+            <div class="cube">
+                <div class="cube-face front" data-face="visualizacion">Visualización</div>
+                <div class="cube-face back" data-face="dinamismo">Dinamismo</div>
+                <div class="cube-face right" data-face="interactividad">Interactividad</div>
+                <div class="cube-face left" data-face="conexion">Conexión</div>
+                <div class="cube-face top" data-face="inicio">Cómo Empezar</div>
+                <div class="cube-face bottom" data-face="proyecto">Proyecto</div>
+            </div>
         </div>
 
-        <!-- Panel de instrucciones con carga secuencial -->
-        <div class="ar-instructions-panel">
-            <h3 class="panel-subtitle">Protocolo de Activación:</h3>
-            <ol>
-                <li>Descarga la aplicación <strong>Assemblr EDU</strong> desde tu tienda de aplicaciones.</li>
-                <li>Imprime o muestra en pantalla los marcadores de la bahía de escaneo inferior.</li>
-                <li>Apunta con la cámara de tu dispositivo a un marcador para activar el modelo 3D.</li>
-            </ol>
-        </div>
-
-        <!-- Bahía de marcadores con efecto de escaneo -->
-        <div class="ar-marker-bay">
-            <div class="marker-slot">
-                <span>[ Marcador SÓLIDO ]</span>
-            </div>
-            <div class="marker-slot">
-                <span>[ Marcador LÍQUIDO ]</span>
-            </div>
-            <div class="marker-slot">
-                <span>[ Marcador GASEOSO ]</span>
-            </div>
+        <!-- Panel para mostrar el mensaje de la cara del cubo -->
+        <div id="cube-message-display" class="message-panel">
+            <h3 id="message-title">Haz clic en una cara del cubo</h3>
+            <p id="message-body">Cada cara explica una ventaja clave de la solución de Realidad Aumentada.</p>
         </div>
         
         <div class="navigation-buttons">
             <a href="arbol-de-problemas.html" class="cta-button back-button">‹ Volver al Problema</a>
-            <a href="index.html" class="cta-button">Ir a Inicio</a>
         </div>
-    </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
