@@ -772,7 +772,7 @@ a, button, .node {
     right: 30px;
     z-index: 999;
     width: 320px;
-    /* NO debe haber un 'position: relative' aquí. */
+    height: 450px;
 }
 
 /* --- 3. Estilos Compartidos por Ambas Imágenes --- */
@@ -785,7 +785,9 @@ a, button, .node {
     /* LA CLAVE: El ancho llena el contenedor */
     width: 100%;
     /* Y el navegador calcula la altura automáticamente */
-    height: auto; 
+    height: 100%;
+
+    object-fit: cover; 
 
     display: block;
 }
