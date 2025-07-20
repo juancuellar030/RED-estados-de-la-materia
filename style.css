@@ -329,18 +329,17 @@ a, button, .node {
 
 /* --- 2. Contenedores y Escena --- */
 .ar-interface-container {
-    /* Quitamos el Flexbox para evitar conflictos de maquetación */
     width: 90%;
     max-width: 1100px;
-    /* Usamos text-align para centrar los elementos en bloque */
-    text-align: center; 
+    text-align: center; /* Mantenemos esto para los títulos */
 }
 
 .cube-scene {
     width: 200px;
     height: 200px;
-    perspective: 1000px; /* Define la profundidad 3D */
-    margin-top: 20px;
+    perspective: 1000px;
+    /* SOLUCIÓN AL CENTRADO: 'margin: auto' centra un bloque horizontalmente */
+    margin: 20px auto 0 auto; 
 }
 
 .cube {
@@ -411,6 +410,8 @@ a, button, .node {
     width: 80%;
     max-width: 700px;
     min-height: 100px;
+    /* SOLUCIÓN AL CENTRADO: 'margin: auto' también aquí */
+    margin: 0 auto; 
     background-color: rgba(10, 30, 60, 0.7);
     border: 1px solid #ff00ff;
     padding: 20px;
@@ -718,14 +719,17 @@ a, button, .node {
 /* ========================================================================== */
 
 #play-rotation-button {
+    /* SOLUCIÓN AL CENTRADO DEL ICONO: Usamos Flexbox */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     /* Estilo y tamaño del botón */
     width: 50px;
     height: 50px;
     padding: 0;
-    border-radius: 50%; /* Lo hace un círculo perfecto */
+    border-radius: 50%;
     font-size: 1.5rem;
-    line-height: 50px; /* Centra el icono de play verticalmente */
-    text-align: center; /* Asegura el centrado horizontal del icono */
 
     /* Lo hacemos empezar invisible y sin ocupar espacio */
     opacity: 0;
