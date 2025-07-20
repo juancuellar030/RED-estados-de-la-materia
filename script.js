@@ -342,5 +342,19 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('mouseleave', () => {
             isDragging = false;
         });
+
+        // --- ¡NUEVO! Evento para el botón de reanudar animación ---
+        playRotationButton.addEventListener('click', () => {
+            // 1. Oculta el botón de nuevo
+            cubeScene.classList.remove('user-has-interacted');
+            
+            // 2. Resetea la rotación manual. La transición del CSS hará que se mueva suavemente.
+            cube.style.transform = 'rotateX(10deg) rotateY(0deg)';
+    
+            // 3. Después de que la transición termine (300ms), reanuda la animación automática.
+            setTimeout(() => {
+                cube.classList.remove('is-interactive');
+            }, 300);
+        });
     }
 }); // <-- El final del archivo
