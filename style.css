@@ -571,16 +571,16 @@ a, button, .node {
     display: block;
     position: absolute;
     top: 50%;
-    transform: translateY(-40%); /* Centra la barra verticalmente */
+    transform: translateY(-60%); /* Centra la barra verticalmente */
 
     /* Apariencia de la barra de luz */
     height: 80%; /* Ocupa el 80% de la altura del marco */
-    width: 15px; /* Ancho de la barra de luz */
+    width: 10px; /* Ancho de la barra de luz */
     background-color: #87ecff;
     border-radius: 5px;
 
     /* Aplicamos la animación de pulso */
-    animation: glow-pulse 3s ease-in-out infinite;
+    animation: glow-pulse 2.5s ease-in-out infinite;
 }
 
 /* --- 4. Posicionar el brillo para cada marco --- */
@@ -592,5 +592,5 @@ a, button, .node {
 
 /* Para el marco derecho, el brillo está a la izquierda */
 .tablet-frame-container.right::before {
-    left: 25px; /* Ajusta este valor para una alineación perfecta */
+    left: 35px; /* Ajusta este valor para una alineación perfecta */
 }
