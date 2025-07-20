@@ -760,25 +760,36 @@ a, button, .node {
 /* --- 2. Contenedor principal del avatar --- */
 #ava-container {
     position: fixed;
-    bottom: 20px;
+    /* SOLUCIÓN: Anclamos el avatar al borde inferior */
+    /* Un valor negativo lo "hunde" un poco para que el flotado se vea natural */
+    bottom: -15px; 
     right: 20px;
-    z-index: 999; /* Se coloca sobre todo, excepto el modal */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    z-index: 999;
+    
+    /* Le damos position: relative para que el botón se posicione dentro de él */
+    position: relative; 
+    
+    /* El tamaño del contenedor ahora lo define la imagen */
+    width: 250px; /* <-- TAMAÑO AUMENTADO */
 }
 
 /* --- 3. La imagen del avatar --- */
 #ava-image {
-    width: 150px; /* Ajusta el tamaño si es necesario */
-    filter: drop-shadow(0 0 10px #00f6ff); /* Brillo a juego con el tema */
-    animation: ava-float 4s ease-in-out infinite; /* Aplica la animación de flotar */
+    width: 100%; /* La imagen siempre llenará el contenedor */
+    height: auto;
+    display: block; /* Elimina cualquier espacio extra */
+    filter: drop-shadow(0 0 10px #00f6ff);
+    animation: ava-float 4s ease-in-out infinite;
 }
 
-/* --- 4. El botón de play/pausa --- */
+/* --- 4. El botón de play/pausa (ahora superpuesto) --- */
 #ava-play-button {
-    /* Usamos Flexbox para un centrado perfecto del icono */
+    /* SOLUCIÓN: Lo sacamos del flujo normal y lo superponemos */
+    position: absolute;
+    bottom: 15px; /* Lo posicionamos 15px desde el borde inferior del contenedor */
+    left: 50%; /* Lo centramos horizontalmente */
+    transform: translateX(-50%); /* Ajuste fino para un centrado perfecto */
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -787,7 +798,11 @@ a, button, .node {
     height: 40px;
     padding: 0;
     margin-top: 0;
-    border-radius: 50%; /* Lo hace un círculo */
+    border-radius: 50%;
     font-size: 1rem;
-    line-height: 1; /* Mejora la consistencia del centrado */
+    line-height: 1;
+
+    /* Efecto de "cristal esmerilado" para que se vea bien sobre la imagen */
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(3px);
 }
