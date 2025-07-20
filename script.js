@@ -91,8 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
     hoverSound.volume = 0.05;
     clickSound.volume = 0.6;
 
-    // Selecciona todos los elementos que deben tener sonido
-    const interactiveElements = document.querySelectorAll('a, button, .node, .cube-face');
+    // Selecciona todos los elementos interactivos EXCEPTO el botón de play de A.V.A.
+    const interactiveElements = document.querySelectorAll('a, button:not(#ava-play-button), .node, .cube-face');
 
     // Añade los listeners a cada elemento
     interactiveElements.forEach(element => {
