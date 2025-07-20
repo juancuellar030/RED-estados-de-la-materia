@@ -329,12 +329,11 @@ a, button, .node {
 
 /* --- 2. Contenedores y Escena --- */
 .ar-interface-container {
+    /* Quitamos el Flexbox para evitar conflictos de maquetación */
     width: 90%;
     max-width: 1100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
+    /* Usamos text-align para centrar los elementos en bloque */
+    text-align: center; 
 }
 
 .cube-scene {
