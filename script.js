@@ -376,11 +376,11 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Mapeamos el volumen (0-128) a un tamaño de brillo (10px - 40px)
             const baseGlow = 10;
-            const maxGlow = 40;
+            const maxGlow = 45;
             const glowSize = baseGlow + (average / 128) * (maxGlow - baseGlow);
     
             // Aplicamos el nuevo brillo a la imagen del avatar
-            avaImage.style.filter = `drop-shadow(0 0 ${glowSize}px #00f6ff)`;
+            avaImage.style.filter = `drop-shadow(0 0 ${glowSize}px #77FAFF)`;
     
             // Continuamos el bucle de animación
             animationFrameId = requestAnimationFrame(visualizeGlow);
