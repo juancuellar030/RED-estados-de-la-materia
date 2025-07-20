@@ -349,7 +349,20 @@ a, button, .node {
     height: 100%;
     position: relative;
     transform-style: preserve-3d;
-    animation: spin 25s infinite linear; /* Animación de rotación lenta */
+    
+    /* Mantenemos la rotación inicial, pero la aplicamos directamente */
+    transform: rotateX(10deg); 
+    
+    /* La animación solo se aplicará por defecto */
+    animation: spin 25s infinite linear;
+    
+    /* LA CLAVE: Una transición suave para cuando el usuario suelta el cubo */
+    transition: transform 0.3s ease-out;
+}
+
+/* NUEVA REGLA: Desactiva la animación cuando el cubo es interactivo */
+.cube.is-interactive {
+    animation: none; /* ¡Detiene la rotación automática! */
 }
 
 /* --- 3. Caras del Cubo --- */
