@@ -589,7 +589,7 @@ a, button, .node {
 
 /* Para el marco izquierdo, el brillo está a la derecha */
 .tablet-frame-container.left::before {
-    right: 18px; /* Ajusta este valor para una alineación perfecta */
+    right: 10px; /* Ajusta este valor para una alineación perfecta */
 }
 
 /* Para el marco derecho, el brillo está a la izquierda */
