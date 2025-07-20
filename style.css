@@ -768,9 +768,6 @@ a, button, .node {
     z-index: 999;
     
     width: 320px; /* Tamaño del avatar */
-    
-    /* Usamos position: relative como ancla para el botón que irá DENTRO */
-    position: relative; 
 }
 
 /* --- 3. La imagen del avatar --- */
