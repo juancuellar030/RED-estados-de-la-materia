@@ -288,4 +288,59 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // === PART 9: 3D CUBE DRAG ROTATION ===
+
+    const cubeScene = document.querySelector('.cube-scene');
+    const cube = document.querySelector('.cube');
+    
+    // Solo ejecuta esto si el cubo existe
+    if (cube && cubeScene) {
+        let isDragging = false;
+        let previousX, previousY;
+        // Empezamos con la inclinación inicial del CSS
+        let rotationX = 10; 
+        let rotationY = 0;
+    
+        // --- Evento: Clic para empezar a arrastrar ---
+        cubeScene.addEventListener('mousedown', (e) => {
+            e.preventDefault(); // Evita que se seleccione texto al arrastrar
+            isDragging = true;
+            previousX = e.clientX;
+            previousY = e.clientY;
+            
+            // Detiene la animación automática y permite una rotación suave
+            cube.classList.add('is-interactive');
+        });
+    
+        // --- Evento: Mover el ratón mientras se arrastra ---
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return; // Si no estamos arrastrando, no hace nada
+    
+            const deltaX = e.clientX - previousX;
+            const deltaY = e.clientY - previousY;
+    
+            // Ajusta los ángulos de rotación basados en cuánto se movió el ratón
+            // El 0.5 es un factor de sensibilidad, puedes ajustarlo
+            rotationY += deltaX * 0.5;
+            rotationX -= deltaY * 0.5; // Invertido para una sensación natural
+    
+            // Aplica la nueva rotación al cubo
+            cube.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+    
+            // Actualiza la posición anterior para el siguiente movimiento
+            previousX = e.clientX;
+            previousY = e.clientY;
+        });
+    
+        // --- Evento: Soltar el clic para dejar de arrastrar ---
+        window.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+        
+        // --- Evento extra: Si el ratón sale de la ventana ---
+        document.addEventListener('mouseleave', () => {
+            isDragging = false;
+        });
+    }
 }); // <-- El final del archivo
