@@ -230,4 +230,62 @@ document.addEventListener('DOMContentLoaded', () => {
             screenSound.play();
         }, 1200);
     }
+
+    // === PART 8: 3D CUBE INTERACTIVITY (for ar-page) ===
+
+    const cubeFaces = document.querySelectorAll('.cube-face');
+    const messageDisplay = document.getElementById('cube-message-display');
+    
+    // Solo ejecuta esto si el cubo existe
+    if (cubeFaces.length > 0 && messageDisplay) {
+        const messageTitle = document.getElementById('message-title');
+        const messageBody = document.getElementById('message-body');
+    
+        // Almacén de textos para cada cara
+        const faceMessages = {
+            visualizacion: {
+                title: "1. Visualización Sub-Microscópica",
+                body: "Delightex nos permite superar la descripción macroscópica (Causa 1) al construir y mostrar modelos 3D de partículas. El estudiante puede ver lo invisible, entendiendo el 'porqué' detrás de las propiedades de cada estado."
+            },
+            dinamismo: {
+                title: "2. Simulación de Procesos Dinámicos",
+                body: "Atacamos la representación estática (Causa 2) animando los modelos. Con CoBlocks, podemos simular el aumento de la energía cinética al aplicar calor, mostrando visualmente la transición de fase en lugar de solo describirla."
+            },
+            interactividad: {
+                title: "3. Aprendizaje Activo por Experimentación",
+                body: "En lugar de la observación pasiva (Causa 4), el estudiante se convierte en un experimentador. Puede programar sus propias simulaciones, cambiar variables y ver los resultados, fomentando el pensamiento científico y la formulación de hipótesis."
+            },
+            conexion: {
+                title: "4. Conexión Conceptual",
+                body: "Al usar el mismo conjunto de partículas y solo cambiar su comportamiento, reforzamos la idea de que 'material' y 'estado' no son conceptos separados (Causa 3). El estudiante entiende que es la misma sustancia la que se transforma."
+            },
+            inicio: {
+                title: "Cómo Empezar",
+                body: "1. Descarga la app 'Delightex' en tu dispositivo. 2. Escanea el código QR que te proporcionaremos para nuestra escena. 3. Apunta a una superficie plana para proyectar la simulación."
+            },
+            proyecto: {
+                title: "Nuestro Proyecto",
+                body: "Hemos creado una escena interactiva que demuestra estos principios. ¡Escanea el siguiente código QR con la app de Delightex para explorarla! [Aquí iría el QR de tu proyecto]"
+            }
+        };
+    
+        // Añade el listener a cada cara
+        cubeFaces.forEach(face => {
+            face.addEventListener('click', (event) => {
+                const faceKey = event.currentTarget.dataset.face;
+                const message = faceMessages[faceKey];
+    
+                if (message) {
+                    // Actualiza el contenido del panel
+                    messageTitle.textContent = message.title;
+                    messageBody.textContent = message.body;
+    
+                    // Muestra el panel con una animación
+                    messageDisplay.classList.remove('visible'); // Resetea la animación
+                    void messageDisplay.offsetWidth; // Truco para forzar el reseteo
+                    messageDisplay.classList.add('visible');
+                }
+            });
+        });
+    }
 }); // <-- El final del archivo
