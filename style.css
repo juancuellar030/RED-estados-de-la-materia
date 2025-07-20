@@ -237,18 +237,19 @@ a, button, .node {
     width: 100%;
     height: 100%;
 
-    /* Le damos la apariencia de la pantalla a este panel */
     background-image: url('assets/futuristic-screen.svg');
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center;
 
-    /* LA CLAVE: La animación de barrido */
-    transform-origin: left; /* La animación crece desde la izquierda */
-    opacity: 0; /* Empieza invisible */
+    transform-origin: left;
+    opacity: 0;
     animation: 
         wipe-from-left 1s ease-out 1.2s forwards,
         fadeInContent 1s ease-out 1.2s forwards;
+    
+    /* ¡LA SOLUCIÓN! Empuja esta capa al fondo */
+    z-index: -1; 
 }
 
 /* --- 3. Animaciones (sin cambios) --- */
