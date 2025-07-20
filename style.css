@@ -745,3 +745,49 @@ a, button, .node {
     visibility: visible;
     transform: scale(1);
 }
+
+/* ========================================================================== */
+/* ESTILOS PARA EL AVATAR A.V.A. */
+/* ========================================================================== */
+
+/* --- 1. Definición de la animación de flotar --- */
+@keyframes ava-float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+/* --- 2. Contenedor principal del avatar --- */
+#ava-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999; /* Se coloca sobre todo, excepto el modal */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+/* --- 3. La imagen del avatar --- */
+#ava-image {
+    width: 150px; /* Ajusta el tamaño si es necesario */
+    filter: drop-shadow(0 0 10px #00f6ff); /* Brillo a juego con el tema */
+    animation: ava-float 4s ease-in-out infinite; /* Aplica la animación de flotar */
+}
+
+/* --- 4. El botón de play/pausa --- */
+#ava-play-button {
+    /* Usamos Flexbox para un centrado perfecto del icono */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin-top: 0;
+    border-radius: 50%; /* Lo hace un círculo */
+    font-size: 1rem;
+    line-height: 1; /* Mejora la consistencia del centrado */
+}
