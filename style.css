@@ -759,36 +759,34 @@ a, button, .node {
 
 /* --- 2. Contenedor principal del avatar --- */
 #ava-container {
-    position: fixed;
-    /* SOLUCIÓN: Anclamos el avatar al borde inferior */
-    /* Un valor negativo lo "hunde" un poco para que el flotado se vea natural */
+    /* LA SOLUCIÓN CLAVE: Lo saca del flujo y lo ancla a la ventana */
+    position: fixed; 
+    
+    /* Lo anclamos al borde inferior, con un valor negativo para el efecto de flotado */
     bottom: -15px; 
     right: 20px;
     z-index: 999;
     
-    /* Le damos position: relative para que el botón se posicione dentro de él */
+    /* Le damos un tamaño y position: relative para el botón */
     position: relative; 
-    
-    /* El tamaño del contenedor ahora lo define la imagen */
-    width: 250px; /* <-- TAMAÑO AUMENTADO */
+    width: 300px;
 }
 
 /* --- 3. La imagen del avatar --- */
 #ava-image {
-    width: 100%; /* La imagen siempre llenará el contenedor */
+    width: 100%;
     height: auto;
-    display: block; /* Elimina cualquier espacio extra */
+    display: block;
     filter: drop-shadow(0 0 10px #00f6ff);
     animation: ava-float 4s ease-in-out infinite;
 }
 
 /* --- 4. El botón de play/pausa (ahora superpuesto) --- */
 #ava-play-button {
-    /* SOLUCIÓN: Lo sacamos del flujo normal y lo superponemos */
     position: absolute;
-    bottom: 15px; /* Lo posicionamos 15px desde el borde inferior del contenedor */
-    left: 50%; /* Lo centramos horizontalmente */
-    transform: translateX(-50%); /* Ajuste fino para un centrado perfecto */
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
 
     display: flex;
     justify-content: center;
@@ -802,7 +800,9 @@ a, button, .node {
     font-size: 1rem;
     line-height: 1;
 
-    /* Efecto de "cristal esmerilado" para que se vea bien sobre la imagen */
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(3px);
+    /* SOLUCIÓN DE VISIBILIDAD: Fondo blanco translúcido y borde brillante */
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    color: #ffffff;
 }
