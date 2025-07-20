@@ -365,14 +365,24 @@ a, button, .node {
     animation: none; /* ¡Detiene la rotación automática! */
 }
 
-/* --- 3. Caras del Cubo --- */
+/* --- 3. Caras del Cubo (CON COLORES INVERTIDOS) --- */
 .cube-face {
     position: absolute;
     width: 200px;
     height: 200px;
-    background-color: rgba(0, 246, 255, 0.2);
-    border: 1px solid #00f6ff;
-    color: #ffffff;
+    
+    /* FONDO: Un cian más sólido y brillante */
+    background-color: rgba(0, 246, 255, 0.7); /* Aumentamos la opacidad de 0.2 a 0.7 */
+    
+    /* BRILLO: Añadimos un box-shadow para un efecto de neón */
+    box-shadow: 0 0 15px rgba(0, 246, 255, 0.5);
+    
+    border: 1px solid #ffffff; /* Borde blanco para mayor definición */
+    
+    /* TEXTO: Negro para un contraste máximo */
+    color: #000000;
+    text-shadow: none; /* Quitamos cualquier sombra que pudiera tener */
+    
     font-family: 'Orbitron', sans-serif;
     font-size: 1.2rem;
     display: flex;
@@ -383,7 +393,9 @@ a, button, .node {
 }
 
 .cube-face:hover {
-    background-color: rgba(0, 246, 255, 0.5);
+    /* Al pasar el ratón, la cara se vuelve aún más brillante */
+    background-color: rgba(0, 246, 255, 0.9);
+    box-shadow: 0 0 25px rgba(0, 246, 255, 0.8), 0 0 10px #ffffff; /* Añadimos un brillo interior blanco */
     border-color: #ffffff;
 }
 
