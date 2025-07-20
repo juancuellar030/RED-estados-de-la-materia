@@ -439,9 +439,7 @@ a, button, .node {
 }
 
 .tablet-frame-container {
-    /* SOLUCIÓN: Damos un ancho fijo al contenedor */
-    width: 120px; 
-    
+    width: 120px;
     display: flex;
     align-items: center;
     opacity: 0;
@@ -452,27 +450,23 @@ a, button, .node {
 .tablet-frame {
     /* Hacemos que la imagen llene el contenedor al 100% */
     width: 100%; 
-    height: 100%;
+    height: 95%;
     /* Evita la distorsión si las proporciones no son perfectas */
     object-fit: fill; 
 }
 
-/* --- 5. La Pantalla (con ajustes de tamaño y contenido) --- */
+/* --- 5. La Pantalla (con scroll restaurado) --- */
 .tablet-screen {
     flex-grow: 1;
-    /* AJUSTE DE ALTURA: La hacemos un poco más pequeña que los marcos */
-    height: 95%; 
+    height: 100%;
     background-color: rgba(0, 246, 255, 0.15);
     box-shadow: inset 0 0 30px rgba(0, 246, 255, 0.5);
     border: 1px solid rgba(0, 246, 255, 0.4);
-    padding: 10px 40px; /* Reducimos el padding vertical */
+    padding: 20px 40px; /* Restauramos un padding vertical saludable */
     box-sizing: border-box;
     
-    /* ELIMINAMOS EL SCROLL: Hacemos que el contenido se centre */
-    overflow: hidden; 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;/* Centra todo el contenido verticalmente */
+    /* ¡LA CLAVE! Restauramos la barra de desplazamiento */
+    overflow-y: auto; 
 
     opacity: 0;
     animation: projectTabletScreen 0.7s ease-out 1.2s forwards;
@@ -488,6 +482,7 @@ a, button, .node {
     display: flex;
     justify-content: center;
     gap: 20px;
+    padding-bottom: 20px;
 }
 
 /* --- 7. Hexágono (Sin cambios, pero incluido para que no se borre) --- */
@@ -523,7 +518,8 @@ a, button, .node {
     flex-direction: column;
     align-items: center;
     gap: 40px;
-    margin: 50px 0;
+    /* SOLUCIÓN AL ESPACIO SUPERIOR: Eliminamos el margen superior */
+    margin: 0 0 50px 0; 
     width: 100%;
     position: relative;
 }
@@ -546,6 +542,12 @@ a, button, .node {
     display: flex;
     justify-content: space-around;
     width: 100%;
+}
+
+/* --- 8. Barra de Scroll --- */
+.tablet-screen {
+    scrollbar-width: thin;
+    scrollbar-color: #00f6ff #0a0f2b;
 }
 
 /* ========================================================================== */
