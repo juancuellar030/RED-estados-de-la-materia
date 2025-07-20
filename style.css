@@ -491,7 +491,7 @@ a, button, .node {
     content: '';
     position: absolute;
     top: 0;
-    width: 50.05%; /* Ligeramente más del 50% para que se superpongan en el centro */
+    width: 50.03%; /* Ligeramente más del 50% para que se superpongan en el centro */
     height: 100%;
     
     /* Le damos la apariencia de la pantalla a estos paneles */
@@ -666,14 +666,14 @@ a, button, .node {
     content: '';
     display: block;
     position: absolute;
-    top: 56%;
+    top: 57%;
     transform: translateY(-60%); /* Centra la barra verticalmente */
 
     /* Apariencia de la barra de luz */
     height: 82%; /* Ocupa el 80% de la altura del marco */
-    width: 8px; /* Ancho de la barra de luz */
+    width: 7px; /* Ancho de la barra de luz */
     background-color: #87ecff;
-    border-radius: 5px;
+    border-radius: 2px;
 
     /* Aplicamos la animación de pulso */
     animation: glow-pulse 2.5s ease-in-out infinite;
@@ -688,5 +688,5 @@ a, button, .node {
 
 /* Para el marco derecho, el brillo está a la izquierda */
 .tablet-frame-container.right::before {
-    left: 11px; /* Ajusta este valor para una alineación perfecta */
+    left: 10px; /* Ajusta este valor para una alineación perfecta */
 }
