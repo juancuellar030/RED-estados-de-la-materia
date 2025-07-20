@@ -576,7 +576,7 @@ a, button, .node {
     transform: translateY(-60%); /* Centra la barra verticalmente */
 
     /* Apariencia de la barra de luz */
-    height: 83%; /* Ocupa el 80% de la altura del marco */
+    height: 82%; /* Ocupa el 80% de la altura del marco */
     width: 8px; /* Ancho de la barra de luz */
     background-color: #87ecff;
     border-radius: 5px;
@@ -589,10 +589,10 @@ a, button, .node {
 
 /* Para el marco izquierdo, el brillo está a la derecha */
 .tablet-frame-container.left::before {
-    right: 6px; /* Ajusta este valor para una alineación perfecta */
+    right: 7px; /* Ajusta este valor para una alineación perfecta */
 }
 
 /* Para el marco derecho, el brillo está a la izquierda */
 .tablet-frame-container.right::before {
-    left: 34px; /* Ajusta este valor para una alineación perfecta */
+    left: 31px; /* Ajusta este valor para una alineación perfecta */
 }
