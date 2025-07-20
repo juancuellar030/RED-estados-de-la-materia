@@ -747,58 +747,91 @@ a, button, .node {
 }
 
 /* ========================================================================== */
-/* ESTILOS PARA EL AVATAR A.V.A. */
+/* ESTILOS PARA EL AVATAR A.V.A. (VERSIÓN FINAL Y DEFINITIVA) */
 /* ========================================================================== */
 
-/* --- 1. Definición de la animación de flotar --- */
+/* --- 1. Definiciones de Animación --- */
 @keyframes ava-float {
     0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-15px); }
     100% { transform: translateY(0); }
 }
-
-/* Nueva animación para el efecto de luz que aparece y desaparece */
 @keyframes fade-in-out {
     0%   { opacity: 0; }
-    20%  { opacity: 1; } /* Aparece rápidamente */
-    80%  { opacity: 1; } /* Se mantiene visible */
-    100% { opacity: 0; } /* Se desvanece */
+    20%  { opacity: 1; }
+    80%  { opacity: 1; }
+    100% { opacity: 0; }
 }
 
+/* --- 2. Contenedor Principal --- */
 #ava-container {
-    /* LA SOLUCIÓN CLAVE: Lo ancla a la ventana, fuera del flujo del documento */
+    /* LA SOLUCIÓN DEFINITIVA: Anclado a la ventana, fuera del flujo. */
     position: fixed; 
     
-    /* Lo anclamos al borde inferior, con un valor negativo para que flote sobre el borde */
     bottom: -30px; 
     right: 30px;
     z-index: 999;
-    
-    width: 280px; /* Tamaño del avatar */
-    
-    /* Usamos position: relative como ancla para el botón que irá DENTRO */
-    position: relative; 
+    width: 280px;
+    /* NO debe haber un 'position: relative' aquí. */
 }
 
-#ava-image {
+/* --- 3. Estilos Compartidos por Ambas Imágenes --- */
+#ava-container img {
+    /* Las posicionamos absolutamente DENTRO del #ava-container */
+    position: absolute; 
+    bottom: 0;
+    left: 0;
     width: 100%;
     height: auto;
     display: block;
-    filter: drop-shadow(0 0 15px #00f6ff);
-    animation: ava-float 4s ease-in-out infinite;
 }
 
-#ava-play-button {
-    /* Posicionamos el botón absolutamente DENTRO del #ava-container */
-    position: absolute;
-    bottom: 40px; /* Distancia desde el borde inferior del contenedor */
-    left: 50%;
-    transform: translateX(-50%); /* Centrado horizontal perfecto */
+/* --- 4. Estilos y Animación para Cada Capa --- */
 
+/* La imagen del personaje (visible por defecto) */
+.ava-character-image {
+    filter: drop-shadow(0 0 15px #00f6ff);
+    animation: ava-float 6s ease-in-out infinite;
+}
+
+/* El efecto de teletransporte (invisible por defecto) */
+.ava-teleport-effect {
+    opacity: 0;
+}
+
+/* El botón de play (visible por defecto) */
+#ava-play-button {
+    opacity: 1;
+}
+
+/* --- 5. Animaciones SÓLO para la PÁGINA DE INICIO --- */
+/* Usamos 'body.home-page' para aplicar estos estilos únicamente en el index */
+
+body.home-page .ava-character-image {
+    opacity: 0; /* Empieza invisible */
+    animation: 
+        fadeInContent 0.5s ease-out 3.0s forwards,
+        ava-float 6s ease-in-out 3.5s infinite;
+}
+
+body.home-page .ava-teleport-effect {
+    animation: fade-in-out 1.5s ease-in-out 2.0s forwards;
+}
+
+body.home-page #ava-play-button {
+    opacity: 0; /* Empieza invisible */
+    animation: fadeInContent 0.5s ease-out 3.5s forwards;
+}
+
+/* --- 6. El Botón de Play/Pausa --- */
+#ava-play-button {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
-    
     width: 45px;
     height: 45px;
     padding: 0;
@@ -806,7 +839,6 @@ a, button, .node {
     border-radius: 50%;
     font-size: 1.2rem;
     line-height: 1;
-
     background-color: rgba(255, 255, 255, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(4px);
