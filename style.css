@@ -438,8 +438,10 @@ a, button, .node {
     animation: fadeInContent 0.5s ease-out 0.2s forwards;
 }
 
-/* --- 3. Contenedores de los Marcos --- */
 .tablet-frame-container {
+    /* SOLUCIÓN: Damos un ancho fijo al contenedor */
+    width: 120px; 
+    
     display: flex;
     align-items: center;
     opacity: 0;
@@ -448,9 +450,11 @@ a, button, .node {
 
 /* --- 4. Las Imágenes de los Marcos --- */
 .tablet-frame {
-    /* Hacemos que la imagen sea un poco más pequeña que su contenedor */
-    height: 90%; 
-    width: auto; /* Mantiene la proporción */
+    /* Hacemos que la imagen llene el contenedor al 100% */
+    width: 100%; 
+    height: 100%;
+    /* Evita la distorsión si las proporciones no son perfectas */
+    object-fit: fill; 
 }
 
 /* --- 5. La Pantalla (con ajustes de tamaño y contenido) --- */
