@@ -759,17 +759,18 @@ a, button, .node {
 
 /* --- 2. Contenedor principal del avatar --- */
 #ava-container {
-    /* LA SOLUCIÓN CLAVE: Lo saca del flujo y lo ancla a la ventana */
+    /* LA SOLUCIÓN CLAVE: Lo ancla a la ventana, fuera del flujo del documento */
     position: fixed; 
     
-    /* Lo anclamos al borde inferior, con un valor negativo para el efecto de flotado */
-    bottom: -25px; 
-    right: 20px;
+    /* Lo anclamos al borde inferior, con un valor negativo para que flote sobre el borde */
+    bottom: -30px; 
+    right: 30px;
     z-index: 999;
     
-    /* Le damos un tamaño y position: relative para el botón */
+    width: 320px; /* Tamaño del avatar */
+    
+    /* Usamos position: relative como ancla para el botón que irá DENTRO */
     position: relative; 
-    width: 320px;
 }
 
 /* --- 3. La imagen del avatar --- */
@@ -783,24 +784,24 @@ a, button, .node {
 
 /* --- 4. El botón de play/pausa (ahora superpuesto) --- */
 #ava-play-button {
+    /* Posicionamos el botón absolutamente DENTRO del #ava-container */
     position: absolute;
-    bottom: 15px;
+    bottom: 40px; /* Distancia desde el borde inferior del contenedor */
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); /* Centrado horizontal perfecto */
 
     display: flex;
     justify-content: center;
     align-items: center;
     
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     padding: 0;
-    margin-top: 0;
+    margin: 0;
     border-radius: 50%;
-    font-size: 1rem;
+    font-size: 1.2rem;
     line-height: 1;
 
-    /* SOLUCIÓN DE VISIBILIDAD: Fondo blanco translúcido y borde brillante */
     background-color: rgba(255, 255, 255, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(4px);
