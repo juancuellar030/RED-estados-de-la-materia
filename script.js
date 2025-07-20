@@ -345,4 +345,59 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 300);
         });
     }
+
+    // === PART 10: AVATAR A.V.A. LOGIC ===
+
+    const avaPlayButton = document.getElementById('ava-play-button');
+    
+    // Solo ejecuta si el botón del avatar existe en la página
+    if (avaPlayButton) {
+        // Busca todos los audios de AVA
+        const audioWelcome = document.getElementById('ava-audio-welcome');
+        const audioProblems = document.getElementById('ava-audio-problems');
+        const audioAr = document.getElementById('ava-audio-ar');
+        const allAvaAudios = [audioWelcome, audioProblems, audioAr];
+        
+        // Determina qué audio corresponde a la página actual
+        const currentPage = window.location.pathname.split('/').pop();
+        let currentAudio;
+        if (currentPage === 'index.html' || currentPage === '') {
+            currentAudio = audioWelcome;
+        } else if (currentPage === 'arbol-de-problemas.html') {
+            currentAudio = audioProblems;
+        } else if (currentPage === 'app-ra.html') {
+            currentAudio = audioAr;
+        }
+    
+        // Función para manejar la reproducción
+        const handlePlay = () => {
+            // Primero, detén cualquier otro audio de AVA que pueda estar sonando
+            allAvaAudios.forEach(audio => {
+                if (audio !== currentAudio) {
+                    audio.pause();
+                    audio.currentTime = 0;
+                }
+            });
+    
+            // Ahora, reproduce o pausa el audio correcto
+            if (currentAudio.paused) {
+                currentAudio.play();
+                avaPlayButton.textContent = '■'; // Cambia a un icono de "stop"
+            } else {
+                currentAudio.pause();
+                currentAudio.currentTime = 0; // Reinicia el audio
+                avaPlayButton.textContent = '▶'; // Cambia de nuevo a "play"
+            }
+        };
+    
+        // Añade el listener al botón
+        avaPlayButton.addEventListener('click', handlePlay);
+    
+        // Asegúrate de que el botón vuelva a "play" cuando el audio termine
+        if (currentAudio) {
+            currentAudio.addEventListener('ended', () => {
+                avaPlayButton.textContent = '▶';
+            });
+        }
+    }
 }); // <-- El final del archivo
