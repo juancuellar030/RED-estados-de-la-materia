@@ -572,7 +572,7 @@ a, button, .node {
     content: '';
     display: block;
     position: absolute;
-    top: 50%;
+    top: 60%;
     transform: translateY(-60%); /* Centra la barra verticalmente */
 
     /* Apariencia de la barra de luz */
@@ -589,10 +589,10 @@ a, button, .node {
 
 /* Para el marco izquierdo, el brillo está a la derecha */
 .tablet-frame-container.left::before {
-    right: 10px; /* Ajusta este valor para una alineación perfecta */
+    right: 5px; /* Ajusta este valor para una alineación perfecta */
 }
 
 /* Para el marco derecho, el brillo está a la izquierda */
 .tablet-frame-container.right::before {
-    left: 35px; /* Ajusta este valor para una alineación perfecta */
+    left: 40px; /* Ajusta este valor para una alineación perfecta */
 }
