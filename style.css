@@ -569,6 +569,7 @@ a, button, .node {
 }
 
 /* --- 7. Hexágono (Sin cambios, pero incluido para que no se borre) --- */
+/* --- 7. Hexágono (CON TEXTO CORREGIDO) --- */
 .node {
     width: 60px;
     height: 70px;
@@ -584,15 +585,16 @@ a, button, .node {
     transition: all 0.3s ease;
     padding-top: 5px; 
     box-sizing: border-box;
-    filter: 
-        drop-shadow(0 1px 0 #00f6ff)
-        drop-shadow(0 -1px 0 #00f6ff)
-        drop-shadow(1px 0 0 #00f6ff)
-        drop-shadow(-1px 0 0 #00f6ff);
+    
+    /* SOLUCIÓN: Usamos un único drop-shadow suave para el borde */
+    filter: drop-shadow(0 0 4px #00f6ff);
+    
+    /* Y le damos al texto su propio brillo sutil para que resalte */
+    text-shadow: 0 0 3px #ffffff;
 }
 .node:hover {
     background-color: rgba(0, 246, 255, 0.3);
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
 
 /* --- 8. Mind map (Sin cambios, pero incluido) --- */
