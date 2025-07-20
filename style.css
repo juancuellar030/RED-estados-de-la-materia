@@ -726,6 +726,7 @@ a, button, .node {
     border-radius: 50%; /* Lo hace un círculo perfecto */
     font-size: 1.5rem;
     line-height: 50px; /* Centra el icono de play verticalmente */
+    text-align: center; /* Asegura el centrado horizontal del icono */
 
     /* Lo hacemos empezar invisible y sin ocupar espacio */
     opacity: 0;
@@ -735,6 +736,7 @@ a, button, .node {
 }
 
 /* LA CLAVE: Muestra el botón cuando el usuario ha interactuado */
+/* Este selector busca el botón que es hermano (+) de la escena del cubo */
 .cube-scene.user-has-interacted + #play-rotation-button {
     opacity: 1;
     visibility: visible;
