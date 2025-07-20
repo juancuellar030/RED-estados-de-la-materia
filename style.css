@@ -448,8 +448,9 @@ a, button, .node {
 
 /* --- 4. Las Imágenes de los Marcos --- */
 .tablet-frame {
-    height: 100%;
-    width: auto;
+    /* Hacemos que la imagen sea un poco más pequeña que su contenedor */
+    height: 95%; 
+    width: auto; /* Mantiene la proporción */
 }
 
 /* --- 5. La Pantalla (con ajustes de tamaño y contenido) --- */
