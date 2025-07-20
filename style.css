@@ -791,6 +791,7 @@ a, button, .node {
 
 /* La imagen del personaje (visible por defecto) */
 .ava-character-image {
+    opacity: 1; /* ¡LA CLAVE! Visible por defecto */
     filter: drop-shadow(0 0 15px #00f6ff);
     animation: ava-float 6s ease-in-out infinite;
 }
@@ -798,6 +799,7 @@ a, button, .node {
 /* El efecto de teletransporte (invisible por defecto) */
 .ava-teleport-effect {
     opacity: 0;
+    pointer-events: none; /* Asegura que no se pueda hacer clic en la capa invisible */
 }
 
 /* El botón de play (visible por defecto) */
