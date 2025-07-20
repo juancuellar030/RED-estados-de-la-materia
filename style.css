@@ -472,7 +472,7 @@ a, button, .node {
     overflow: hidden; 
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centra todo el contenido verticalmente */
+    justify-content: space-between;/* Centra todo el contenido verticalmente */
 
     opacity: 0;
     animation: projectTabletScreen 0.7s ease-out 1.2s forwards;
@@ -546,4 +546,51 @@ a, button, .node {
     display: flex;
     justify-content: space-around;
     width: 100%;
+}
+
+/* ========================================================================== */
+/* ESTILOS PARA EL BRILLO PULSANTE DE LOS MARCOS DE LA TABLET */
+/* ========================================================================== */
+
+/* --- 1. Definición de la animación de pulso --- */
+@keyframes glow-pulse {
+    0% { opacity: 0.3; box-shadow: 0 0 10px #00f6ff; }
+    50% { opacity: 0.8; box-shadow: 0 0 20px #00f6ff, 0 0 30px #00f6ff; }
+    100% { opacity: 0.3; box-shadow: 0 0 10px #00f6ff; }
+}
+
+/* --- 2. Preparar el contenedor del marco --- */
+.tablet-frame-container {
+    /* Necesita ser relativo para que el brillo se posicione dentro de él */
+    position: relative;
+}
+
+/* --- 3. Crear y estilizar la barra de brillo --- */
+.tablet-frame-container::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* Centra la barra verticalmente */
+
+    /* Apariencia de la barra de luz */
+    height: 80%; /* Ocupa el 80% de la altura del marco */
+    width: 25px; /* Ancho de la barra de luz */
+    background-color: #00f6ff;
+    border-radius: 10px;
+
+    /* Aplicamos la animación de pulso */
+    animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* --- 4. Posicionar el brillo para cada marco --- */
+
+/* Para el marco izquierdo, el brillo está a la derecha */
+.tablet-frame-container.left::before {
+    right: 18px; /* Ajusta este valor para una alineación perfecta */
+}
+
+/* Para el marco derecho, el brillo está a la izquierda */
+.tablet-frame-container.right::before {
+    left: 18px; /* Ajusta este valor para una alineación perfecta */
 }
