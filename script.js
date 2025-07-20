@@ -346,58 +346,99 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === PART 10: AVATAR A.V.A. LOGIC ===
+    // === PART 10: AVATAR A.V.A. LOGIC (CON VISUALIZADOR DE BRILLO) ===
 
     const avaPlayButton = document.getElementById('ava-play-button');
+    const avaImage = document.getElementById('ava-image');
     
-    // Solo ejecuta si el botón del avatar existe en la página
-    if (avaPlayButton) {
-        // Busca todos los audios de AVA
+    if (avaPlayButton && avaImage) {
+        // --- 1. Preparación de los elementos de audio ---
         const audioWelcome = document.getElementById('ava-audio-welcome');
         const audioProblems = document.getElementById('ava-audio-problems');
         const audioAr = document.getElementById('ava-audio-ar');
         const allAvaAudios = [audioWelcome, audioProblems, audioAr];
-        
-        // Determina qué audio corresponde a la página actual
-        const currentPage = window.location.pathname.split('/').pop();
-        let currentAudio;
-        if (currentPage === 'index.html' || currentPage === '') {
-            currentAudio = audioWelcome;
-        } else if (currentPage === 'arbol-de-problemas.html') {
-            currentAudio = audioProblems;
-        } else if (currentPage === 'app-ra.html') {
-            currentAudio = audioAr;
-        }
     
-        // Función para manejar la reproducción
-        const handlePlay = () => {
-            // Primero, detén cualquier otro audio de AVA que pueda estar sonando
-            allAvaAudios.forEach(audio => {
-                if (audio !== currentAudio) {
-                    audio.pause();
-                    audio.currentTime = 0;
-                }
-            });
+        // --- 2. Preparación de la Web Audio API (se inicializará con el primer clic) ---
+        let audioContext;
+        let analyser;
+        let sourceNode;
+        let dataArray;
+        let isAudioContextInitialized = false;
+        let animationFrameId;
     
-            // Ahora, reproduce o pausa el audio correcto
-            if (currentAudio.paused) {
-                currentAudio.play();
-                avaPlayButton.textContent = '■'; // Cambia a un icono de "stop"
-            } else {
-                currentAudio.pause();
-                currentAudio.currentTime = 0; // Reinicia el audio
-                avaPlayButton.textContent = '▶'; // Cambia de nuevo a "play"
-            }
+        // --- 3. La función del visualizador ---
+        const visualizeGlow = () => {
+            // Obtenemos los datos de frecuencia del audio en tiempo real
+            analyser.getByteFrequencyData(dataArray);
+            
+            // Calculamos el volumen promedio en este instante
+            let average = dataArray.reduce((a, b) => a + b) / dataArray.length;
+            
+            // Mapeamos el volumen (0-128) a un tamaño de brillo (10px - 40px)
+            const baseGlow = 10;
+            const maxGlow = 40;
+            const glowSize = baseGlow + (average / 128) * (maxGlow - baseGlow);
+    
+            // Aplicamos el nuevo brillo a la imagen del avatar
+            avaImage.style.filter = `drop-shadow(0 0 ${glowSize}px #00f6ff)`;
+    
+            // Continuamos el bucle de animación
+            animationFrameId = requestAnimationFrame(visualizeGlow);
         };
     
-        // Añade el listener al botón
-        avaPlayButton.addEventListener('click', handlePlay);
+        // --- 4. Función para detener el visualizador ---
+        const stopVisualizer = () => {
+            cancelAnimationFrame(animationFrameId);
+            // Devolvemos el brillo a su estado base suavemente
+            avaImage.style.filter = 'drop-shadow(0 0 10px #00f6ff)';
+        };
     
-        // Asegúrate de que el botón vuelva a "play" cuando el audio termine
-        if (currentAudio) {
-            currentAudio.addEventListener('ended', () => {
+        // --- 5. Lógica del botón de Play/Pausa ---
+        const handlePlay = () => {
+            // LA CLAVE: La Web Audio API debe iniciarse con una interacción del usuario
+            if (!isAudioContextInitialized) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioContext.createAnalyser();
+                analyser.fftSize = 256;
+                dataArray = new Uint8Array(analyser.frequencyBinCount);
+                isAudioContextInitialized = true;
+            }
+    
+            const currentPage = window.location.pathname.split('/').pop();
+            let currentAudio;
+            if (currentPage === 'index.html' || currentPage === '') currentAudio = audioWelcome;
+            else if (currentPage === 'arbol-de-problemas.html') currentAudio = audioProblems;
+            else if (currentPage === 'app-ra.html') currentAudio = audioAr;
+    
+            if (!currentAudio) return;
+    
+            // Si el audio está pausado, lo reproducimos y activamos el visualizador
+            if (currentAudio.paused) {
+                // Conecta este audio específico a la Web Audio API si es la primera vez
+                if (!currentAudio.sourceNode) {
+                    currentAudio.sourceNode = audioContext.createMediaElementSource(currentAudio);
+                    currentAudio.sourceNode.connect(analyser);
+                    analyser.connect(audioContext.destination);
+                }
+                
+                currentAudio.play();
+                avaPlayButton.textContent = '■';
+                visualizeGlow(); // Inicia la animación del brillo
+            } else {
+                // Si está sonando, lo pausamos y detenemos el visualizador
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
                 avaPlayButton.textContent = '▶';
-            });
-        }
+                stopVisualizer(); // Detiene la animación del brillo
+            }
+    
+            // Listener para cuando el audio termina por sí solo
+            currentAudio.onended = () => {
+                avaPlayButton.textContent = '▶';
+                stopVisualizer();
+            };
+        };
+    
+        avaPlayButton.addEventListener('click', handlePlay);
     }
 }); // <-- El final del archivo
