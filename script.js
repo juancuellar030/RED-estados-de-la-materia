@@ -167,4 +167,42 @@ document.addEventListener('DOMContentLoaded', () => {
         // Le damos un pequeño margen y empezamos a escribir a los 2300ms.
         setTimeout(startTypingSequence, 2300);
     }
+
+    // === PART 6: TYPEWRITER EFFECT (for tablet-page) ===
+
+    // Busca el título específico de la página de la tablet
+    const tabletTitle = document.querySelector('.tablet-screen .page-title');
+    // Solo ejecuta esto si estamos en la página de la tablet
+    if (tabletTitle) {
+    
+        const originalTitleText = tabletTitle.textContent;
+        tabletTitle.textContent = ''; // Limpia el título
+    
+        // Reutilizamos la función de máquina de escribir si ya existe, si no, la creamos
+        // (Esta es una salvaguarda por si movemos el código)
+        if (typeof typeWriter !== 'function') {
+            function typeWriter(element, text, speed) {
+                return new Promise(resolve => {
+                    let i = 0;
+                    element.classList.add('typing');
+                    const timer = setInterval(() => {
+                        if (i < text.length) {
+                            element.textContent += text.charAt(i);
+                            i++;
+                        } else {
+                            clearInterval(timer);
+                            element.classList.remove('typing');
+                            resolve();
+                        }
+                    }, speed);
+                });
+            }
+        }
+    
+        // Inicia la animación del título después de que la pantalla se proyecte
+        setTimeout(() => {
+            tabletTitle.style.visibility = 'visible';
+            typeWriter(tabletTitle, originalTitleText, 60); // 60ms por caracter
+        }, 2000); // Empieza a los 2 segundos
+    }
 }); // <-- El final del archivo
