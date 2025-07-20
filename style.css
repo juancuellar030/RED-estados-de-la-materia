@@ -576,6 +576,7 @@ a, button, .node {
     position: relative;
 }
 .core-problem {
+    /* Estilos de apariencia */
     width: 120px;
     height: 120px;
     background-color: #ff00ff;
@@ -587,8 +588,18 @@ a, button, .node {
     text-align: center;
     font-family: 'Orbitron', sans-serif;
     box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff;
-    animation: pulse 2s infinite;
     z-index: 10;
+    
+    /* Estado inicial para la animación */
+    opacity: 0; 
+    
+    /* ¡LA MAGIA! Encadenamos ambas animaciones */
+    animation: 
+        /* Animación 1: Aparece */
+        pop-in 0.5s ease-out 3.5s forwards,
+        
+        /* Animación 2: Pulsa para siempre, empezando cuando la primera termina */
+        pulse 2s ease-in-out 4s infinite;
 }
 .causes-branch, .effects-branch {
     display: flex;
