@@ -426,6 +426,22 @@ a, button, .node {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+/* Animación para el núcleo y los hexágonos */
+@keyframes pop-in {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+/* Animación de parpadeo para el cursor de la máquina de escribir */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
 
 /* --- 2. El Contenedor Principal (Flexbox) --- */
 .tablet-container {
@@ -475,14 +491,50 @@ a, button, .node {
 /* --- 6. Contenido de la Pantalla (con ajustes de espacio) --- */
 .tablet-screen .mind-map-container,
 .tablet-screen .navigation-buttons {
-    opacity: 0;
-    animation: fadeInContent 0.5s ease-out 1.9s forwards;
+    opacity: 1;
 }
+
+/* A. Título con máquina de escribir */
+.tablet-screen .page-title {
+    visibility: hidden; /* Empieza oculto, el JS lo revelará */
+}
+.tablet-screen .page-title.typing::after {
+    content: '_';
+    display: inline-block;
+    animation: blink 0.7s infinite;
+    margin-left: 5px;
+}
+
+/* B. Animación para el núcleo */
+.core-problem {
+    opacity: 0; /* Empieza oculto */
+    animation: pop-in 0.5s ease-out 3.5s forwards; /* Aparece después del título */
+}
+
+/* C. Animación escalonada para los hexágonos */
+.node {
+    opacity: 0; /* Empiezan ocultos */
+    animation: pop-in 0.4s ease-out forwards; /* Todos usan la misma animación base */
+}
+
+/* Ahora, aplicamos un retraso escalonado a cada hexágono */
+.effects-branch .node:nth-child(1) { animation-delay: 4.0s; }
+.effects-branch .node:nth-child(2) { animation-delay: 4.15s; }
+.effects-branch .node:nth-child(3) { animation-delay: 4.3s; }
+.effects-branch .node:nth-child(4) { animation-delay: 4.45s; }
+
+.causes-branch .node:nth-child(1) { animation-delay: 4.6s; }
+.causes-branch .node:nth-child(2) { animation-delay: 4.75s; }
+.causes-branch .node:nth-child(3) { animation-delay: 4.9s; }
+.causes-branch .node:nth-child(4) { animation-delay: 5.05s; }
+
 .tablet-screen .navigation-buttons {
     display: flex;
     justify-content: center;
     gap: 20px;
     padding-bottom: 20px;
+    opacity: 0;
+    animation: fadeInContent 0.5s ease-out 5.5s forwards;
 }
 
 /* --- 7. Hexágono (Sin cambios, pero incluido para que no se borre) --- */
@@ -594,5 +646,5 @@ a, button, .node {
 
 /* Para el marco derecho, el brillo está a la izquierda */
 .tablet-frame-container.right::before {
-    left: 17px; /* Ajusta este valor para una alineación perfecta */
+    left: 14px; /* Ajusta este valor para una alineación perfecta */
 }
