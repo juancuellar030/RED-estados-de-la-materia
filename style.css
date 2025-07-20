@@ -673,9 +673,9 @@ a, button, .node {
 
 /* --- 1. Definición de la animación de pulso --- */
 @keyframes glow-pulse {
-    0% { opacity: 0.4; box-shadow: 0 0 15px #00f6ff; }
-    50% { opacity: 1; box-shadow: 0 0 30px #00f6ff, 0 0 50px #00f6ff; }
-    100% { opacity: 0.4; box-shadow: 0 0 15px #00f6ff; }
+    0% { opacity: 0.4; box-shadow: 0 0 20px #00f6ff; }
+    50% { opacity: 1; box-shadow: 0 0 50px #00f6ff, 0 0 70px #00f6ff; }
+    100% { opacity: 0.4; box-shadow: 0 0 20px #00f6ff; }
 }
 
 /* --- 2. Preparar el contenedor del marco --- */
