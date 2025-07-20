@@ -572,7 +572,7 @@ a, button, .node {
     content: '';
     display: block;
     position: absolute;
-    top: 60%;
+    top: 56%;
     transform: translateY(-60%); /* Centra la barra verticalmente */
 
     /* Apariencia de la barra de luz */
