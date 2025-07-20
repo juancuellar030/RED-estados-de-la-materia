@@ -491,7 +491,7 @@ a, button, .node {
     content: '';
     position: absolute;
     top: 0;
-    width: 50.03%; /* Ligeramente más del 50% para que se superpongan en el centro */
+    width: 50.01%; /* Ligeramente más del 50% para que se superpongan en el centro */
     height: 100%;
     
     /* Le damos la apariencia de la pantalla a estos paneles */
@@ -568,7 +568,6 @@ a, button, .node {
     animation: fadeInContent 0.5s ease-out 5.5s forwards;
 }
 
-/* --- 7. Hexágono (Sin cambios, pero incluido para que no se borre) --- */
 /* --- 7. Hexágono (CON TEXTO CORREGIDO) --- */
 .node {
     width: 60px;
@@ -582,19 +581,22 @@ a, button, .node {
     align-items: center;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     cursor: pointer;
+    
+    /* LA CLAVE: Prepara el elemento para la transición y la transformación */
+    transform: scale(1); /* <-- AÑADIMOS UN ESTADO INICIAL */
     transition: all 0.3s ease;
+
     padding-top: 5px; 
     box-sizing: border-box;
-    
-    /* SOLUCIÓN: Usamos un único drop-shadow suave para el borde */
     filter: drop-shadow(0 0 4px #00f6ff);
-    
-    /* Y le damos al texto su propio brillo sutil para que resalte */
     text-shadow: 0 0 3px #ffffff;
 }
 .node:hover {
     background-color: rgba(0, 246, 255, 0.3);
-    transform: scale(1.2);
+    transform: scale(1.2); /* Ahora esta animación funcionará */
+    
+    /* MEJORA OPCIONAL: Hacemos que el brillo sea más intenso al pasar el ratón */
+    filter: drop-shadow(0 0 12px #00f6ff);
 }
 
 /* --- 8. Mind map (Sin cambios, pero incluido) --- */
@@ -668,7 +670,7 @@ a, button, .node {
     content: '';
     display: block;
     position: absolute;
-    top: 57%;
+    top: 56.5%;
     transform: translateY(-60%); /* Centra la barra verticalmente */
 
     /* Apariencia de la barra de luz */
