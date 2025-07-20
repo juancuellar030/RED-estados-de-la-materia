@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     clickSound.volume = 0.6;
 
     // Selecciona todos los elementos que deben tener sonido
-    const interactiveElements = document.querySelectorAll('a, button, .node');
+    const interactiveElements = document.querySelectorAll('a, button, .node, .cube-face');
 
     // Añade los listeners a cada elemento
     interactiveElements.forEach(element => {
