@@ -431,7 +431,7 @@ a, button, .node {
 .tablet-container {
     display: flex;
     /* CLAVE: Estira todos los hijos para que tengan la misma altura */
-    align-items: stretch; 
+    align-items: center; 
     width: 85vw;
     height: 85vh;
     max-width: 1600px;
@@ -455,20 +455,27 @@ a, button, .node {
 }
 
 /* --- 5. La Pantalla --- */
-.tablet-screen {
-    flex-grow: 1; /* CLAVE: Ocupa todo el espacio sobrante */
-    height: 90%; /* Coincide con la altura de los marcos */
+..tablet-screen {
+    flex-grow: 1;
+    /* AJUSTE DE ALTURA: La hacemos un poco más pequeña que los marcos */
+    height: 95%; 
     background-color: rgba(0, 246, 255, 0.15);
     box-shadow: inset 0 0 30px rgba(0, 246, 255, 0.5);
     border: 1px solid rgba(0, 246, 255, 0.4);
-    padding: 20px 40px;
+    padding: 10px 40px; /* Reducimos el padding vertical */
     box-sizing: border-box;
-    overflow-y: auto;
+    
+    /* ELIMINAMOS EL SCROLL: Hacemos que el contenido se centre */
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra todo el contenido verticalmente */
+
     opacity: 0;
     animation: projectTabletScreen 0.7s ease-out 1.2s forwards;
 }
 
-/* --- 6. Contenido de la Pantalla --- */
+/* --- 6. Contenido de la Pantalla (con ajustes de espacio) --- */
 .tablet-screen .mind-map-container,
 .tablet-screen .navigation-buttons {
     opacity: 0;
@@ -478,12 +485,6 @@ a, button, .node {
     display: flex;
     justify-content: center;
     gap: 20px;
-}
-
-/* --- 6. Barra de Scroll --- */
-.tablet-screen {
-    scrollbar-width: thin;
-    scrollbar-color: #00f6ff #0a0f2b;
 }
 
 /* --- 7. Hexágono (Sin cambios, pero incluido para que no se borre) --- */
