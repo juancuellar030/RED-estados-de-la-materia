@@ -713,3 +713,30 @@ a, button, .node {
 .tablet-frame-container.right::before {
     left: 10px; /* Ajusta este valor para una alineación perfecta */
 }
+
+/* ========================================================================== */
+/* ESTILOS PARA EL BOTÓN DE REANUDAR ROTACIÓN */
+/* ========================================================================== */
+
+#play-rotation-button {
+    /* Estilo y tamaño del botón */
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border-radius: 50%; /* Lo hace un círculo perfecto */
+    font-size: 1.5rem;
+    line-height: 50px; /* Centra el icono de play verticalmente */
+
+    /* Lo hacemos empezar invisible y sin ocupar espacio */
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.8);
+    transition: all 0.3s ease-out;
+}
+
+/* LA CLAVE: Muestra el botón cuando el usuario ha interactuado */
+.cube-scene.user-has-interacted #play-rotation-button {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
