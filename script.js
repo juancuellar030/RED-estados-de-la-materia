@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // === PART 5: TYPEWRITER EFFECT (for index.html) (VERSIÓN FINAL Y ROBUSTA) ===
-        
+    
     const welcomeScreen = document.getElementById('welcome-screen');
     // Solo ejecuta esto si estamos en la página de bienvenida
     if (welcomeScreen) {
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     
-        // Función asíncrona para ejecutar la secuencia (hemos quitado el setTimeout)
+        // Función asíncrona para ejecutar la secuencia
         async function startTypingSequence() {
             for (let i = 0; i < textElements.length; i++) {
                 const el = textElements[i];
@@ -162,8 +162,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     
         // ¡LA SOLUCIÓN!
-        // En lugar de esperar un tiempo fijo, escuchamos el final de la animación de la pantalla.
-        // { once: true } asegura que esto solo se ejecute una vez.
-        welcomeScreen.addEventListener('animationend', startTypingSequence, { once: true });
+        // Usamos un temporizador simple y fiable. La animación de la pantalla
+        // empieza a los 1.2s y dura 1s, terminando en 2.2s (2200ms).
+        // Le damos un pequeño margen y empezamos a escribir a los 2300ms.
+        setTimeout(startTypingSequence, 2300);
     }
 }); // <-- El final del archivo
