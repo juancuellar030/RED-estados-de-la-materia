@@ -771,8 +771,8 @@ a, button, .node {
     bottom: -30px; 
     right: 30px;
     z-index: 999;
-    width: 320px;
-    height: 450px;
+    width: 360px;
+    height: auto;
 }
 
 /* --- 3. Estilos Compartidos por Ambas Imágenes --- */
