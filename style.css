@@ -774,11 +774,10 @@ a, button, .node {
     width: 100%;
     height: auto;
     display: block;
-    
     /* Estado inicial del brillo */
     filter: drop-shadow(0 0 10px #00f6ff);
     
-     opacity: 0; 
+    animation: ava-float 6s ease-in-out infinite;
 }
 
 /* --- 4. El botón de play/pausa (ahora superpuesto) --- */
@@ -808,56 +807,65 @@ a, button, .node {
 }
 
 /* ========================================================================== */
-/* ANIMACIÓN DE TELETRANSPORTE DE A.V.A. (SÓLO PARA LA PÁGINA DE INICIO) */
+/* ANIMACIÓN DE TELETRANSPORTE DE A.V.A. (CON EFECTO DE DESTELLO) */
 /* ========================================================================== */
 
 /* --- 1. Definición de las nuevas animaciones --- */
 
-/* Animación para el rayo de luz que baja */
+/* Animación para el rayo de luz (sin cambios) */
 @keyframes teleport-beam {
-    0% { transform: translateY(-100vh); } /* Empieza arriba, fuera de la pantalla */
-    100% { transform: translateY(0); } /* Termina en su posición final */
+    from { transform: translateY(-100vh); }
+    to   { transform: translateY(0); }
 }
 
-/* Animación para que el avatar se materialice */
-@keyframes materialize-avatar {
-    from {
-        opacity: 0;
-        transform: scale(0.5);
-    }
-    to {
+/* NUEVA animación para que el avatar se materialice desde un destello */
+@keyframes materialize-from-flash {
+    /* El avatar empieza como un destello blanco brillante */
+    0% {
         opacity: 1;
-        transform: scale(1);
+        filter: brightness(10) drop-shadow(0 0 30px white); /* Brillo al máximo */
+    }
+    /* Mantenemos el destello por un momento */
+    60% {
+        opacity: 1;
+        filter: brightness(10) drop-shadow(0 0 30px white);
+    }
+    /* La transición al estado normal ocurre en la última parte */
+    100% {
+        opacity: 1;
+        filter: brightness(1) drop-shadow(0 0 15px #00f6ff); /* Brillo y color normales */
     }
 }
 
-/* --- 2. Creación y animación del rayo de luz --- */
-/* LA CLAVE: Usamos .home-page para que esto SÓLO ocurra en el index */
+
+/* --- 2. Creación y animación del rayo de luz (sin cambios) --- */
 body.home-page #ava-container::before {
     content: '';
     position: absolute;
-    top: -100vh; /* Se posiciona 100% de la altura de la pantalla por encima */
+    top: -100vh;
     left: 50%;
     transform: translateX(-50%);
-
-    /* Apariencia del rayo */
     width: 4px;
-    height: 100vh; /* Altura de toda la pantalla */
+    height: 100vh;
     background: linear-gradient(to bottom, white, rgba(0, 246, 255, 0.8), transparent);
-    
-    /* Aplicamos la animación del rayo */
     animation: teleport-beam 0.5s cubic-bezier(0.25, 1, 0.5, 1) 1.8s forwards;
 }
 
+
 /* --- 3. Animación de la aparición del avatar y el botón --- */
 body.home-page #ava-image {
-    /* La animación del avatar empieza justo cuando el rayo está a punto de llegar */
+    /* La imagen empieza invisible, esperando el destello */
+    opacity: 0;
+
+    /* Encadenamos la nueva animación de materialización con el flotado */
     animation: 
-        materialize-avatar 0.5s ease-out 2.2s forwards,
-        ava-float 4s ease-in-out 2.7s infinite; /* El flotado empieza después */
+        materialize-from-flash 1s ease-out 2.2s forwards, /* Duración de 1s */
+        ava-float 6s ease-in-out 3.2s infinite; /* El flotado empieza después */
 }
 
 body.home-page #ava-play-button {
-    /* El botón aparece al final de toda la secuencia */
-    animation: fadeInContent 0.5s ease-out 2.7s forwards;
+    /* El botón empieza invisible */
+    opacity: 0;
+    /* Aparece al final de toda la secuencia */
+    animation: fadeInContent 0.5s ease-out 3.2s forwards;
 }
