@@ -432,7 +432,7 @@ a, button, .node {
     display: flex;
     /* CLAVE: Estira todos los hijos para que tengan la misma altura */
     align-items: stretch; 
-    width: 90vw;
+    width: 85vw;
     height: 85vh;
     max-width: 1600px;
     opacity: 0;
@@ -457,7 +457,7 @@ a, button, .node {
 /* --- 5. La Pantalla --- */
 .tablet-screen {
     flex-grow: 1; /* CLAVE: Ocupa todo el espacio sobrante */
-    height: 100%; /* Coincide con la altura de los marcos */
+    height: 90%; /* Coincide con la altura de los marcos */
     background-color: rgba(0, 246, 255, 0.15);
     box-shadow: inset 0 0 30px rgba(0, 246, 255, 0.5);
     border: 1px solid rgba(0, 246, 255, 0.4);
