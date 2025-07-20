@@ -88,23 +88,16 @@ body {
 
 /* === FUTURISTIC SCREEN STYLES === */
 .screen-container {
-    /* Set the background image to your SVG */
-    background-image: url('assets/futuristic-screen.svg');
-    background-size: 100% 100%; /* Stretches the SVG to fill the container */
-    background-repeat: no-repeat;
-    background-position: center;
-
-    /* Define the size of the screen */
-    width: 80vw; /* 80% of the viewport width */
-    max-width: 900px; /* A maximum size for large screens */
-    min-height: 500px; /* A minimum height */
+    /* Ya no dibuja un fondo. Ahora es solo un contenedor de maquetación. */
     
-    /* CRUCIAL: Add padding to push the text inside the screen's border */
-    /* You may need to tweak these values to fit your SVG perfectly */
+    /* Mantenemos el tamaño y el padding para que el texto se alinee correctamente */
+    width: 80vw;
+    max-width: 900px;
+    min-height: 500px;
     padding: 60px 80px;
-    box-sizing: border-box; /* Ensures padding is included in the total width/height */
+    box-sizing: border-box;
 
-    /* Use Flexbox to perfectly center the content inside the padded area */
+    /* Y las propiedades de Flexbox para centrar el contenido */
     display: flex;
     flex-direction: column;
     justify-content: center;
