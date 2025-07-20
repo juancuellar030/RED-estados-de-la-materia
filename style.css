@@ -536,29 +536,33 @@ a, button, .node {
     margin-left: 5px;
 }
 
-/* B. Animación para el núcleo */
+/* Núcleo y Nodos */
+.core-problem, .node {
+    opacity: 0;
+    animation-fill-mode: forwards; /* Mantiene el estado final */
+}
+
+/* Animación del núcleo */
 .core-problem {
-    opacity: 0; /* Empieza oculto */
-    animation: pop-in 0.5s ease-out 3.5s forwards; /* Aparece después del título */
+    animation-name: pop-in, pulse;
+    animation-duration: 0.5s, 2s;
+    animation-timing-function: ease-out, ease-in-out;
+    animation-delay: 3.5s, 4s; /* Aparece, y luego empieza a pulsar */
+    animation-iteration-count: 1, infinite;
 }
 
-/* C. Animación escalonada para los hexágonos */
-.node {
-    opacity: 0; /* Empiezan ocultos */
-    animation: pop-in 0.4s ease-out forwards; /* Todos usan la misma animación base */
-}
-
-/* Ahora, aplicamos un retraso escalonado a cada hexágono */
+/* Animación de los nodos */
+.node { animation-name: pop-in; animation-duration: 0.4s; }
 .effects-branch .node:nth-child(1) { animation-delay: 4.0s; }
 .effects-branch .node:nth-child(2) { animation-delay: 4.15s; }
 .effects-branch .node:nth-child(3) { animation-delay: 4.3s; }
 .effects-branch .node:nth-child(4) { animation-delay: 4.45s; }
-
 .causes-branch .node:nth-child(1) { animation-delay: 4.6s; }
 .causes-branch .node:nth-child(2) { animation-delay: 4.75s; }
 .causes-branch .node:nth-child(3) { animation-delay: 4.9s; }
 .causes-branch .node:nth-child(4) { animation-delay: 5.05s; }
 
+/* Botones */
 .tablet-screen .navigation-buttons {
     display: flex;
     justify-content: center;
@@ -570,8 +574,7 @@ a, button, .node {
 
 /* --- 7. Hexágono (CON TEXTO CORREGIDO) --- */
 .node {
-    width: 60px;
-    height: 70px;
+    width: 60px; height: 70px;
     background-color: rgba(0, 246, 255, 0.1);
     color: #ffffff;
     font-family: 'Orbitron', sans-serif;
@@ -581,11 +584,8 @@ a, button, .node {
     align-items: center;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     cursor: pointer;
-    
-    /* LA CLAVE: Prepara el elemento para la transición y la transformación */
-    transform: scale(1); /* <-- AÑADIMOS UN ESTADO INICIAL */
+    transform: scale(1);
     transition: all 0.3s ease;
-
     padding-top: 5px; 
     box-sizing: border-box;
     filter: drop-shadow(0 0 4px #00f6ff);
@@ -593,9 +593,7 @@ a, button, .node {
 }
 .node:hover {
     background-color: rgba(0, 246, 255, 0.3);
-    transform: scale(1.2); /* Ahora esta animación funcionará */
-    
-    /* MEJORA OPCIONAL: Hacemos que el brillo sea más intenso al pasar el ratón */
+    transform: scale(1.2);
     filter: drop-shadow(0 0 12px #00f6ff);
 }
 
