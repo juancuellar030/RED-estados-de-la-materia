@@ -449,4 +449,30 @@ document.addEventListener('DOMContentLoaded', () => {
     
         avaPlayButton.addEventListener('click', handlePlay);
     }
+
+// === PART 11: VIRTUAL LAB INTERACTIVITY ===
+
+const stateButtons = document.querySelectorAll('.state-button');
+const stateDescriptions = document.querySelectorAll('.state-description');
+
+// Solo ejecuta si los botones existen
+if (stateButtons.length > 0) {
+    stateButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // 1. Quita la clase 'active' de todos
+            stateButtons.forEach(btn => btn.classList.remove('active'));
+            stateDescriptions.forEach(desc => desc.classList.remove('active'));
+
+            // 2. Añade la clase 'active' al botón clicado
+            button.classList.add('active');
+
+            // 3. Muestra la descripción correspondiente
+            const state = button.dataset.state;
+            const activeDescription = document.getElementById(`info-${state}`);
+            if (activeDescription) {
+                activeDescription.classList.add('active');
+            }
+        });
+    });
+}
 }); // <-- El final del archivo
