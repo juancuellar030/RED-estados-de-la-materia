@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio Virtual - RED Estados de la Materia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <canvas id="matrix-canvas"></canvas>
+
+    <main class="lab-container">
+        <h1 class="page-title lab-content">Laboratorio Virtual: Materia y sus Estados</h1>
+        <p class="subtitle lab-content">Accediendo a la base de datos. Cargando módulos de simulación...</p>
+
+        <!-- MÓDULO 1: MATERIALES -->
+        <section class="lab-module lab-content" id="module-1">
+            <h2>Módulo 1: Identificación de Materiales</h2>
+            <p>Todo lo que nos rodea es materia. Los objetos se diferencian por el tipo de material del que están hechos. Examina las siguientes muestras de datos.</p>
+            <div class="material-cards">
+                <div class="material-card"><h3>Metal</h3><p>Duro, a menudo brillante, buen conductor del calor y la electricidad. Usado en herramientas y estructuras.</p></div>
+                <div class="material-card"><h3>Plástico</h3><p>Ligero, versátil y aislante. Puede ser rígido o flexible. Usado en juguetes y contenedores.</p></div>
+                <div class="material-card"><h3>Madera</h3><p>Proviene de los árboles. Es resistente pero más ligera que el metal. Usada en muebles y construcción.</p></div>
+                <div class="material-card"><h3>Tela</h3><p>Flexible y suave. Hecha de fibras. Usada para ropa y carpas.</p></div>
+            </div>
+        </section>
+
+        <!-- MÓDULO 2: ESTADOS DE LA MATERIA -->
+        <section class="lab-module lab-content" id="module-2">
+            <h2>Módulo 2: Simulación de Estados</h2>
+            <p>Los materiales existen en diferentes estados. Selecciona un estado en la consola para analizar sus propiedades a nivel molecular.</p>
+            <div class="state-simulation">
+                <div class="state-controls">
+                    <button class="state-button active" data-state="solido">SÓLIDO</button>
+                    <button class="state-button" data-state="liquido">LÍQUIDO</button>
+                    <button class="state-button" data-state="gaseoso">GASEOSO</button>
+                </div>
+                <div class="state-info">
+                    <div class="state-description active" id="info-solido">
+                        <h3>Propiedades del Estado Sólido</h3>
+                        <p>Las partículas están fuertemente unidas en una estructura fija. Vibran, pero no se desplazan. Tienen forma y volumen definidos. <strong>Ejemplo:</strong> Un cubo de hielo.</p>
+                    </div>
+                    <div class="state-description" id="info-liquido">
+                        <h3>Propiedades del Estado Líquido</h3>
+                        <p>Las partículas están juntas pero pueden deslizarse unas sobre otras. No tienen forma definida y adoptan la del recipiente. Tienen volumen definido. <strong>Ejemplo:</strong> Agua en un vaso.</p>
+                    </div>
+                    <div class="state-description" id="info-gaseoso">
+                        <h3>Propiedades del Estado Gaseoso</h3>
+                        <p>Las partículas están muy separadas y se mueven a gran velocidad. No tienen forma ni volumen definidos; ocupan todo el espacio disponible. <strong>Ejemplo:</strong> Vapor de agua.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MÓDULO 3: CAMBIOS DE ESTADO -->
+        <section class="lab-module lab-content" id="module-3">
+            <h2>Módulo 3: Procesos de Transformación</h2>
+            <p>El calor y el frío pueden causar que un material cambie de un estado a otro. Estos son cambios físicos, la sustancia sigue siendo la misma.</p>
+            <div class="state-change-diagram">
+                <div class="state-node solid">SÓLIDO</div>
+                <div class="process-arrow fusion"><span>Fusión →</span></div>
+                <div class="state-node liquid">LÍQUIDO</div>
+                <div class="process-arrow vaporizacion"><span>Vaporización →</span></div>
+                <div class="state-node gas">GASEOSO</div>
+                <div class="process-arrow solidificacion"><span>← Solidificación</span></div>
+            </div>
+        </section>
+
+        <div class="navigation-buttons lab-content">
+            <a href="index.html" class="cta-button">‹ Volver al Inicio</a>
+        </div>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>
