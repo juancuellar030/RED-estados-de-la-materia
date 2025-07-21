@@ -450,29 +450,36 @@ document.addEventListener('DOMContentLoaded', () => {
         avaPlayButton.addEventListener('click', handlePlay);
     }
 
-// === PART 11: VIRTUAL LAB INTERACTIVITY ===
+    // === PART 11: VIRTUAL LAB INTERACTIVITY (CON VISOR MOLECULAR) ===
 
-const stateButtons = document.querySelectorAll('.state-button');
-const stateDescriptions = document.querySelectorAll('.state-description');
-
-// Solo ejecuta si los botones existen
-if (stateButtons.length > 0) {
-    stateButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // 1. Quita la clase 'active' de todos
-            stateButtons.forEach(btn => btn.classList.remove('active'));
-            stateDescriptions.forEach(desc => desc.classList.remove('active'));
-
-            // 2. Añade la clase 'active' al botón clicado
-            button.classList.add('active');
-
-            // 3. Muestra la descripción correspondiente
-            const state = button.dataset.state;
-            const activeDescription = document.getElementById(`info-${state}`);
-            if (activeDescription) {
-                activeDescription.classList.add('active');
-            }
+    const stateButtons = document.querySelectorAll('.state-button');
+    const stateDescriptions = document.querySelectorAll('.state-description');
+    const moleculeViewers = document.querySelectorAll('.molecule-viewer'); // Añadimos los visores
+    
+    // Solo ejecuta si los botones existen
+    if (stateButtons.length > 0) {
+        stateButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // 1. Quita la clase 'active' de todos los elementos
+                stateButtons.forEach(btn => btn.classList.remove('active'));
+                stateDescriptions.forEach(desc => desc.classList.remove('active'));
+                moleculeViewers.forEach(viewer => viewer.classList.remove('active')); // También de los visores
+    
+                // 2. Añade la clase 'active' al botón clicado
+                button.classList.add('active');
+    
+                // 3. Muestra la descripción y el visor correspondientes
+                const state = button.dataset.state;
+                const activeDescription = document.getElementById(`info-${state}`);
+                const activeViewer = document.getElementById(`viewer-${state}`); // Buscamos el visor
+                
+                if (activeDescription) {
+                    activeDescription.classList.add('active');
+                }
+                if (activeViewer) {
+                    activeViewer.classList.add('active'); // Y lo mostramos
+                }
+            });
         });
-    });
-}
+    }
 }); // <-- El final del archivo
