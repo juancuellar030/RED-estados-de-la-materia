@@ -106,21 +106,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // === PART 5: TYPEWRITER EFFECT (for index.html) (VERSIÓN FINAL Y ROBUSTA) ===
+    // === PART 5: TYPEWRITER EFFECT (for index.html) (CON MÚLTIPLES BOTONES) ===
     
     const welcomeScreen = document.getElementById('welcome-screen');
-    // Solo ejecuta esto si estamos en la página de bienvenida
     if (welcomeScreen) {
         const textElements = welcomeScreen.querySelectorAll('.typewriter-text');
         let originalTexts = [];
     
-        // Guarda el texto original y limpia los elementos
         textElements.forEach(el => {
             originalTexts.push(el.textContent);
             el.textContent = '';
         });
     
-        // Función que simula la escritura (sin cambios)
         function typeWriter(element, text, speed) {
             return new Promise(resolve => {
                 let i = 0;
@@ -138,33 +135,34 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     
-        // Función asíncrona para ejecutar la secuencia
         async function startTypingSequence() {
             for (let i = 0; i < textElements.length; i++) {
                 const el = textElements[i];
                 const text = originalTexts[i];
                 el.style.visibility = 'visible';
                 await typeWriter(el, text, 50);
-                await new Promise(resolve => setTimeout(resolve, 200)); // Pausa entre líneas
+                await new Promise(resolve => setTimeout(resolve, 200));
             }
             
-            const finalButton = document.querySelector('#welcome-screen .cta-button');
-            if (finalButton) {
-                finalButton.style.opacity = '1';
+            // SOLUCIÓN #1: Selecciona TODOS los botones
+            const finalButtons = document.querySelectorAll('#welcome-screen .cta-button');
+            if (finalButtons) {
+                // Y aplica la animación a CADA UNO
+                finalButtons.forEach(button => {
+                    button.style.opacity = '1';
+                });
             }
         }
         
-        // Oculta el botón al inicio
-        const finalButton = document.querySelector('#welcome-screen .cta-button');
-        if(finalButton) {
-          finalButton.style.opacity = '0';
-          finalButton.style.transition = 'opacity 0.5s';
+        // SOLUCIÓN #2: Oculta TODOS los botones al inicio
+        const finalButtons = document.querySelectorAll('#welcome-screen .cta-button');
+        if(finalButtons) {
+          finalButtons.forEach(button => {
+            button.style.opacity = '0';
+            button.style.transition = 'opacity 0.5s';
+          });
         }
     
-        // ¡LA SOLUCIÓN!
-        // Usamos un temporizador simple y fiable. La animación de la pantalla
-        // empieza a los 1.2s y dura 1s, terminando en 2.2s (2200ms).
-        // Le damos un pequeño margen y empezamos a escribir a los 2300ms.
         setTimeout(startTypingSequence, 2300);
     }
 
