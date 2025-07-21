@@ -778,14 +778,18 @@ a, button, .node {
 /* --- 3. Estilos Compartidos por Ambas Imágenes --- */
 #ava-container img {
     /* Las posicionamos absolutamente DENTRO del #ava-container */
-    position: fixed; 
+    position: absolute;
+    bottom: 0;
+    left: 0;
     
-    /* Lo anclamos al borde inferior, con un valor negativo para el efecto de flotado */
-    bottom: -30px; 
-    right: 30px;
-    z-index: 999;
-    
-    width: 280px;
+    /* LA CLAVE: El ancho llena el contenedor */
+    width: 100%;
+    /* Y el navegador calcula la altura automáticamente */
+    height: 100%;
+
+    object-fit: cover; 
+
+    display: block;
 }
 
 /* --- 4. Estilos y Animación para Cada Capa --- */
