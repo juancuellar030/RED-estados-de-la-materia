@@ -406,12 +406,20 @@ document.addEventListener('DOMContentLoaded', () => {
     
             const currentPage = window.location.pathname.split('/').pop();
             let currentAudio;
-            if (currentPage === 'index.html' || currentPage === '') currentAudio = audioWelcome;
-            else if (currentPage === 'arbol-de-problemas.html') currentAudio = audioProblems;
-            else if (currentPage === 'app-ra.html') currentAudio = audioAr;
-    
+        
+            // Lógica reescrita para mayor claridad y robustez
+            if (currentPage === 'arbol-de-problemas.html') {
+                currentAudio = audioProblems;
+            } else if (currentPage === 'app-ra.html') {
+                currentAudio = audioAr;
+            } else {
+                // Si no es ninguna de las otras dos, ASUMIMOS que es la página de inicio
+                currentAudio = audioWelcome;
+            }
+            // --- FIN DEL BLOQUE CORREGIDO ---
+        
             if (!currentAudio) return;
-    
+        
             // Si el audio está pausado, lo reproducimos y activamos el visualizador
             if (currentAudio.paused) {
                 // Conecta este audio específico a la Web Audio API si es la primera vez
