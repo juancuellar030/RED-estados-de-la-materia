@@ -91,10 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const interactiveElements = document.querySelectorAll('a, button:not(#ava-play-button), .node, .cube-face');
     
     interactiveElements.forEach(element => {
-        element.addEventListener('mouseenter', () => {
-            hoverSound.currentTime = 0;
-            hoverSound.play();
-        });
         element.addEventListener('click', () => {
             clickSound.currentTime = 0;
             clickSound.play();
