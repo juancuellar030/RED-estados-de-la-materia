@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1200);
     }
 
-    // === PART 8: 3D CUBE INTERACTIVITY (for ar-page) ===
+    // === PART 8: 3D CUBE INTERACTIVITY (VERSIÓN FINAL Y UNIFICADA) ===
 
     const cubeFaces = document.querySelectorAll('.cube-face');
     const messageDisplay = document.getElementById('cube-message-display');
@@ -259,17 +259,14 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             inicio: {
                 title: "1. Descarga la App 'Delightex'",
-                // Usamos backticks (`) para crear una cadena de texto multilínea
                 body: ` 
                     <p>Escanea el código QR correspondiente a la tienda de aplicaciones de tu dispositivo para descargar la herramienta.</p>
                     <div class="qr-code-container">
                         <div class="qr-code-item">
-                            <!-- RUTA ACTUALIZADA A .SVG -->
                             <img src="assets/qr-google-play.svg" alt="QR Code for Google Play" class="qr-code-image">
                             <strong>Para Android</strong>
                         </div>
                         <div class="qr-code-item">
-                            <!-- RUTA ACTUALIZADA A .SVG -->
                             <img src="assets/qr-apple-store.svg" alt="QR Code for Apple App Store" class="qr-code-image">
                             <strong>Para iOS</strong>
                         </div>
@@ -281,35 +278,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: "Hemos creado una escena interactiva que demuestra estos principios. ¡Escanea el siguiente código QR con la app de Delightex para explorarla! [Aquí iría el QR de tu proyecto]"
             }
         };
-    
-        // Añade el listener a cada cara
-        cubeFaces.forEach(face => {
-            face.addEventListener('click', (event) => {
-                const faceKey = event.currentTarget.dataset.face;
-                const message = faceMessages[faceKey];
-    
-                if (message) {
-                    // Actualiza el contenido del panel
-                    messageTitle.textContent = message.title;
-                    messageBody.innerHTML = message.body;
-    
-                    // Muestra el panel con una animación
-                    messageDisplay.classList.remove('visible'); // Resetea la animación
-                    void messageDisplay.offsetWidth; // Truco para forzar el reseteo
-                    messageDisplay.classList.add('visible');
-                }
-            });
-        });
-    }
-
-    // === PART 8: 3D CUBE INTERACTIVITY (CON SOPORTE TÁCTIL PARA CARAS) ===
-    const cubeFaces = document.querySelectorAll('.cube-face');
-    const messageDisplay = document.getElementById('cube-message-display');
-    
-    if (cubeFaces.length > 0 && messageDisplay) {
-        const messageTitle = document.getElementById('message-title');
-        const messageBody = document.getElementById('message-body');
-        const faceMessages = { /* ... (tu objeto faceMessages sin cambios) ... */ };
     
         // Función unificada para manejar la interacción
         const handleFaceInteraction = (faceKey) => {
@@ -323,17 +291,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
     
-        // Añade los listeners a cada cara
+        // Añade los listeners de click y touch a cada cara
         cubeFaces.forEach(face => {
-            // Listener para el clic del ratón
             face.addEventListener('click', (event) => {
                 const faceKey = event.currentTarget.dataset.face;
                 handleFaceInteraction(faceKey);
             });
-    
-            // ¡NUEVO! Listener para el toque en pantallas táctiles
             face.addEventListener('touchstart', (event) => {
-                event.preventDefault(); // Evita que se dispare un "clic fantasma"
+                event.preventDefault();
                 const faceKey = event.currentTarget.dataset.face;
                 handleFaceInteraction(faceKey);
             });
