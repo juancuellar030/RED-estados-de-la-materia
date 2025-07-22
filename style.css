@@ -444,14 +444,15 @@ body.ar-page {
     from { transform: translateY(50px); opacity: 0; }
     to   { transform: translateY(0); opacity: 1; }
 }
-@keyframes wipe-in-from-edge {
-    from { transform: scaleX(0); }
-    to   { transform: scaleX(1); }
-}
 @keyframes fadeInContent {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+@keyframes wipe-in-screen {
+    to {
+        background-size: 50.1% 100%, 50.1% 100%;
+    }
+}```
 /* Animación para el núcleo y los hexágonos */
 @keyframes pop-in {
     from {
@@ -497,40 +498,28 @@ body.ar-page {
     object-fit: fill; 
 }
 
-/* --- 5. La Pantalla (con scroll restaurado) --- */
 .tablet-screen {
-    position: relative; /* Necesario para posicionar los pseudo-elementos */
+    position: relative;
     flex-grow: 1;
     height: 100%;
     padding: 20px 40px;
     box-sizing: border-box;
-    overflow-y: auto; /* Mantenemos el scroll por si acaso */
-    
-    /* Hacemos que la pantalla en sí sea solo un contenedor transparente */
-    background-color: transparent;
-    border: 1px solid rgba(0, 246, 255, 0.4); /* Mantenemos el borde exterior */
-}
+    overflow-y: auto;
+    border: 1px solid rgba(0, 246, 255, 0.4);
 
-/* --- 4. Los "Paneles" de Barrido (Pseudo-elementos) --- */
-.tablet-screen::before,
-.tablet-screen::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 50.01%; /* Ligeramente más del 50% para que se superpongan en el centro */
-    height: 100%;
-    
-    /* Le damos la apariencia de la pantalla a estos paneles */
-    background-color: rgba(0, 246, 255, 0.15);
+    /* --- REPLACEMENT BACKGROUND LOGIC --- */
+    --screen-bg-color: rgba(0, 246, 255, 0.15);
+    background-image: linear-gradient(to right, var(--screen-bg-color), var(--screen-bg-color)),
+                      linear-gradient(to right, var(--screen-bg-color), var(--screen-bg-color));
+    background-repeat: no-repeat;
+    background-position: left top, right top;
+    background-size: 0% 100%, 0% 100%;
     box-shadow: inset 0 0 30px rgba(0, 246, 255, 0.5);
-
-    /* Los hacemos empezar sin ancho */
-    transform: scaleX(0);
+    animation: wipe-in-screen 0.7s ease-out 1.2s forwards;
     
-    /* Aplicamos la animación de barrido con el retraso correcto */
-    animation: wipe-in-from-edge 0.7s ease-out 1.2s forwards;
-    
-    z-index: -1; 
+    /* Keep the scrollbar styling */
+    scrollbar-width: thin;
+    scrollbar-color: #00f6ff #0a0f2b;
 }
 
 /* El panel izquierdo se anima desde la izquierda */
