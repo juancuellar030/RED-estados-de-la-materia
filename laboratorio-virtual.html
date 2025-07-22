@@ -19,12 +19,47 @@
         <!-- MÓDULO 1: MATERIALES -->
         <section class="lab-module lab-content" id="module-1">
             <h2>Módulo 1: Identificación de Materiales</h2>
-            <p>Todo lo que nos rodea es materia. Los objetos se diferencian por el tipo de material del que están hechos. Examina las siguientes muestras de datos.</p>
+            <p>Haz clic en una tarjeta para analizar la estructura de la muestra en el visor de Realidad Aumentada.</p>
+        
+            <!-- 1. TARJETAS DE MATERIALES (AHORA CON DATA-ATTRIBUTES) -->
             <div class="material-cards">
-                <div class="material-card"><h3>Metal</h3><p>Duro, a menudo brillante, buen conductor del calor y la electricidad. Usado en herramientas y estructuras.</p></div>
-                <div class="material-card"><h3>Plástico</h3><p>Ligero, versátil y aislante. Puede ser rígido o flexible. Usado en juguetes y contenedores.</p></div>
-                <div class="material-card"><h3>Madera</h3><p>Proviene de los árboles. Es resistente pero más ligera que el metal. Usada en muebles y construcción.</p></div>
-                <div class="material-card"><h3>Tela</h3><p>Flexible y suave. Hecha de fibras. Usada para ropa y carpas.</p></div>
+                <!-- The data-material attribute is the key that links the card to its viewer -->
+                <div class="material-card" data-material="metal"><h3>Metal</h3><p>Duro, a menudo brillante, buen conductor del calor y la electricidad. Usado en herramientas y estructuras.</p></div>
+                <div class="material-card" data-material="plastico"><h3>Plástico</h3><p>Ligero, versátil y aislante. Puede ser rígido o flexible. Usado en juguetes y contenedores.</p></div>
+                <div class="material-card" data-material="madera"><h3>Madera</h3><p>Proviene de los árboles. Es resistente pero más ligera que el metal. Usada en muebles y construcción.</p></div>
+                <div class="material-card" data-material="tela"><h3>Tela</h3><p>Flexible y suave. Hecha de fibras. Usada para ropa y carpas.</p></div>
+            </div>
+        
+            <!-- 2. EL NUEVO VISOR DE REALIDAD AUMENTADA -->
+            <div id="material-viewer-container">
+                <!-- This is the default message -->
+                <div id="viewer-default" class="material-viewer active">
+                    <p class="viewer-prompt">SELECCIONE UNA MUESTRA PARA INICIAR SIMULACIÓN</p>
+                </div>
+                <!-- This viewer corresponds to data-material="metal" -->
+                <div id="viewer-metal" class="material-viewer">
+                    <div class="hologram-object" data-label="Estructura Cristalina Metálica">
+                        <img src="assets/hologram-metal.png" alt="Estructura de Metal">
+                    </div>
+                </div>
+                <!-- This viewer corresponds to data-material="plastico" -->
+                <div id="viewer-plastico" class="material-viewer">
+                    <div class="hologram-object" data-label="Cadenas de Polímeros Plásticos">
+                        <img src="assets/hologram-plastic.png" alt="Estructura de Plástico">
+                    </div>
+                </div>
+                <!-- This viewer corresponds to data-material="madera" -->
+                <div id="viewer-madera" class="material-viewer">
+                     <div class="hologram-object" data-label="Fibras de Celulosa de Madera">
+                        <img src="assets/hologram-wood.png" alt="Estructura de Madera">
+                    </div>
+                </div>
+                <!-- This viewer corresponds to data-material="tela" -->
+                <div id="viewer-tela" class="material-viewer">
+                    <div class="hologram-object" data-label="Tejido de Fibras Textiles">
+                        <img src="assets/hologram-fabric.png" alt="Estructura de Tela">
+                    </div>
+                </div>
             </div>
         </section>
 
