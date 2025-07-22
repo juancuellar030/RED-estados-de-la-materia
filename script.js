@@ -355,6 +355,31 @@ document.addEventListener('DOMContentLoaded', () => {
         avaPlayButton.addEventListener('click', handlePlay);
     }
 
+    // === NEW PART: VIRTUAL LAB MODULE 1 - MATERIAL VIEWER ===
+        const materialCards = document.querySelectorAll('.material-card');
+        const materialViewers = document.querySelectorAll('.material-viewer');
+    
+        if (materialCards.length > 0 && materialViewers.length > 0) {
+          
+            materialCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const targetMaterial = card.dataset.material;
+                    if (!targetMaterial) return;
+    
+                    // Deactivate all cards and viewers
+                    materialCards.forEach(c => c.classList.remove('active'));
+                    materialViewers.forEach(v => v.classList.remove('active'));
+    
+                    // Activate the selected card and its viewer
+                    card.classList.add('active');
+                    const targetViewer = document.getElementById(`viewer-${targetMaterial}`);
+                    if (targetViewer) {
+                        targetViewer.classList.add('active');
+                    }
+                });
+            });
+        }
+
     // === PART 11: VIRTUAL LAB INTERACTIVITY (CON VISOR MOLECULAR) ===
 
     const stateButtons = document.querySelectorAll('.state-button');
