@@ -1169,3 +1169,39 @@ body.home-page #ava-play-button {
         bottom: 25px;
     }
 }
+
+/* ========================================================================== */
+/* ENTRANCE ANIMATIONS FOR THE AR/CUBE PAGE (app-ra.html)                   */
+/* ========================================================================== */
+
+/* --- 1. Set the initial invisible state for all animating elements --- */
+body.ar-page .page-title,
+body.ar-page .subtitle,
+body.ar-page .cube-scene,
+body.ar-page .navigation-buttons {
+    opacity: 0;
+    animation-fill-mode: forwards; /* Ensures elements stay visible after animating */
+}
+
+/* --- 2. Animate the Title and Subtitle --- */
+/* The main title slides in from the bottom first */
+body.ar-page .page-title {
+    animation: slideInFromBottom 0.8s ease-out 0.3s forwards;
+}
+
+/* The subtitle follows shortly after */
+body.ar-page .subtitle {
+    animation: slideInFromBottom 0.8s ease-out 0.5s forwards;
+}
+
+/* --- 3. Animate the 3D Cube --- */
+/* The cube "pops in" after the titles, giving it a 3D materializing effect */
+body.ar-page .cube-scene {
+    animation: pop-in 0.8s ease-out 0.8s forwards;
+}
+
+/* --- 4. Animate the Navigation Button --- */
+/* Finally, the button at the bottom fades in */
+body.ar-page .navigation-buttons {
+    animation: fadeInContent 1s ease-out 1.2s forwards;
+}
