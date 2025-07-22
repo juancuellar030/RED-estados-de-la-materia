@@ -1297,48 +1297,24 @@ body.ar-page .navigation-buttons {
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(10, 30, 60, 0.7); /* Semi-transparent overlay */
+    /* We REMOVED display, justify-content, and align-items */
+    background-color: rgba(10, 30, 60, 0.7);
     backdrop-filter: blur(5px);
     z-index: 2;
 }
 
 .spinner {
+    /* Use absolute positioning to center the spinner instead of flexbox */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* The key to perfect centering */
+
     width: 60px;
     height: 60px;
-    border: 5px solid rgba(0, 246, 255, 0.3); /* The static track */
-    border-top-color: #00f6ff; /* The spinning part */
+    border: 5px solid rgba(0, 246, 255, 0.3);
+    border-top-color: #00f6ff;
     border-radius: 50%;
     animation: spin 1s linear infinite;
     box-shadow: 0 0 15px rgba(0, 246, 255, 0.5);
-}
-
-/* ========================================================================== */
-/* STYLES FOR THE 3D VIEWER ZOOM BUTTONS                                    */
-/* ========================================================================== */
-
-.viewer-controls {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1; /* Place them above the viewer container but below the loader */
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.zoom-button {
-    /* Override default cta-button styles for a smaller, circular look */
-    width: 45px;
-    height: 45px;
-    padding: 0;
-    margin: 0;
-    border-radius: 50%;
-    font-size: 2rem;
-    line-height: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
