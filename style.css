@@ -452,7 +452,7 @@ body.ar-page {
     to {
         background-size: 50.1% 100%, 50.1% 100%;
     }
-}```
+}
 /* Animación para el núcleo y los hexágonos */
 @keyframes pop-in {
     from {
@@ -520,17 +520,6 @@ body.ar-page {
     /* Keep the scrollbar styling */
     scrollbar-width: thin;
     scrollbar-color: #00f6ff #0a0f2b;
-}
-
-/* El panel izquierdo se anima desde la izquierda */
-.tablet-screen::before {
-    left: 0;
-    transform-origin: left;
-}
-/* El panel derecho se anima desde la derecha */
-.tablet-screen::after {
-    right: 0;
-    transform-origin: right;
 }
 
 /* --- 6. Contenido de la Pantalla (con ajustes de espacio) --- */
