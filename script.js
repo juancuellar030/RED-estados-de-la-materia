@@ -279,7 +279,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
     
-        // Función unificada para manejar la interacción
         const handleFaceInteraction = (faceKey) => {
             const message = faceMessages[faceKey];
             if (message) {
@@ -291,17 +290,54 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
     
-        // Añade los listeners de click y touch a cada cara
         cubeFaces.forEach(face => {
-            face.addEventListener('click', (event) => {
-                const faceKey = event.currentTarget.dataset.face;
-                handleFaceInteraction(faceKey);
-            });
+            face.addEventListener('click', (event) => handleFaceInteraction(event.currentTarget.dataset.face));
             face.addEventListener('touchstart', (event) => {
                 event.preventDefault();
-                const faceKey = event.currentTarget.dataset.face;
-                handleFaceInteraction(faceKey);
+                handleFaceInteraction(event.currentTarget.dataset.face);
             });
+        });
+    
+        // --- LÓGICA PARA LA ROTACIÓN POR ARRASTRE ---
+        let isDragging = false;
+        let previousX, previousY;
+        let rotationX = 10; 
+        let rotationY = 0;
+    
+        const startDrag = (clientX, clientY) => {
+            isDragging = true;
+            previousX = clientX;
+            previousY = clientY;
+            cube.classList.add('is-interactive');
+            cubeScene.classList.add('user-has-interacted');
+        };
+        const drag = (clientX, clientY) => {
+            if (!isDragging) return;
+            const deltaX = clientX - previousX;
+            const deltaY = clientY - previousY;
+            rotationY += deltaX * 0.5;
+            rotationX -= deltaY * 0.5;
+            cube.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+            previousX = clientX;
+            previousY = clientY;
+        };
+        const stopDrag = () => { isDragging = false; };
+    
+        cubeScene.addEventListener('mousedown', (e) => { e.preventDefault(); startDrag(e.clientX, e.clientY); });
+        window.addEventListener('mousemove', (e) => drag(e.clientX, e.clientY));
+        window.addEventListener('mouseup', stopDrag);
+        document.addEventListener('mouseleave', stopDrag);
+        cubeScene.addEventListener('touchstart', (e) => { e.preventDefault(); startDrag(e.touches[0].clientX, e.touches[0].clientY); });
+        window.addEventListener('touchmove', (e) => { if (e.touches.length > 0) drag(e.touches[0].clientX, e.touches[0].clientY); });
+        window.addEventListener('touchend', stopDrag);
+    
+        // --- LÓGICA PARA EL BOTÓN DE PLAY ---
+        playRotationButton.addEventListener('click', () => {
+            cubeScene.classList.remove('user-has-interacted');
+            cube.style.transform = 'rotateX(10deg) rotateY(0deg)';
+            setTimeout(() => {
+                cube.classList.remove('is-interactive');
+            }, 300);
         });
     }
 
