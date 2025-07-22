@@ -302,59 +302,41 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === PART 9: 3D CUBE DRAG ROTATION (CON SOPORTE TÁCTIL) ===
-
-    const cubeScene = document.querySelector('.cube-scene');
-    const cube = document.querySelector('.cube');
-    const playRotationButton = document.getElementById('play-rotation-button');
+    // === PART 8: 3D CUBE INTERACTIVITY (CON SOPORTE TÁCTIL PARA CARAS) ===
+    const cubeFaces = document.querySelectorAll('.cube-face');
+    const messageDisplay = document.getElementById('cube-message-display');
     
-    if (cube && cubeScene && playRotationButton) {
-        let isDragging = false;
-        let previousX, previousY;
-        let rotationX = 10; 
-        let rotationY = 0;
+    if (cubeFaces.length > 0 && messageDisplay) {
+        const messageTitle = document.getElementById('message-title');
+        const messageBody = document.getElementById('message-body');
+        const faceMessages = { /* ... (tu objeto faceMessages sin cambios) ... */ };
     
-        const startDrag = (clientX, clientY) => {
-            isDragging = true;
-            previousX = clientX;
-            previousY = clientY;
-            cube.classList.add('is-interactive');
-            cubeScene.classList.add('user-has-interacted');
+        // Función unificada para manejar la interacción
+        const handleFaceInteraction = (faceKey) => {
+            const message = faceMessages[faceKey];
+            if (message) {
+                messageTitle.textContent = message.title;
+                messageBody.innerHTML = message.body;
+                messageDisplay.classList.remove('visible');
+                void messageDisplay.offsetWidth;
+                messageDisplay.classList.add('visible');
+            }
         };
     
-        const drag = (clientX, clientY) => {
-            if (!isDragging) return;
-            const deltaX = clientX - previousX;
-            const deltaY = clientY - previousY;
-            rotationY += deltaX * 0.5;
-            rotationX -= deltaY * 0.5;
-            cube.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
-            previousX = clientX;
-            previousY = clientY;
-        };
+        // Añade los listeners a cada cara
+        cubeFaces.forEach(face => {
+            // Listener para el clic del ratón
+            face.addEventListener('click', (event) => {
+                const faceKey = event.currentTarget.dataset.face;
+                handleFaceInteraction(faceKey);
+            });
     
-        const stopDrag = () => {
-            isDragging = false;
-        };
-    
-        // --- Eventos de Ratón ---
-        cubeScene.addEventListener('mousedown', (e) => { e.preventDefault(); startDrag(e.clientX, e.clientY); });
-        window.addEventListener('mousemove', (e) => drag(e.clientX, e.clientY));
-        window.addEventListener('mouseup', stopDrag);
-        document.addEventListener('mouseleave', stopDrag);
-    
-        // --- NUEVO: Eventos Táctiles ---
-        cubeScene.addEventListener('touchstart', (e) => { e.preventDefault(); startDrag(e.touches[0].clientX, e.touches[0].clientY); });
-        window.addEventListener('touchmove', (e) => drag(e.touches[0].clientX, e.touches[0].clientY));
-        window.addEventListener('touchend', stopDrag);
-    
-        // --- Lógica del botón de Play (sin cambios) ---
-        playRotationButton.addEventListener('click', () => {
-            cubeScene.classList.remove('user-has-interacted');
-            cube.style.transform = 'rotateX(10deg) rotateY(0deg)';
-            setTimeout(() => {
-                cube.classList.remove('is-interactive');
-            }, 300);
+            // ¡NUEVO! Listener para el toque en pantallas táctiles
+            face.addEventListener('touchstart', (event) => {
+                event.preventDefault(); // Evita que se dispare un "clic fantasma"
+                const faceKey = event.currentTarget.dataset.face;
+                handleFaceInteraction(faceKey);
+            });
         });
     }
 
