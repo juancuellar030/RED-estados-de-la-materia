@@ -1146,7 +1146,7 @@ body.home-page #ava-play-button {
 
     /* Reducimos el tamaño y la posición del avatar para que no ocupe tanto espacio */
     #ava-container {
-        width: 220px;
+        width: 300px;
         bottom: -20px;
         right: 10px;
     }
