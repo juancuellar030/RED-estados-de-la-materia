@@ -461,4 +461,10 @@ document.addEventListener('DOMContentLoaded', () => {
             zoomInButton.addEventListener('click', () => handleZoom('in'));
             zoomOutButton.addEventListener('click', () => handleZoom('out'));
         }
+
+    // === NEW PART: 3D MODEL ERROR DEBUGGER ===
+    document.querySelectorAll('model-viewer').forEach(modelViewer => {
+        modelViewer.addEventListener('error', (event) => {
+            console.error('Failed to load 3D model:', event.detail.source);
+        });
 }); // <-- El final del archivo
