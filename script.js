@@ -106,11 +106,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // === PART 5: TYPEWRITER EFFECT (for index.html) (CON MÚLTIPLES BOTONES) ===
+    // ========================================================================== //
+    // PART 5 & 6: TYPEWRITER LOGIC (UNIFICADO)                                   //
+    // ========================================================================== //
     
+    // --- 1. Definimos la función UNA SOLA VEZ ---
+    function typeWriter(element, text, speed) {
+        return new Promise(resolve => {
+            let i = 0;
+            element.classList.add('typing');
+            const timer = setInterval(() => {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(timer);
+                    element.classList.remove('typing');
+                    resolve();
+                }
+            }, speed);
+        });
+    }
+    
+    // --- 2. Lógica para la PÁGINA DE INICIO ---
     const welcomeScreen = document.getElementById('welcome-screen');
     if (welcomeScreen) {
         const textElements = welcomeScreen.querySelectorAll('.typewriter-text');
+        const finalButtons = welcomeScreen.querySelectorAll('.cta-button');
         let originalTexts = [];
     
         textElements.forEach(el => {
@@ -118,21 +140,12 @@ document.addEventListener('DOMContentLoaded', () => {
             el.textContent = '';
         });
     
-        function typeWriter(element, text, speed) {
-            return new Promise(resolve => {
-                let i = 0;
-                element.classList.add('typing');
-                const timer = setInterval(() => {
-                    if (i < text.length) {
-                        element.textContent += text.charAt(i);
-                        i++;
-                    } else {
-                        clearInterval(timer);
-                        element.classList.remove('typing');
-                        resolve();
-                    }
-                }, speed);
-            });
+        // Oculta los botones al inicio
+        if (finalButtons) {
+          finalButtons.forEach(button => {
+            button.style.opacity = '0';
+            button.style.transition = 'opacity 0.5s';
+          });
         }
     
         async function startTypingSequence() {
@@ -143,65 +156,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 await typeWriter(el, text, 50);
                 await new Promise(resolve => setTimeout(resolve, 200));
             }
-            
-            // SOLUCIÓN #1: Selecciona TODOS los botones
-            const finalButtons = document.querySelectorAll('#welcome-screen .cta-button');
             if (finalButtons) {
-                // Y aplica la animación a CADA UNO
-                finalButtons.forEach(button => {
-                    button.style.opacity = '1';
-                });
+                finalButtons.forEach(button => button.style.opacity = '1');
             }
         }
         
-        // SOLUCIÓN #2: Oculta TODOS los botones al inicio
-        const finalButtons = document.querySelectorAll('#welcome-screen .cta-button');
-        if(finalButtons) {
-          finalButtons.forEach(button => {
-            button.style.opacity = '0';
-            button.style.transition = 'opacity 0.5s';
-          });
-        }
-    
         setTimeout(startTypingSequence, 2300);
     }
-
-    // === PART 6: TYPEWRITER EFFECT (for tablet-page) ===
-
-    // Busca el título específico de la página de la tablet
+    
+    // --- 3. Lógica para la PÁGINA DE LA TABLET ---
     const tabletTitle = document.querySelector('.tablet-screen .page-title');
-    // Solo ejecuta esto si estamos en la página de la tablet
     if (tabletTitle) {
-    
         const originalTitleText = tabletTitle.textContent;
-        tabletTitle.textContent = ''; // Limpia el título
+        tabletTitle.textContent = '';
     
-        // Reutilizamos la función de máquina de escribir si ya existe, si no, la creamos
-        // (Esta es una salvaguarda por si movemos el código)
-        if (typeof typeWriter !== 'function') {
-            function typeWriter(element, text, speed) {
-                return new Promise(resolve => {
-                    let i = 0;
-                    element.classList.add('typing');
-                    const timer = setInterval(() => {
-                        if (i < text.length) {
-                            element.textContent += text.charAt(i);
-                            i++;
-                        } else {
-                            clearInterval(timer);
-                            element.classList.remove('typing');
-                            resolve();
-                        }
-                    }, speed);
-                });
-            }
-        }
-    
-        // Inicia la animación del título después de que la pantalla se proyecte
         setTimeout(() => {
             tabletTitle.style.visibility = 'visible';
-            typeWriter(tabletTitle, originalTitleText, 60); // 60ms por caracter
-        }, 2000); // Empieza a los 2 segundos
+            typeWriter(tabletTitle, originalTitleText, 60);
+        }, 2000);
     }
 
     // === PART 7: SCREEN APPEARANCE SOUND EFFECTS (VERSIÓN CORREGIDA) ===
