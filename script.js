@@ -258,9 +258,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: "Al usar el mismo conjunto de partículas y solo cambiar su comportamiento, reforzamos la idea de que 'material' y 'estado' no son conceptos separados (Causa 3). El estudiante entiende que es la misma sustancia la que se transforma."
             },
             inicio: {
-                title: "Cómo Empezar",
-                body: "1. Descarga la app 'Delightex' en tu dispositivo. 2. Escanea el código QR que te proporcionaremos para nuestra escena. 3. Apunta a una superficie plana para proyectar la simulación."
-            },
+                title: "1. Descarga la App 'Delightex'",
+                // Usamos backticks (`) para crear una cadena de texto multilínea
+                body: ` 
+                    <p>Escanea el código QR correspondiente a la tienda de aplicaciones de tu dispositivo para descargar la herramienta.</p>
+                    <div class="qr-code-container">
+                        <div class="qr-code-item">
+                            <!-- RUTA ACTUALIZADA A .SVG -->
+                            <img src="assets/qr-google-play.svg" alt="QR Code for Google Play" class="qr-code-image">
+                            <strong>Para Android</strong>
+                        </div>
+                        <div class="qr-code-item">
+                            <!-- RUTA ACTUALIZADA A .SVG -->
+                            <img src="assets/qr-apple-store.svg" alt="QR Code for Apple App Store" class="qr-code-image">
+                            <strong>Para iOS</strong>
+                        </div>
+                    </div>
+                `
+            }
             proyecto: {
                 title: "Nuestro Proyecto",
                 body: "Hemos creado una escena interactiva que demuestra estos principios. ¡Escanea el siguiente código QR con la app de Delightex para explorarla! [Aquí iría el QR de tu proyecto]"
@@ -276,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (message) {
                     // Actualiza el contenido del panel
                     messageTitle.textContent = message.title;
-                    messageBody.textContent = message.body;
+                    messageBody.innerHTML = message.body;
     
                     // Muestra el panel con una animación
                     messageDisplay.classList.remove('visible'); // Resetea la animación
