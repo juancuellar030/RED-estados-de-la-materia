@@ -1106,6 +1106,6 @@ body.home-page #ava-play-button {
     width: 140px; /* Tamaño del código QR */
     height: 140px;
     padding: 5px;
-    background-color: white; /* Fondo blanco para asegurar la legibilidad */
+    background-color: rgba(21, 50, 51, 0.5); /* Fondo blanco para asegurar la legibilidad */
     box-sizing: border-box; /* Asegura que el padding no aumente el tamaño */
 }
