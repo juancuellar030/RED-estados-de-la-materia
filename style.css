@@ -1259,6 +1259,11 @@ body.ar-page .navigation-buttons {
     width: 100%;
     height: 350px;
     filter: drop-shadow(0 0 10px #00f6ff);
+
+    /* --- NEW STYLES FOR THE LOADING BAR --- */
+    --mv-progress-bar-height: 5px; /* Makes the bar much thicker */
+    --mv-progress-bar-color: #00f6ff;   /* Sets the bar color to your neon cyan */
+    --mv-progress-bar-background: rgba(0, 246, 255, 0.3); /* Sets the track color */
 }
 
 /* AR Scanner Line Effect */
