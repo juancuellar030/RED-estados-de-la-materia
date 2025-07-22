@@ -430,4 +430,35 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, 2000); // 2000 milliseconds = 2 seconds
     }
+
+    // === NEW PART: VIRTUAL LAB 3D MODEL ZOOM CONTROLS ===
+        const zoomInButton = document.getElementById('zoom-in-button');
+        const zoomOutButton = document.getElementById('zoom-out-button');
+    
+        if (zoomInButton && zoomOutButton) {
+            const zoomStep = 5; // How much to zoom with each click
+    
+            const handleZoom = (direction) => {
+                // Find which model-viewer is currently active
+                const activeViewer = document.querySelector('.material-viewer.active model-viewer');
+                if (!activeViewer) return; // Do nothing if no model is active
+    
+                // Get the current Field of View (zoom level)
+                const currentFov = activeViewer.getFieldOfView();
+                
+                // Calculate the new Field of View
+                let newFov;
+                if (direction === 'in') {
+                    newFov = Math.max(currentFov - zoomStep, 5); // Don't let FoV get too small
+                } else {
+                    newFov = Math.min(currentFov + zoomStep, 75); // Don't let FoV get too large
+                }
+                
+                // Set the new Field of View on the active model
+                activeViewer.setAttribute('camera-orbit', 'auto ' + activeViewer.cameraOrbit.split(' ')[1] + ' ' + newFov + 'deg');
+            };
+    
+            zoomInButton.addEventListener('click', () => handleZoom('in'));
+            zoomOutButton.addEventListener('click', () => handleZoom('out'));
+        }
 }); // <-- El final del archivo
