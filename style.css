@@ -1160,17 +1160,31 @@ body.home-page #ava-play-button {
 /* ========================================================================== */
 
 /* Se aplica a pantallas con un ancho de 768px o menos */
-@media (max-width: 768px) {
-    /* Hacemos el avatar más pequeño y lo acercamos a la esquina */
+@media (max-width: 1024px) {
     #ava-container {
-        width: 180px; /* Reducimos el tamaño considerablemente */
-        right: 10px;  /* Lo pegamos más al borde */
+        width: 220px; /* Reducimos el tamaño para tablets */
+        right: 15px;
         bottom: -20px;
+    }
+
+    #ava-play-button {
+        width: 40px;
+        height: 40px;
+        bottom: 30px; /* Lo reposicionamos en el avatar más pequeño */
+    }
+}
+
+/* Se aplica a pantallas con un ancho de 768px o menos (Móviles) */
+@media (max-width: 768px) {
+    #ava-container {
+        width: 180px; /* Hacemos el avatar aún más pequeño */
+        right: 10px;
+        bottom: -15px;
     }
 
     #ava-play-button {
         width: 35px;
         height: 35px;
-        bottom: 25px; /* Lo reposicionamos en el avatar más pequeño */
+        bottom: 25px;
     }
 }
