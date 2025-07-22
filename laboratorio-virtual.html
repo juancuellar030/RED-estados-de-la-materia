@@ -18,11 +18,12 @@
         <h1 class="page-title lab-content">Laboratorio Virtual: Materia y sus Estados</h1>
         <p class="subtitle lab-content">Accediendo a la base de datos. Cargando módulos de simulación...</p>
 
+        <!-- MÓDULO 1: MATERIALES (CON VISOR 3D INTEGRADO) -->
         <section class="lab-module lab-content" id="module-1">
             <h2>Módulo 1: Identificación de Materiales</h2>
             <p>Haz clic en una tarjeta para analizar la estructura de la muestra en el visor 3D interactivo.</p>
         
-            <!-- 1. TARJETAS DE MATERIALES -->
+            <!-- 1. TARJETAS DE MATERIALES (AHORA CON DATA-ATTRIBUTES) -->
             <div class="material-cards">
                 <div class="material-card" data-material="metal"><h3>Metal</h3><p>Duro, a menudo brillante, buen conductor del calor y la electricidad. Usado en herramientas y estructuras.</p></div>
                 <div class="material-card" data-material="plastico"><h3>Plástico</h3><p>Ligero, versátil y aislante. Puede ser rígido o flexible. Usado en juguetes y contenedores.</p></div>
@@ -32,66 +33,11 @@
         
             <!-- 2. EL VISOR 3D -->
             <div id="material-viewer-container">
-                <!-- Default message -->
-                <div id="viewer-default" class="material-viewer active">
-                    <p class="viewer-prompt">SELECCIONE UNA MUESTRA PARA INICIAR SIMULACIÓN</p>
-                </div>
-                
-                <!-- Metal Viewer -->
-                <div id="viewer-metal" class="material-viewer">
-                    <model-viewer 
-                        src="assets/metal-model.glb"
-                        alt="A 3D model of a metal object"
-                        camera-controls
-                        auto-rotate
-                        ar
-                        shadow-intensity="1.2"
-                        environment-image="neutral"
-                        exposure="1.5">
-                    </model-viewer>
-                </div>
-                
-                <!-- Plastic Viewer -->
-                <div id="viewer-plastico" class="material-viewer">
-                    <model-viewer 
-                        src="assets/plastic-model.glb"
-                        alt="A 3D model of a plastic structure"
-                        camera-controls
-                        auto-rotate
-                        ar
-                        shadow-intensity="1.2"
-                        environment-image="neutral"
-                        exposure="1.5">
-                    </model-viewer>
-                </div>
-                
-                <!-- Wood Viewer -->
-                <div id="viewer-madera" class="material-viewer">
-                     <model-viewer 
-                        src="assets/wood-model.glb"
-                        alt="A 3D model of a wood structure"
-                        camera-controls
-                        auto-rotate
-                        ar
-                        shadow-intensity="1.2"
-                        environment-image="neutral"
-                        exposure="1.5">
-                    </model-viewer>
-                </div>
-                
-                <!-- Fabric Viewer -->
-                <div id="viewer-tela" class="material-viewer">
-                    <model-viewer 
-                        src="assets/fabric-model.glb"
-                        alt="A 3D model of a fabric weave"
-                        camera-controls
-                        auto-rotate
-                        ar
-                        shadow-intensity="1.2"
-                        environment-image="neutral"
-                        exposure="1.5">
-                    </model-viewer>
-                </div>
+                <div id="viewer-default" class="material-viewer active"><p class="viewer-prompt">SELECCIONE UNA MUESTRA PARA INICIAR SIMULACIÓN</p></div>
+                <div id="viewer-metal" class="material-viewer"><model-viewer src="assets/metal-model.glb" alt="A 3D model of a metal object" camera-controls auto-rotate ar shadow-intensity="1.2" environment-image="neutral" exposure="1.5"></model-viewer></div>
+                <div id="viewer-plastico" class="material-viewer"><model-viewer src="assets/plastic-model.glb" alt="A 3D model of a plastic structure" camera-controls auto-rotate ar shadow-intensity="1.2" environment-image="neutral" exposure="1.5"></model-viewer></div>
+                <div id="viewer-madera" class="material-viewer"><model-viewer src="assets/wood-model.glb" alt="A 3D model of a wood structure" camera-controls auto-rotate ar shadow-intensity="1.2" environment-image="neutral" exposure="1.5"></model-viewer></div>
+                <div id="viewer-tela" class="material-viewer"><model-viewer src="assets/fabric-model.glb" alt="A 3D model of a fabric weave" camera-controls auto-rotate ar shadow-intensity="1.2" environment-image="neutral" exposure="1.5"></model-viewer></div>
             </div>
         </section>
 
