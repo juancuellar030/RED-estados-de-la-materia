@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // === PART 7: SCREEN APPEARANCE SOUND EFFECTS (VERSIÓN CORREGIDA) ===
 
-    const screenSound = new Audio('assets/sci-fi-screen.wav');
+    const screenSound = new Audio('assets/sci-fi-screen.mp3');
     screenSound.volume = 0.4;
     
     const welcomeScreenForSound = document.getElementById('welcome-screen');
