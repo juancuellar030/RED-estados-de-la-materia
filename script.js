@@ -302,54 +302,53 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === PART 9: 3D CUBE DRAG ROTATION (CON LÓGICA DE BOTÓN COMPLETA) ===
+    // === PART 9: 3D CUBE DRAG ROTATION (CON SOPORTE TÁCTIL) ===
 
     const cubeScene = document.querySelector('.cube-scene');
     const cube = document.querySelector('.cube');
-    // 1. Buscamos el nuevo botón
     const playRotationButton = document.getElementById('play-rotation-button');
     
-    // Solo ejecuta esto si TODOS los elementos existen
     if (cube && cubeScene && playRotationButton) {
         let isDragging = false;
         let previousX, previousY;
         let rotationX = 10; 
         let rotationY = 0;
     
-        // --- Evento: Clic para empezar a arrastrar ---
-        cubeScene.addEventListener('mousedown', (e) => {
-            e.preventDefault();
+        const startDrag = (clientX, clientY) => {
             isDragging = true;
-            previousX = e.clientX;
-            previousY = e.clientY;
-            
+            previousX = clientX;
+            previousY = clientY;
             cube.classList.add('is-interactive');
-            
-            // 2. ¡LA CLAVE! Añadimos la clase para que el CSS muestre el botón
-            cubeScene.classList.add('user-has-interacted'); 
-        });
+            cubeScene.classList.add('user-has-interacted');
+        };
     
-        // --- Evento: Mover el ratón mientras se arrastra (sin cambios) ---
-        window.addEventListener('mousemove', (e) => {
+        const drag = (clientX, clientY) => {
             if (!isDragging) return;
-            const deltaX = e.clientX - previousX;
-            const deltaY = e.clientY - previousY;
+            const deltaX = clientX - previousX;
+            const deltaY = clientY - previousY;
             rotationY += deltaX * 0.5;
             rotationX -= deltaY * 0.5;
             cube.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
-            previousX = e.clientX;
-            previousY = e.clientY;
-        });
+            previousX = clientX;
+            previousY = clientY;
+        };
     
-        // --- Evento: Soltar el clic (sin cambios) ---
-        window.addEventListener('mouseup', () => {
+        const stopDrag = () => {
             isDragging = false;
-        });
-        document.addEventListener('mouseleave', () => {
-            isDragging = false;
-        });
+        };
     
-        // --- 3. ¡LA CLAVE! Añadimos el listener para el botón de reanudar ---
+        // --- Eventos de Ratón ---
+        cubeScene.addEventListener('mousedown', (e) => { e.preventDefault(); startDrag(e.clientX, e.clientY); });
+        window.addEventListener('mousemove', (e) => drag(e.clientX, e.clientY));
+        window.addEventListener('mouseup', stopDrag);
+        document.addEventListener('mouseleave', stopDrag);
+    
+        // --- NUEVO: Eventos Táctiles ---
+        cubeScene.addEventListener('touchstart', (e) => { e.preventDefault(); startDrag(e.touches[0].clientX, e.touches[0].clientY); });
+        window.addEventListener('touchmove', (e) => drag(e.touches[0].clientX, e.touches[0].clientY));
+        window.addEventListener('touchend', stopDrag);
+    
+        // --- Lógica del botón de Play (sin cambios) ---
         playRotationButton.addEventListener('click', () => {
             cubeScene.classList.remove('user-has-interacted');
             cube.style.transform = 'rotateX(10deg) rotateY(0deg)';
