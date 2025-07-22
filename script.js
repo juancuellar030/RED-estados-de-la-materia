@@ -387,4 +387,22 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // === PART 12: AVATAR TELEPORT SOUND (for index.html) ===
+
+    // We only want this to run on the home page, which has the welcome screen
+    const welcomeScreenForTeleport = document.getElementById('welcome-screen');
+    
+    if (welcomeScreenForTeleport) {
+        const teleportSound = document.getElementById('ava-audio-teleport');
+
+        // The teleport visual effect animation in style.css has a 2-second delay.
+        // We use setTimeout to match this delay precisely.
+        setTimeout(() => {
+            if (teleportSound) {
+                teleportSound.volume = 0.5; // Adjust volume as needed
+                teleportSound.play();
+            }
+        }, 2000); // 2000 milliseconds = 2 seconds
+    }
 }); // <-- El final del archivo
