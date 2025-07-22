@@ -1205,3 +1205,75 @@ body.ar-page .cube-scene {
 body.ar-page .navigation-buttons {
     animation: fadeInContent 1s ease-out 1.2s forwards;
 }
+
+/* ========================================================================== */
+/* STYLES FOR THE VIRTUAL LAB - MODULE 1 (MATERIAL VIEWER)                  */
+/* ========================================================================== */
+
+/* --- Highlighting the Active Material Card --- */
+.material-card {
+    cursor: pointer; /* Change cursor to show it's clickable */
+}
+
+.material-card.active {
+    border-color: #ff00ff; /* Use magenta to show selection */
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #ff00ff;
+}
+
+/* --- 3D Viewer Container --- */
+#material-viewer-container {
+    position: relative;
+    min-height: 350px;
+    width: 100%;
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 246, 255, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.material-viewer {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute; /* Allows viewers to stack in the same space */
+}
+
+.material-viewer.active {
+    display: block;
+    animation: fadeInContent 0.5s ease-out forwards;
+}
+
+.viewer-prompt {
+    font-family: 'Orbitron', sans-serif;
+    color: rgba(0, 246, 255, 0.5);
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 20px;
+}
+
+.material-viewer model-viewer {
+    width: 100%;
+    height: 350px;
+    filter: drop-shadow(0 0 10px #00f6ff);
+}
+
+/* AR Scanner Line Effect */
+@keyframes scan-line {
+    from { top: -10px; } to { top: 100%; }
+}
+#material-viewer-container::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #00f6ff;
+    box-shadow: 0 0 10px #00f6ff;
+    animation: scan-line 5s linear infinite 1s;
+    z-index: 10;
+    opacity: 0.5;
+}
