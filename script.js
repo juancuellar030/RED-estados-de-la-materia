@@ -467,4 +467,5 @@ document.addEventListener('DOMContentLoaded', () => {
         modelViewer.addEventListener('error', (event) => {
             console.error('Failed to load 3D model:', event.detail.source);
         });
+    });
 }); // <-- El final del archivo
