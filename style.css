@@ -852,10 +852,13 @@ body.home-page #ava-play-button {
     border-radius: 50%;
     font-size: 1.2rem;
     line-height: 1;
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(4px);
-    color: #ffffff;
+
+    /* --- MODIFIED LINES --- */
+    background-color: transparent;           /* Make background transparent */
+    border: 2px solid #00f6ff;               /* Apply the cyan border */
+    backdrop-filter: blur(4px);              /* Keep the nice blur effect */
+    color: #00f6ff;                          /* Make the icon cyan */
+    transition: all 0.3s ease;               /* Add transition for hover */
 }
 
 /* ========================================================================== */
@@ -1146,7 +1149,7 @@ body.home-page #ava-play-button {
 
     /* Reducimos el tamaño y la posición del avatar para que no ocupe tanto espacio */
     #ava-container {
-        width: 300px;
+        width: 320px;
         bottom: -20px;
         right: 10px;
     }
