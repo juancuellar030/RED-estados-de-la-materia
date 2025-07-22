@@ -229,54 +229,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1200);
     }
 
-    // === PART 8: 3D CUBE INTERACTIVITY (VERSIÓN FINAL Y UNIFICADA) ===
-
+    // ========================================================================== //
+    // PART 8 & 9: 3D CUBE LOGIC (INTERACTION + DRAG ROTATION) - FINAL VERSION   //
+    // ========================================================================== //
+    
+    const cubeScene = document.querySelector('.cube-scene');
+    const cube = document.querySelector('.cube');
+    const playRotationButton = document.getElementById('play-rotation-button');
     const cubeFaces = document.querySelectorAll('.cube-face');
     const messageDisplay = document.getElementById('cube-message-display');
     
-    // Solo ejecuta esto si el cubo existe
-    if (cubeFaces.length > 0 && messageDisplay) {
+    // Solo ejecuta si TODOS los elementos del cubo existen
+    if (cube && cubeScene && playRotationButton && cubeFaces.length > 0 && messageDisplay) {
+    
+        // --- LÓGICA PARA LA INTERACCIÓN DE LAS CARAS ---
         const messageTitle = document.getElementById('message-title');
         const messageBody = document.getElementById('message-body');
-    
-        // Almacén de textos para cada cara
         const faceMessages = {
-            visualizacion: {
-                title: "1. Visualización Sub-Microscópica",
-                body: "Delightex nos permite superar la descripción macroscópica (Causa 1) al construir y mostrar modelos 3D de partículas. El estudiante puede ver lo invisible, entendiendo el 'porqué' detrás de las propiedades de cada estado."
-            },
-            dinamismo: {
-                title: "2. Simulación de Procesos Dinámicos",
-                body: "Atacamos la representación estática (Causa 2) animando los modelos. Con CoBlocks, podemos simular el aumento de la energía cinética al aplicar calor, mostrando visualmente la transición de fase en lugar de solo describirla."
-            },
-            interactividad: {
-                title: "3. Aprendizaje Activo por Experimentación",
-                body: "En lugar de la observación pasiva (Causa 4), el estudiante se convierte en un experimentador. Puede programar sus propias simulaciones, cambiar variables y ver los resultados, fomentando el pensamiento científico y la formulación de hipótesis."
-            },
-            conexion: {
-                title: "4. Conexión Conceptual",
-                body: "Al usar el mismo conjunto de partículas y solo cambiar su comportamiento, reforzamos la idea de que 'material' y 'estado' no son conceptos separados (Causa 3). El estudiante entiende que es la misma sustancia la que se transforma."
-            },
-            inicio: {
-                title: "1. Descarga la App 'Delightex'",
-                body: ` 
-                    <p>Escanea el código QR correspondiente a la tienda de aplicaciones de tu dispositivo para descargar la herramienta.</p>
-                    <div class="qr-code-container">
-                        <div class="qr-code-item">
-                            <img src="assets/qr-google-play.svg" alt="QR Code for Google Play" class="qr-code-image">
-                            <strong>Para Android</strong>
-                        </div>
-                        <div class="qr-code-item">
-                            <img src="assets/qr-apple-store.svg" alt="QR Code for Apple App Store" class="qr-code-image">
-                            <strong>Para iOS</strong>
-                        </div>
-                    </div>
-                `
-            },
-            proyecto: {
-                title: "Nuestro Proyecto",
-                body: "Hemos creado una escena interactiva que demuestra estos principios. ¡Escanea el siguiente código QR con la app de Delightex para explorarla! [Aquí iría el QR de tu proyecto]"
-            }
+            visualizacion: { title: "1. Visualización Sub-Microscópica", body: "Delightex nos permite superar la descripción macroscópica (Causa 1) al construir y mostrar modelos 3D de partículas. El estudiante puede ver lo invisible, entendiendo el 'porqué' detrás de las propiedades de cada estado." },
+            dinamismo: { title: "2. Simulación de Procesos Dinámicos", body: "Atacamos la representación estática (Causa 2) animando los modelos. Con CoBlocks, podemos simular el aumento de la energía cinética al aplicar calor, mostrando visualmente la transición de fase en lugar de solo describirla." },
+            interactividad: { title: "3. Aprendizaje Activo por Experimentación", body: "En lugar de la observación pasiva (Causa 4), el estudiante se convierte en un experimentador. Puede programar sus propias simulaciones, cambiar variables y ver los resultados, fomentando el pensamiento científico y la formulación de hipótesis." },
+            conexion: { title: "4. Conexión Conceptual", body: "Al usar el mismo conjunto de partículas y solo cambiar su comportamiento, reforzamos la idea de que 'material' y 'estado' no son conceptos separados (Causa 3). El estudiante entiende que es la misma sustancia la que se transforma." },
+            inicio: { title: "1. Descarga la App 'Delightex'", body: ` <p>Escanea el código QR correspondiente a la tienda de aplicaciones de tu dispositivo para descargar la herramienta.</p><div class="qr-code-container"><div class="qr-code-item"><img src="assets/qr-google-play.svg" alt="QR Code for Google Play" class="qr-code-image"><strong>Para Android</strong></div><div class="qr-code-item"><img src="assets/qr-apple-store.svg" alt="QR Code for Apple App Store" class="qr-code-image"><strong>Para iOS</strong></div></div>` },
+            proyecto: { title: "Nuestro Proyecto", body: "Hemos creado una escena interactiva que demuestra estos principios. ¡Escanea el siguiente código QR con la app de Delightex para explorarla! [Aquí iría el QR de tu proyecto]" }
         };
     
         const handleFaceInteraction = (faceKey) => {
@@ -300,12 +275,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
         // --- LÓGICA PARA LA ROTACIÓN POR ARRASTRE ---
         let isDragging = false;
+        let wasDragged = false; // Nueva variable para diferenciar clic de arrastre
         let previousX, previousY;
         let rotationX = 10; 
         let rotationY = 0;
     
         const startDrag = (clientX, clientY) => {
             isDragging = true;
+            wasDragged = false;
             previousX = clientX;
             previousY = clientY;
             cube.classList.add('is-interactive');
@@ -313,6 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         const drag = (clientX, clientY) => {
             if (!isDragging) return;
+            wasDragged = true; // Si se mueve, fue un arrastre
             const deltaX = clientX - previousX;
             const deltaY = clientY - previousY;
             rotationY += deltaX * 0.5;
