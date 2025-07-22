@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                 `
-            }
+            },
             proyecto: {
                 title: "Nuestro Proyecto",
                 body: "Hemos creado una escena interactiva que demuestra estos principios. ¡Escanea el siguiente código QR con la app de Delightex para explorarla! [Aquí iría el QR de tu proyecto]"
