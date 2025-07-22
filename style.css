@@ -6,14 +6,14 @@ body {
     margin: 0;
     min-height: 100vh;
     cursor: url('assets/cursor-default.svg'), auto;
-    overflow-y: auto;
+    overflow: hidden; /* Evita el scroll en el body, lo controlaremos adentro */
 
-    /* LA CLAVE: Flexbox para centrar el contenido principal en TODAS las páginas */
+    /* LA CLAVE: Flexbox vuelve para centrar el contenido principal */
+    display: flex;
     justify-content: center;
     align-items: center;
     
-    /* El padding se elimina para que la tablet pueda ocupar el 100% del alto/ancho */
-    padding: 0; 
+    padding: 20px; /* Devolvemos un padding general */
     box-sizing: border-box;
 }
 
@@ -860,14 +860,22 @@ body.home-page #ava-play-button {
 .lab-container {
     width: 80vw;
     max-width: 1200px;
-    height: 85vh;
+    /* LA CLAVE: La altura máxima es el 90% de la ventana */
+    max-height: 90vh; 
     background-color: rgba(10, 30, 60, 0.8);
     border: 1px solid #00f6ff;
     box-shadow: inset 0 0 20px rgba(0, 246, 255, 0.4);
     padding: 30px 50px;
     box-sizing: border-box;
-    overflow-y: auto; /* Permite scroll si el contenido es muy largo */
+    
+    /* LA MAGIA: Si el contenido es más alto que la max-height, aparece el scroll */
+    overflow-y: auto; 
+    
     text-align: center;
+    
+    /* Le damos estilo a la barra de scroll */
+    scrollbar-width: thin;
+    scrollbar-color: #00f6ff #0a0f2b;
 }
 .lab-container .subtitle { font-size: 1rem; color: #aaa; }
 
