@@ -1082,3 +1082,32 @@ body.home-page #ava-play-button {
 .process-arrow {
     color: #ff00ff;
 }
+
+/* ========================================================================== */
+/* ESTILOS PARA LOS CÓDIGOS QR EN EL PANEL DE MENSAJES */
+/* ========================================================================== */
+
+.qr-code-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 15px;
+    gap: 20px;
+}
+
+.qr-code-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.qr-code-image {
+    width: 120px; /* Tamaño del código QR */
+    height: 120px;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: white; /* Fondo blanco para asegurar la legibilidad */
+    box-sizing: border-box; /* Asegura que el padding no aumente el tamaño */
+}
