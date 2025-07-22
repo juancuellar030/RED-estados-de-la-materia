@@ -320,6 +320,12 @@ a, button, .node {
 /* ESTILOS PARA LA PÁGINA DE RA CON CUBO 3D INTERACTIVO */
 /* ========================================================================== */
 
+/* ¡NUEVA REGLA! Habilita el scroll y alinea el contenido arriba */
+body.ar-page {
+    overflow-y: auto; /* Permite el scroll vertical si es necesario */
+    align-items: flex-start; /* Alinea el contenido en la parte superior */
+}
+
 /* --- 1. Definición de la Animación de Giro --- */
 @keyframes spin {
     from { transform: rotateY(0deg) rotateX(10deg); }
@@ -1146,5 +1152,25 @@ body.home-page #ava-play-button {
     }
     #ava-play-button {
         bottom: 30px;
+    }
+}
+
+/* ========================================================================== */
+/* MEDIA QUERIES PARA RESPONSIVIDAD (TABLETS Y MÓVILES) */
+/* ========================================================================== */
+
+/* Se aplica a pantallas con un ancho de 768px o menos */
+@media (max-width: 768px) {
+    /* Hacemos el avatar más pequeño y lo acercamos a la esquina */
+    #ava-container {
+        width: 180px; /* Reducimos el tamaño considerablemente */
+        right: 10px;  /* Lo pegamos más al borde */
+        bottom: -20px;
+    }
+
+    #ava-play-button {
+        width: 35px;
+        height: 35px;
+        bottom: 25px; /* Lo reposicionamos en el avatar más pequeño */
     }
 }
