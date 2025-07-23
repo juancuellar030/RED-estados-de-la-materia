@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="lab-page">
     <canvas id="matrix-canvas"></canvas>
 
     <main class="lab-container">
@@ -180,5 +180,24 @@
     </main>
     
     <script src="script.js"></script>
+
+    <!-- ================================================================== -->
+    <!-- NEW AVATAR AND AUDIO ELEMENTS FOR THE LAB PAGE                     -->
+    <!-- ================================================================== -->
+    
+    <!-- AVATAR (Lab Version) -->
+    <div id="ava-container">
+        <img src="assets/ava-teleport-alexa.png" alt="Teleport Effect" class="ava-teleport-effect">
+        <img src="assets/ava-character-alexa.png" alt="Asistente Virtual AVA" class="ava-character-image">
+        <button id="ava-play-button" title="Reproducir audio del asistente">▶</button>
+    </div>
+
+    <!-- AUDIO FILES -->
+    <audio id="ava-audio-welcome" src="assets/ava-welcome-screen.mp3" preload="auto"></audio>
+    <audio id="ava-audio-problems" src="assets/ava-core-problem.mp3" preload="auto"></audio>
+    <audio id="ava-audio-ar" src="assets/ava-ar.mp3" preload="auto"></audio>
+    <audio id="ava-audio-teleport" src="assets/ava-teleport.mp3" preload="auto"></audio>
+    <!-- New Audio File for the Lab -->
+    <audio id="ava-audio-lab" src="assets/ava-laboratorio-virtual-audio.mp3" preload="auto"></audio>
 </body>
 </html>
