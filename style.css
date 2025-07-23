@@ -1299,3 +1299,27 @@ body.ar-page .navigation-buttons {
     flex-direction: column;
     gap: 10px;
 }
+
+/* ========================================================================== */
+/* STYLES FOR THE AVATAR TELEPORT (LABORATORY PAGE ONLY)                    */
+/* ========================================================================== */
+
+/* These rules only apply when the body has the 'lab-page' class */
+body.lab-page .ava-character-image,
+body.lab-page #ava-play-button,
+body.lab-page .ava-teleport-effect {
+    opacity: 0; /* All avatar elements start invisible */
+}
+
+/* Staggered animation timing for the lab avatar */
+body.lab-page .ava-teleport-effect {
+    animation: fade-in-out 1.5s ease-in-out 1.0s forwards;
+}
+body.lab-page .ava-character-image {
+    animation: 
+        fadeInContent 0.5s ease-out 2.0s forwards,
+        ava-float 6s ease-in-out 2.5s infinite;
+}
+body.lab-page #ava-play-button {
+    animation: fadeInContent 0.5s ease-out 2.5s forwards;
+}
