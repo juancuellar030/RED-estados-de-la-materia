@@ -756,6 +756,15 @@ body.ar-page {
     z-index: 999;
     width: 390px;
     height: 500px;
+
+    transition: opacity 0.5s ease-out;
+    
+}
+
+/* The style for when the avatar is hidden */
+#ava-container.ava-hidden {
+    opacity: 0;
+    pointer-events: none; /* Prevents clicks on the invisible avatar */
 }
 
 /* --- 3. Estilos Compartidos por Ambas Imágenes --- */
