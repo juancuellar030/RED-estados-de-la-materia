@@ -431,36 +431,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000); // 2000 milliseconds = 2 seconds
     }
 
-    // === NEW PART: VIRTUAL LAB 3D MODEL ZOOM CONTROLS ===
-        const zoomInButton = document.getElementById('zoom-in-button');
-        const zoomOutButton = document.getElementById('zoom-out-button');
+    // === CORRECTED: VIRTUAL LAB 3D MODEL ZOOM CONTROLS ===
+    const zoomInButton = document.getElementById('zoom-in-button');
+    const zoomOutButton = document.getElementById('zoom-out-button');
     
-        if (zoomInButton && zoomOutButton) {
-            const zoomStep = 5; // How much to zoom with each click
+    if (zoomInButton && zoomOutButton) {
+        const zoomStep = 0.1; // A smaller step is better for radius-based zoom
     
-            const handleZoom = (direction) => {
-                // Find which model-viewer is currently active
-                const activeViewer = document.querySelector('.material-viewer.active model-viewer');
-                if (!activeViewer) return; // Do nothing if no model is active
+        const handleZoom = (direction) => {
+            // Find the active model viewer ONLY when a button is clicked
+            const activeViewer = document.querySelector('.material-viewer.active model-viewer');
+            if (!activeViewer) return;
     
-                // Get the current Field of View (zoom level)
-                const currentFov = activeViewer.getFieldOfView();
-                
-                // Calculate the new Field of View
-                let newFov;
-                if (direction === 'in') {
-                    newFov = Math.max(currentFov - zoomStep, 5); // Don't let FoV get too small
-                } else {
-                    newFov = Math.min(currentFov + zoomStep, 75); // Don't let FoV get too large
-                }
-                
-                // Set the new Field of View on the active model
-                activeViewer.setAttribute('camera-orbit', 'auto ' + activeViewer.cameraOrbit.split(' ')[1] + ' ' + newFov + 'deg');
-            };
+            // Use cameraOrbit for robust zoom control
+            const currentOrbit = activeViewer.cameraOrbit;
+            const orbitParts = currentOrbit.split(' ');
+            
+            // The third part is the radius (zoom level)
+            let currentRadius = parseFloat(orbitParts[2]);
     
-            zoomInButton.addEventListener('click', () => handleZoom('in'));
-            zoomOutButton.addEventListener('click', () => handleZoom('out'));
-        }
+            if (direction === 'in') {
+                currentRadius = Math.max(currentRadius - zoomStep, 0.1); // Zoom in
+            } else {
+                currentRadius = currentRadius + zoomStep; // Zoom out
+            }
+    
+            // Set the new camera orbit
+            activeViewer.cameraOrbit = `${orbitParts[0]} ${orbitParts[1]} ${currentRadius}m`;
+        };
+    
+        zoomInButton.addEventListener('click', () => handleZoom('in'));
+        zoomOutButton.addEventListener('click', () => handleZoom('out'));
+    }
 
     // === NEW PART: 3D MODEL ERROR DEBUGGER ===
     document.querySelectorAll('model-viewer').forEach(modelViewer => {
