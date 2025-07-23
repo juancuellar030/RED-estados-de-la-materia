@@ -1264,7 +1264,7 @@ body.ar-page .navigation-buttons {
     /* --- STYLES FOR THE BUILT-IN LOADER --- */
     --mv-progress-bar-height: 8px;
     --mv-progress-bar-color: #00f6ff;
-    --mv-progress-bar-background: rgba(0, 246, 255, 0.2);
+    --mv-progress-bar-background: rgba(0, 246, 255, 0.6);
 }
 
 /* This special selector applies styles ONLY while the model is loading */
@@ -1299,7 +1299,3 @@ body.ar-page .navigation-buttons {
     flex-direction: column;
     gap: 10px;
 }
-
-/* ========================================================================== */
-/* STYLES FOR THE CUSTOM 3D MODEL LOADER                                    */
-/* ========================================================================== */
