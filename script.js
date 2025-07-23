@@ -478,4 +478,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, 1000); // 1000ms = 1s
     }
+
+    // === NEW PART: AVATAR SHOW/HIDE TOGGLE LOGIC ===
+        const avaToggleBtn = document.getElementById('ava-toggle-button');
+        const avaContainer = document.getElementById('ava-container');
+    
+        // Only run this script if the avatar elements exist on the page
+        if (avaToggleBtn && avaContainer) {
+            
+            // SVG icons for the button states
+            const iconHide = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.974 0 9.19 3.226 10.678 7.697a.75.75 0 0 1 0 .606C21.19 17.024 16.973 20.25 12.001 20.25c-4.974 0-9.19-3.226-10.678-7.697a.75.75 0 0 1 0-.606ZM12 17.25a5.25 5.25 0 1 0 0-10.5 5.25 5.25 0 0 0 0 10.5Z" clip-rule="evenodd" /></svg>`;
+            const iconShow = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M3.28 2.22a.75.75 0 0 0-1.06 1.06l18 18a.75.75 0 1 0 1.06-1.06l-18-18ZM10.72 10.72a3 3 0 0 0-3.18.13l-1.91-1.91A5.25 5.25 0 0 1 12 7.5a5.25 5.25 0 0 1 5.25 5.25 5.23 5.23 0 0 1-.44 2.06l-2.62-2.62a3 3 0 0 0-3.47-3.47Z" clip-rule="evenodd" /><path d="m14.28 14.28.16.16a3 3 0 0 1-3.32-3.32l.16.16a3 3 0 0 1 3 3ZM11.45 20.14c-4.93-1.45-8.3-5.52-9.9-9.43a.75.75 0 0 1 0-.6c1.6-3.9 5-7.98 9.9-9.43a5.5 5.5 0 0 1 2.2 0c4.93 1.45 8.3 5.52 9.9 9.43a.75.75 0 0 1 0 .6c-1.55 3.79-4.8 7.8-9.67 9.4a5.5 5.5 0 0 1-2.43.04Z" /></svg>`;
+    
+            avaToggleBtn.addEventListener('click', () => {
+                // Toggle the 'ava-hidden' class on the container
+                avaContainer.classList.toggle('ava-hidden');
+    
+                // Update the button icon and tooltip based on the new state
+                if (avaContainer.classList.contains('ava-hidden')) {
+                    avaToggleBtn.innerHTML = iconShow;
+                    avaToggleBtn.setAttribute('title', 'Mostrar Asistente');
+                } else {
+                    avaToggleBtn.innerHTML = iconHide;
+                    avaToggleBtn.setAttribute('title', 'Ocultar Asistente');
+                }
+            });
+        }
 }); // <-- El final del archivo
