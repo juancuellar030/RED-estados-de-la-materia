@@ -1259,11 +1259,17 @@ body.ar-page .navigation-buttons {
     width: 100%;
     height: 350px;
     filter: drop-shadow(0 0 10px #00f6ff);
+    background-color: transparent; /* Start with a transparent background */
 
-    /* --- NEW STYLES FOR THE LOADING BAR --- */
-    --mv-progress-bar-height: 5px; /* Makes the bar much thicker */
-    --mv-progress-bar-color: #00f6ff;   /* Sets the bar color to your neon cyan */
-    --mv-progress-bar-background: rgba(0, 246, 255, 0.3); /* Sets the track color */
+    /* --- STYLES FOR THE BUILT-IN LOADER --- */
+    --mv-progress-bar-height: 8px;
+    --mv-progress-bar-color: #00f6ff;
+    --mv-progress-bar-background: rgba(0, 246, 255, 0.2);
+}
+
+/* This special selector applies styles ONLY while the model is loading */
+.material-viewer model-viewer:not(.loaded) {
+    background-color: rgba(10, 30, 60, 0.7); /* Show an overlay only during load */
 }
 
 /* AR Scanner Line Effect */
@@ -1297,35 +1303,3 @@ body.ar-page .navigation-buttons {
 /* ========================================================================== */
 /* STYLES FOR THE CUSTOM 3D MODEL LOADER                                    */
 /* ========================================================================== */
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-.custom-loader {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* We REMOVED display, justify-content, and align-items */
-    background-color: rgba(10, 30, 60, 0.7);
-    backdrop-filter: blur(5px);
-    z-index: 2;
-}
-
-.spinner {
-    /* Use absolute positioning to center the spinner instead of flexbox */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* The key to perfect centering */
-
-    width: 60px;
-    height: 60px;
-    border: 5px solid rgba(0, 246, 255, 0.3);
-    border-top-color: #00f6ff;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    box-shadow: 0 0 15px rgba(0, 246, 255, 0.5);
-}
