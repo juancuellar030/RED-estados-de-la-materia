@@ -17,6 +17,11 @@ body {
     box-sizing: border-box;
 }
 
+/* ADD THIS RULE to hide the browser's default audio player */
+audio {
+    display: none;
+}
+
 /* Títulos principales con fuente Sci-Fi */
 .main-title, .page-title {
     font-family: 'Orbitron', sans-serif;
@@ -1337,27 +1342,37 @@ body.lab-page #ava-play-button {
 /* STYLES FOR AVATAR BUTTONS (PLAY + TOGGLE)                                */
 /* ========================================================================== */
 
-/* 1. The new container for the buttons */
-.ava-button-cluster {
+/* 1. Style for the Play button (back to its original state) */
+#ava-play-button {
     position: absolute;
     bottom: 55px;
     left: 50%;
-    transform: translateX(-50%); /* Centers the entire group */
+    transform: translateX(-50%);
     display: flex;
-    gap: 10px; /* Space between the buttons */
+    justify-content: center;
     align-items: center;
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    margin: 0;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    line-height: 1;
+    background-color: rgba(0, 246, 255, 0.2);
+    border: 1px solid rgba(0, 246, 255, 0.5);
+    backdrop-filter: blur(4px);
+    color: #00f6ff;
+    transition: all 0.3s ease;
 }
 
-/* 2. Unified style for BOTH buttons */
-#ava-play-button,
+/* 2. Style for the now-independent Toggle button */
 #ava-toggle-button {
-    /* Remove individual positioning */
-    position: relative;
-    left: auto;
-    bottom: auto;
-    transform: none;
-    
-    /* Consistent size and style */
+    position: fixed;
+    /* Positioned relative to the main avatar container's location */
+    bottom: 55px; /* Aligns vertically with the play button */
+    right: 345px; /* Adjust this value if avatar container width changes */
+    z-index: 1000;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1366,8 +1381,6 @@ body.lab-page #ava-play-button {
     padding: 10px;
     margin: 0;
     border-radius: 50%;
-    font-size: 1.2rem;
-    line-height: 1;
     background-color: rgba(0, 246, 255, 0.2);
     border: 1px solid rgba(0, 246, 255, 0.5);
     backdrop-filter: blur(4px);
