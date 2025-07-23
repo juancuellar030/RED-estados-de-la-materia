@@ -291,6 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const audioWelcome = document.getElementById('ava-audio-welcome');
         const audioProblems = document.getElementById('ava-audio-problems');
         const audioAr = document.getElementById('ava-audio-ar');
+        const audioLab = document.getElementById('ava-audio-lab');
         let audioContext, analyser, dataArray;
         let isAudioContextInitialized = false;
         let animationFrameId;
@@ -326,6 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let currentAudio;
             if (currentPage === 'arbol-de-problemas.html') currentAudio = audioProblems;
             else if (currentPage === 'app-ra.html') currentAudio = audioAr;
+            else if (currentPage === 'laboratorio-virtual.html') currentAudio = audioLab;    
             else currentAudio = audioWelcome;
     
             if (!currentAudio) return;
@@ -462,5 +464,18 @@ document.addEventListener('DOMContentLoaded', () => {
         zoomInButton.addEventListener('click', () => handleZoom('in'));
         zoomOutButton.addEventListener('click', () => handleZoom('out'));
     }
-
+// === NEW PART: AVATAR TELEPORT SOUND (LAB PAGE) ===
+    
+    // Check if we are on the lab page by looking for its body class
+    if (document.body.classList.contains('lab-page')) {
+        const teleportSound = document.getElementById('ava-audio-teleport');
+        
+        // The CSS animation for the teleport glow starts after a 1-second delay
+        setTimeout(() => {
+            if (teleportSound) {
+                teleportSound.volume = 0.5; // Adjust volume as needed
+                teleportSound.play();
+            }
+        }, 1000); // 1000ms = 1s
+    }
 }); // <-- El final del archivo
