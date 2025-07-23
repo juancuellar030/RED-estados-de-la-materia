@@ -436,19 +436,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const zoomOutButton = document.getElementById('zoom-out-button');
     
     if (zoomInButton && zoomOutButton) {
-        const zoomStep = 0.1; // A smaller step is better for radius-based zoom
-    
+        
         const handleZoom = (direction) => {
             // Find the active model viewer ONLY when a button is clicked
             const activeViewer = document.querySelector('.material-viewer.active model-viewer');
             if (!activeViewer) return;
     
-            // Use cameraOrbit for robust zoom control
-            const currentOrbit = activeViewer.cameraOrbit;
-            const orbitParts = currentOrbit.split(' ');
+            // Use a robust method to get the current zoom (radius)
+            const currentOrbit = activeViewer.getCameraOrbit();
+            let currentRadius = parseFloat(currentOrbit.radius);
             
-            // The third part is the radius (zoom level)
-            let currentRadius = parseFloat(orbitParts[2]);
+            // Define a dynamic zoom step for a smoother feel
+            const zoomStep = currentRadius * 0.2;
     
             if (direction === 'in') {
                 currentRadius = Math.max(currentRadius - zoomStep, 0.1); // Zoom in
@@ -456,19 +455,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentRadius = currentRadius + zoomStep; // Zoom out
             }
     
-            // Set the new camera orbit
-            activeViewer.cameraOrbit = `${orbitParts[0]} ${orbitParts[1]} ${currentRadius}m`;
+            // Set the new camera orbit radius without changing pitch and yaw
+            activeViewer.cameraOrbit = `${currentOrbit.theta}rad ${currentOrbit.phi}rad ${currentRadius}m`;
         };
     
         zoomInButton.addEventListener('click', () => handleZoom('in'));
         zoomOutButton.addEventListener('click', () => handleZoom('out'));
     }
 
-    // === NEW PART: 3D MODEL ERROR DEBUGGER ===
-    document.querySelectorAll('model-viewer').forEach(modelViewer => {
-        modelViewer.addEventListener('error', (event) => {
-            console.error('Failed to load 3D model:', event.detail.source);
-        });
-    });
-    
 }); // <-- El final del archivo
