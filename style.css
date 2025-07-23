@@ -1283,6 +1283,17 @@ body.ar-page .navigation-buttons {
     opacity: 0.5;
 }
 
+/* Find the .viewer-controls rule and ensure it looks like this */
+.viewer-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 20px; /* Position on the LEFT side */
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 /* ========================================================================== */
 /* STYLES FOR THE CUSTOM 3D MODEL LOADER                                    */
 /* ========================================================================== */
