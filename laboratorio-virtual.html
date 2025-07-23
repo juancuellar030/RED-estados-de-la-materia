@@ -180,19 +180,21 @@
     </main>
     
     <script src="script.js"></script>
-    
-    <!-- AVATAR (Lab Version) -->
+
+    <!-- ================================================================== -->
+    <!-- FINAL AVATAR STRUCTURE (CORRECTED)                               -->
+    <!-- ================================================================== -->
+
+    <!-- The Toggle Button is now OUTSIDE and independent -->
+    <button id="ava-toggle-button" title="Ocultar Asistente">
+        <!-- The SVG eye icon is added by JavaScript -->
+    </button>
+
+    <!-- The Avatar Container holds only the avatar and its one play button -->
     <div id="ava-container">
         <img src="assets/ava-teleport-alexa.png" alt="Teleport Effect" class="ava-teleport-effect">
         <img src="assets/ava-character-alexa.png" alt="Asistente Virtual AVA" class="ava-character-image">
         <button id="ava-play-button" title="Reproducir audio del asistente">▶</button>
-
-        <div class="ava-button-cluster">
-            <button id="ava-toggle-button" title="Ocultar Asistente">
-                <!-- The SVG eye icon will be added by the JavaScript -->
-            </button>
-            <button id="ava-play-button" title="Reproducir audio del asistente">▶</button>
-        </div>
     </div>
 
     <!-- AUDIO FILES -->
