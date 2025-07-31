@@ -551,13 +551,42 @@ body.ar-page {
     animation-fill-mode: forwards; /* Mantiene el estado final */
 }
 
-/* Animación del núcleo */
+/* ========================================================================== */
+/* STYLES FOR THE CORE PROBLEM BUTTON (IMPROVED CIRCLE)                     */
+/* ========================================================================== */
+
 .core-problem {
-    animation-name: pop-in, pulse;
-    animation-duration: 0.5s, 2s;
-    animation-timing-function: ease-out, ease-in-out;
-    animation-delay: 3.5s, 4s; /* Aparece, y luego empieza a pulsar */
-    animation-iteration-count: 1, infinite;
+    /* --- Size and Shape --- */
+    width: 150px; /* Increased size for better text fit */
+    height: 150px;
+    border-radius: 50%; /* The key to making it a circle */
+    
+    /* --- Color and Glow --- */
+    background-color: #ff00ff;
+    box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff;
+    
+    /* --- Text Styling and Centering --- */
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0 0 5px #fff, 0 0 10px rgba(255, 0, 255, 0.7);
+    line-height: 1.2;
+    
+    /* --- Flexbox for Perfect Centering --- */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* --- Positioning and Animation --- */
+    z-index: 10;
+    opacity: 0; /* Initial state for animation */
+    
+    /* Re-apply the pop-in and pulse animations */
+    animation: 
+        pop-in 0.5s ease-out 3.5s forwards,
+        pulse 2s ease-in-out 4s infinite;
 }
 
 /* Animación de los nodos */
