@@ -557,41 +557,47 @@ body.ar-page {
 }
 
 /* ========================================================================== */
-/* STYLES FOR THE CORE PROBLEM BUTTON (IMPROVED CIRCLE)                     */
+/* STYLES FOR THE CORE PROBLEM BUTTON (FINAL CORRECTED VERSION)             */
 /* ========================================================================== */
 
-.core-problem {
+.core-problem.node {
     /* --- Size and Shape --- */
-    width: 150px; /* Increased size for better text fit */
-    height: 150px;
-    border-radius: 50%; /* The key to making it a circle */
+    width: 180px;  /* Increased size to comfortably fit the text */
+    height: 180px; /* Kept equal to width for a perfect circle */
+    border-radius: 50%; /* This is the key to making it a circle */
+    clip-path: none; /* CRUCIAL: This disables the hexagonal shape from the .node class */
     
     /* --- Color and Glow --- */
-    background-color: #ff00ff;
-    box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff;
+    background-color: #ff00ff; /* This sets the solid fuchsia inner color */
+    box-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff; /* Enhanced glow effect */
     
     /* --- Text Styling and Centering --- */
-    color: #fff;
+    color: #ffffff;
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.3rem; /* Slightly increased font size for visibility */
     font-weight: bold;
     text-align: center;
-    text-shadow: 0 0 5px #fff, 0 0 10px rgba(255, 0, 255, 0.7);
-    line-height: 1.2;
+    text-shadow: 0 0 5px #fff, 0 0 10px rgba(255, 255, 255, 0.7);
+    line-height: 1.3;
     
     /* --- Flexbox for Perfect Centering --- */
     display: flex;
     justify-content: center;
     align-items: center;
-
+    
     /* --- Positioning and Animation --- */
     z-index: 10;
     opacity: 0; /* Initial state for animation */
-    
-    /* Re-apply the pop-in and pulse animations */
     animation: 
         pop-in 0.5s ease-out 3.5s forwards,
         pulse 2s ease-in-out 4s infinite;
+}
+
+/* We must also override the hover effect from the generic .node class */
+.core-problem.node:hover {
+    background-color: #ff00ff; /* Keep it fuchsia on hover */
+    transform: scale(1.05); /* Add a slight zoom effect on hover */
+    filter: drop-shadow(0 0 25px #ff00ff);
 }
 
 /* Animación de los nodos */
@@ -1533,13 +1539,13 @@ body.lab-page #ava-play-button {
 /* Position the top line in the middle of the gap BELOW the top nodes */
 .with-connecting-lines .effects-branch::before {
     /* Explanation: Places the line 20px below the branch */
-    bottom: -40px; 
+    bottom: -70px; 
 }
 
 /* Position the bottom line in the middle of the gap ABOVE the bottom nodes */
 .with-connecting-lines .causes-branch::before {
     /* Explanation: Places the line 20px above the branch */
-    top: -40px;
+    top: -10px;
 }
 
 /* --- 3. The Short Vertical Connector Lines --- */
@@ -1549,7 +1555,7 @@ body.lab-page #ava-play-button {
     width: 2px;
     background-color: #00f6ff;
     /* This height is exactly half of your 40px gap */
-    height: 40px; 
+    height: 60px; 
     left: 50%;
     transform: translateX(-50%);
     z-index: -1;
