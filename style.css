@@ -549,7 +549,11 @@ body.ar-page {
 .core-problem, .node {
     opacity: 0;
     animation-fill-mode: forwards; /* Mantiene el estado final */
-    clip-path: none; /* Disables the hexagonal clipping */
+}
+
+/* --- FIX: Ensure the core problem button is a circle, not a hexagon --- */
+.core-problem.node {
+    clip-path: none; /* This disables the hexagonal shape */
 }
 
 /* ========================================================================== */
@@ -1497,10 +1501,10 @@ body.lab-page #ava-play-button {
 }
 
 /* ========================================================================== */
-/* STYLES FOR THE GLOWING CONNECTING LINES (PROBLEM TREE) - CORRECTED         */
+/* STYLES FOR THE GLOWING CONNECTING LINES (PROBLEM TREE) - FINAL FIX         */
 /* ========================================================================== */
 
-/* --- 1. Define the Pulsating Glow Animation (No Change Needed) --- */
+/* --- 1. Define the Pulsating Glow Animation (No change needed) --- */
 @keyframes line-pulse {
     0% {
         box-shadow: 0 0 8px rgba(0, 246, 255, 0.7);
@@ -1513,49 +1517,51 @@ body.lab-page #ava-play-button {
     }
 }
 
-/* --- 2. The Main Horizontal Lines (one for each branch) --- */
+/* --- 2. The Main Horizontal Lines --- */
 .with-connecting-lines .effects-branch::before,
 .with-connecting-lines .causes-branch::before {
     content: '';
     position: absolute;
     height: 2px;
     background-color: #00f6ff;
-    left: 15%; /* Stretches the line horizontally */
+    left: 15%;
     right: 15%;
     z-index: -1;
     animation: line-pulse 2.5s ease-in-out infinite;
 }
 
-/* Position the top horizontal line at the very bottom of its container */
+/* Position the top line in the middle of the gap BELOW the top nodes */
 .with-connecting-lines .effects-branch::before {
-    bottom: 0;
+    /* Explanation: Places the line 20px below the branch */
+    bottom: -20px; 
 }
 
-/* Position the bottom horizontal line at the very top of its container */
+/* Position the bottom line in the middle of the gap ABOVE the bottom nodes */
 .with-connecting-lines .causes-branch::before {
-    top: 0;
+    /* Explanation: Places the line 20px above the branch */
+    top: -20px;
 }
 
-/* --- 3. The Short Vertical Connector Lines (one for each node) --- */
+/* --- 3. The Short Vertical Connector Lines --- */
 .with-connecting-lines .node::before {
     content: '';
     position: absolute;
     width: 2px;
     background-color: #00f6ff;
-    /* This height must match the 'gap' from the .mind-map-container */
-    height: 40px;
+    /* This height is exactly half of your 40px gap */
+    height: 20px; 
     left: 50%;
     transform: translateX(-50%);
     z-index: -1;
     animation: line-pulse 2.5s ease-in-out infinite;
 }
 
-/* Make the top branch's lines go UP from the hexagon's bottom edge */
+/* Make the top branch's lines go DOWN from the hexagon */
 .with-connecting-lines .effects-branch .node::before {
-    bottom: 100%;
+    top: 100%;
 }
 
-/* Make the bottom branch's lines go DOWN from the hexagon's top edge */
+/* Make the bottom branch's lines go UP from the hexagon */
 .with-connecting-lines .causes-branch .node::before {
-    top: 100%;
+    bottom: 100%;
 }
