@@ -1533,13 +1533,13 @@ body.lab-page #ava-play-button {
 /* Position the top line in the middle of the gap BELOW the top nodes */
 .with-connecting-lines .effects-branch::before {
     /* Explanation: Places the line 20px below the branch */
-    bottom: -20px; 
+    bottom: -40px; 
 }
 
 /* Position the bottom line in the middle of the gap ABOVE the bottom nodes */
 .with-connecting-lines .causes-branch::before {
     /* Explanation: Places the line 20px above the branch */
-    top: -20px;
+    top: -40px;
 }
 
 /* --- 3. The Short Vertical Connector Lines --- */
@@ -1549,7 +1549,7 @@ body.lab-page #ava-play-button {
     width: 2px;
     background-color: #00f6ff;
     /* This height is exactly half of your 40px gap */
-    height: 20px; 
+    height: 40px; 
     left: 50%;
     transform: translateX(-50%);
     z-index: -1;
