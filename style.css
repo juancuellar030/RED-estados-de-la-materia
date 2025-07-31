@@ -1466,3 +1466,69 @@ body.lab-page #ava-play-button {
     margin-top: 15px;
     padding: 10px 20px;
 }
+
+/* ========================================================================== */
+/* STYLES FOR THE GLOWING CONNECTING LINES (PROBLEM TREE)                   */
+/* ========================================================================== */
+
+/* --- 1. Define the Pulsating Glow Animation --- */
+@keyframes line-pulse {
+    0% {
+        box-shadow: 0 0 8px rgba(0, 246, 255, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 246, 255, 1);
+    }
+    100% {
+        box-shadow: 0 0 8px rgba(0, 246, 255, 0.7);
+    }
+}
+
+/* --- 2. The Main Horizontal Lines (one for each branch) --- */
+/* The ::before pseudo-element on each branch will be its horizontal line */
+.with-connecting-lines .effects-branch::before,
+.with-connecting-lines .causes-branch::before {
+    content: '';
+    position: absolute;
+    height: 2px;
+    background-color: #00f6ff;
+    /* Stretch from 15% to 85% of the container width */
+    left: 15%;
+    right: 15%;
+    z-index: -1; /* Place it behind the nodes */
+    animation: line-pulse 2.5s ease-in-out infinite;
+}
+
+/* Position the top line in the middle of the gap above the core problem */
+.with-connecting-lines .effects-branch::before {
+    bottom: 50px; /* Adjust this value to center the line perfectly */
+}
+
+/* Position the bottom line in the middle of the gap below the core problem */
+.with-connecting-lines .causes-branch::before {
+    top: 50px; /* Adjust this value to center the line perfectly */
+}
+
+/* --- 3. The Short Vertical Connector Lines (one for each node) --- */
+/* The ::before pseudo-element on each node will be its vertical line */
+.with-connecting-lines .node::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background-color: #00f6ff;
+    height: 50px; /* This should match the 'top'/'bottom' value above */
+    left: 50%;
+    transform: translateX(-50%); /* Center the line horizontally on the node */
+    z-index: -1; /* Place it behind the nodes */
+    animation: line-pulse 2.5s ease-in-out infinite;
+}
+
+/* Make the top branch's lines go UP from the hexagon */
+.with-connecting-lines .effects-branch .node::before {
+    bottom: 100%;
+}
+
+/* Make the bottom branch's lines go DOWN from the hexagon */
+.with-connecting-lines .causes-branch .node::before {
+    top: 100%;
+}
