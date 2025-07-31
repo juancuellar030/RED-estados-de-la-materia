@@ -1532,20 +1532,20 @@ body.lab-page #ava-play-button {
     background-color: #00f6ff;
     left: 15%;
     right: 15%;
-    z-index: -1;
+    z-index: 0;
     animation: line-pulse 2.5s ease-in-out infinite;
 }
 
 /* Position the top line in the middle of the gap BELOW the top nodes */
 .with-connecting-lines .effects-branch::before {
     /* Explanation: Places the line 20px below the branch */
-    bottom: -70px; 
+    bottom: -120px; 
 }
 
 /* Position the bottom line in the middle of the gap ABOVE the bottom nodes */
 .with-connecting-lines .causes-branch::before {
     /* Explanation: Places the line 20px above the branch */
-    top: -10px;
+    top: -70px;
 }
 
 /* --- 3. The Short Vertical Connector Lines --- */
@@ -1558,16 +1558,22 @@ body.lab-page #ava-play-button {
     height: 60px; 
     left: 50%;
     transform: translateX(-50%);
-    z-index: -1;
+    z-index: 0;
     animation: line-pulse 2.5s ease-in-out infinite;
 }
 
-/* Make the top branch's lines go DOWN from the hexagon */
+/* --- 4. The TALL Vertical Line for the Core Problem Button --- */
+.with-connecting-lines .core-problem.node::before {
+    height: 100%; /* This makes the line span the entire height of the button */
+    z-index: -1;  /* This is the key to putting it BEHIND the fuchsia circle */
+}
+
+/* Direct the lines for the top branch DOWN to the horizontal line */
 .with-connecting-lines .effects-branch .node::before {
     top: 100%;
 }
 
-/* Make the bottom branch's lines go UP from the hexagon */
+/* Direct the lines for the bottom branch UP to the horizontal line */
 .with-connecting-lines .causes-branch .node::before {
     bottom: 100%;
 }
