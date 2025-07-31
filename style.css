@@ -159,6 +159,22 @@ audio {
     margin-top: 20px;
 }
 
+/* === STYLES FOR THE INSTRUCTION MODAL === */
+.instructions-list {
+    list-style: none; /* Removes default bullet points */
+    padding: 0;
+    margin: 20px 0;
+}
+
+.instructions-list li {
+    margin-bottom: 15px; /* Adds space between each instruction */
+    line-height: 1.4;
+}
+
+#close-instructions {
+    margin-top: 10px; /* Reduces the top margin a bit */
+}
+
 /* === ANIMATIONS === */
 @keyframes pulse {
     0% { transform: scale(0.95); box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff; }
@@ -1504,76 +1520,4 @@ body.lab-page #ava-play-button {
 .step-content .cta-button {
     margin-top: 15px;
     padding: 10px 20px;
-}
-
-/* ========================================================================== */
-/* STYLES FOR THE GLOWING CONNECTING LINES (PROBLEM TREE) - FINAL FIX         */
-/* ========================================================================== */
-
-/* --- 1. Define the Pulsating Glow Animation (No change needed) --- */
-@keyframes line-pulse {
-    0% {
-        box-shadow: 0 0 8px rgba(0, 246, 255, 0.7);
-    }
-    50% {
-        box-shadow: 0 0 20px rgba(0, 246, 255, 1);
-    }
-    100% {
-        box-shadow: 0 0 8px rgba(0, 246, 255, 0.7);
-    }
-}
-
-/* --- 2. The Main Horizontal Lines --- */
-.with-connecting-lines .effects-branch::before,
-.with-connecting-lines .causes-branch::before {
-    content: '';
-    position: absolute;
-    height: 2px;
-    background-color: #00f6ff;
-    left: 15%;
-    right: 15%;
-    z-index: 0;
-    animation: line-pulse 2.5s ease-in-out infinite;
-}
-
-/* Position the top line in the middle of the gap BELOW the top nodes */
-.with-connecting-lines .effects-branch::before {
-    /* Explanation: Places the line 20px below the branch */
-    bottom: -120px; 
-}
-
-/* Position the bottom line in the middle of the gap ABOVE the bottom nodes */
-.with-connecting-lines .causes-branch::before {
-    /* Explanation: Places the line 20px above the branch */
-    top: -70px;
-}
-
-/* --- 3. The Short Vertical Connector Lines --- */
-.with-connecting-lines .node::before {
-    content: '';
-    position: absolute;
-    width: 2px;
-    background-color: #00f6ff;
-    /* This height is exactly half of your 40px gap */
-    height: 60px; 
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 0;
-    animation: line-pulse 2.5s ease-in-out infinite;
-}
-
-/* --- 4. The TALL Vertical Line for the Core Problem Button --- */
-.with-connecting-lines .core-problem.node::before {
-    height: 100%; /* This makes the line span the entire height of the button */
-    z-index: -1;  /* This is the key to putting it BEHIND the fuchsia circle */
-}
-
-/* Direct the lines for the top branch DOWN to the horizontal line */
-.with-connecting-lines .effects-branch .node::before {
-    top: 100%;
-}
-
-/* Direct the lines for the bottom branch UP to the horizontal line */
-.with-connecting-lines .causes-branch .node::before {
-    bottom: 100%;
 }
