@@ -610,29 +610,53 @@ body.ar-page {
     animation: fadeInContent 0.5s ease-out 5.5s forwards;
 }
 
-/* --- 7. Hexágono (CON TEXTO CORREGIDO) --- */
+/* ========================================================================== */
+/* STYLES FOR THE HEXAGON NODES AND CONNECTING LINES                        */
+/* ========================================================================== */
+
 .node {
-    width: 60px; height: 70px;
+    /* --- Shape and Style --- */
+    width: 60px; 
+    height: 70px;
     background-color: rgba(0, 246, 255, 0.1);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    
+    /* --- Text and Centering --- */
     color: #ffffff;
     font-family: 'Orbitron', sans-serif;
     font-size: 1.3rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    padding-top: 5px; 
+    box-sizing: border-box;
+    
+    /* --- Effects and Interactivity --- */
     cursor: pointer;
     transform: scale(1);
     transition: all 0.3s ease;
-    padding-top: 5px; 
-    box-sizing: border-box;
     filter: drop-shadow(0 0 4px #00f6ff);
     text-shadow: 0 0 3px #ffffff;
+    
+    /* --- Animation --- */
+    animation-name: pop-in; 
+    animation-duration: 0.4s;
 }
+
 .node:hover {
     background-color: rgba(0, 246, 255, 0.3);
     transform: scale(1.2);
     filter: drop-shadow(0 0 12px #00f6ff);
+}
+
+/* Make the top branch's lines go UP */
+.with-connecting-lines .effects-branch .node::before {
+    bottom: 100%;
+}
+
+/* Make the bottom branch's lines go DOWN */
+.with-connecting-lines .causes-branch .node::before {
+    top: 100%;
 }
 
 /* --- 8. Mind map (Sin cambios, pero incluido) --- */
@@ -646,32 +670,7 @@ body.ar-page {
     width: 100%;
     position: relative;
 }
-.core-problem {
-    /* Estilos de apariencia */
-    width: 120px;
-    height: 120px;
-    background-color: #ff00ff;
-    color: #fff;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-family: 'Orbitron', sans-serif;
-    box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff;
-    z-index: 10;
-    
-    /* Estado inicial para la animación */
-    opacity: 0; 
-    
-    /* ¡LA MAGIA! Encadenamos ambas animaciones */
-    animation: 
-        /* Animación 1: Aparece */
-        pop-in 0.5s ease-out 3.5s forwards,
-        
-        /* Animación 2: Pulsa para siempre, empezando cuando la primera termina */
-        pulse 2s ease-in-out 4s infinite;
-}
+
 .causes-branch, .effects-branch {
     display: flex;
     justify-content: space-around;
