@@ -549,6 +549,7 @@ body.ar-page {
 .core-problem, .node {
     opacity: 0;
     animation-fill-mode: forwards; /* Mantiene el estado final */
+    clip-path: none; /* Disables the hexagonal clipping */
 }
 
 /* ========================================================================== */
@@ -1496,10 +1497,10 @@ body.lab-page #ava-play-button {
 }
 
 /* ========================================================================== */
-/* STYLES FOR THE GLOWING CONNECTING LINES (PROBLEM TREE)                   */
+/* STYLES FOR THE GLOWING CONNECTING LINES (PROBLEM TREE) - CORRECTED         */
 /* ========================================================================== */
 
-/* --- 1. Define the Pulsating Glow Animation --- */
+/* --- 1. Define the Pulsating Glow Animation (No Change Needed) --- */
 @keyframes line-pulse {
     0% {
         box-shadow: 0 0 8px rgba(0, 246, 255, 0.7);
@@ -1513,50 +1514,48 @@ body.lab-page #ava-play-button {
 }
 
 /* --- 2. The Main Horizontal Lines (one for each branch) --- */
-/* The ::before pseudo-element on each branch will be its horizontal line */
 .with-connecting-lines .effects-branch::before,
 .with-connecting-lines .causes-branch::before {
     content: '';
     position: absolute;
     height: 2px;
     background-color: #00f6ff;
-    /* Stretch from 15% to 85% of the container width */
-    left: 15%;
+    left: 15%; /* Stretches the line horizontally */
     right: 15%;
-    z-index: -1; /* Place it behind the nodes */
+    z-index: -1;
     animation: line-pulse 2.5s ease-in-out infinite;
 }
 
-/* Position the top line in the middle of the gap above the core problem */
+/* Position the top horizontal line at the very bottom of its container */
 .with-connecting-lines .effects-branch::before {
-    bottom: 50px; /* Adjust this value to center the line perfectly */
+    bottom: 0;
 }
 
-/* Position the bottom line in the middle of the gap below the core problem */
+/* Position the bottom horizontal line at the very top of its container */
 .with-connecting-lines .causes-branch::before {
-    top: 50px; /* Adjust this value to center the line perfectly */
+    top: 0;
 }
 
 /* --- 3. The Short Vertical Connector Lines (one for each node) --- */
-/* The ::before pseudo-element on each node will be its vertical line */
 .with-connecting-lines .node::before {
     content: '';
     position: absolute;
     width: 2px;
     background-color: #00f6ff;
-    height: 50px; /* This should match the 'top'/'bottom' value above */
+    /* This height must match the 'gap' from the .mind-map-container */
+    height: 40px;
     left: 50%;
-    transform: translateX(-50%); /* Center the line horizontally on the node */
-    z-index: -1; /* Place it behind the nodes */
+    transform: translateX(-50%);
+    z-index: -1;
     animation: line-pulse 2.5s ease-in-out infinite;
 }
 
-/* Make the top branch's lines go UP from the hexagon */
+/* Make the top branch's lines go UP from the hexagon's bottom edge */
 .with-connecting-lines .effects-branch .node::before {
     bottom: 100%;
 }
 
-/* Make the bottom branch's lines go DOWN from the hexagon */
+/* Make the bottom branch's lines go DOWN from the hexagon's top edge */
 .with-connecting-lines .causes-branch .node::before {
     top: 100%;
 }
