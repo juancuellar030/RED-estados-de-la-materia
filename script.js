@@ -40,6 +40,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ================================================================== //
+    // START: SCRIPT FOR THE INSTRUCTION MODAL (for arbol-de-problemas.html)
+    // ================================================================== //
+    
+    // Get the necessary elements from the HTML
+    const instructionsModal = document.getElementById('instructions-modal');
+    
+    // Only run if the instruction modal exists on the page
+    if (instructionsModal) {
+        const closeInstructionsButton = document.getElementById('close-instructions');
+
+        // 1. Show the modal as soon as the page is ready
+        instructionsModal.classList.add('visible');
+
+        // 2. Function to close the modal
+        const closeInstructions = () => {
+            instructionsModal.classList.remove('visible');
+        };
+
+        // 3. Add event listeners to close the modal
+        if (closeInstructionsButton) {
+            closeInstructionsButton.addEventListener('click', closeInstructions);
+        }
+        
+        instructionsModal.addEventListener('click', (event) => {
+            // We only close it if the user clicks the overlay itself, not the content box
+            if (event.target === instructionsModal) {
+                closeInstructions();
+            }
+        });
+    }
 
     // --- PART 2: MATRIX RAIN ANIMATION (for all pages) ---
 
