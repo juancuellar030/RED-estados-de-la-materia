@@ -1521,3 +1521,35 @@ body.lab-page #ava-play-button {
     margin-top: 15px;
     padding: 10px 20px;
 }
+
+/* ========================================================================== */
+/* STYLES FOR DYNAMIC CONTENT AREA                                          */
+/* ========================================================================== */
+
+.content-display-area {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 246, 255, 0.3);
+    /* Smooth transition for content changes */
+    transition: opacity 0.3s ease-out;
+}
+
+/* Style for when new content is being loaded */
+.content-display-area.loading {
+    opacity: 0.2;
+    /* You could add a spinner here using a ::before pseudo-element */
+}
+
+/* Simple error message styling */
+.content-display-area .error {
+    color: #ff4d4d;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+/* Highlight the active step in the sequence navigation */
+.sequence-step-card.active {
+    border-color: #ff00ff;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
+}
