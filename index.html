@@ -12,53 +12,39 @@
 <body class="home-page">
     <canvas id="matrix-canvas"></canvas>
 
-    <!-- NUEVO CONTENEDOR DE ESCENA QUE ENVUELVE TODO -->
     <div class="welcome-scene-container">
-
-        <!-- 1. LA CONSOLA, AHORA DENTRO DE LA ESCENA -->
         <div id="console-projector">
             <img src="assets/console-projector.png" alt="Console Projector">
         </div>
 
-        <!-- 2. LA PANTALLA, TAMBIÉN DENTRO DE LA ESCENA -->
         <main class="screen-container" id="welcome-screen">
             <h1 class="main-title typewriter-text">Los Estados y Propiedades de la Materia</h1>
             
             <div class="team-section">
                 <h2 class="typewriter-text">Presentado por:</h2>
                 <ul class="team-list">
-                    <!-- CLASES AÑADIDAS AQUÍ -->
                     <li class="typewriter-text">KARLA CABRERA ROA</li>
                     <li class="typewriter-text">ALEXANDRA CATALINA LOSADA</li>
                     <li class="typewriter-text">JUAN DIEGO CUELLAR MAZABEL</li>
                 </ul>
             </div>
 
-            <a href="arbol-de-problemas.html" class="cta-button">
-                Analizar Problema ›
+            <!-- MODIFICATION: Replaced two buttons with a single, clear entry point -->
+            <a href="secuencia-didactica.html" class="cta-button">
+                Iniciar Secuencia Didáctica ›
             </a>
-            <a href="laboratorio-virtual.html" class="cta-button">Ir al Laboratorio ›</a>
 
         </main>
-    </div> <!-- El contenedor de la escena termina aquí -->
+    </div>
  
     <script src="script.js"></script>
 
-    <!-- ================================================================== -->
-    <!-- EL AVATAR AHORA VA AL FINAL, FUERA DEL FLUJO PRINCIPAL -->
-    <!-- ================================================================== -->
+    <!-- AVATAR AND AUDIO ELEMENTS (No changes needed here) -->
     <div id="ava-container">
-        <!-- Capa 1: La imagen del personaje (al fondo) -->
         <img src="assets/ava-character.png" alt="Asistente Virtual AVA" class="ava-character-image">
-    
-        <!-- Capa 2: La imagen del efecto de teletransporte (encima) -->
         <img src="assets/ava-teleport.png" alt="Efecto de teletransporte" class="ava-teleport-effect">
-    
-        <!-- Capa 3: El botón de play (encima de todo) -->
         <button id="ava-play-button" title="Reproducir audio del asistente">▶</button>
     </div>
-
-    <!-- Elementos de audio -->
     <audio id="ava-audio-welcome" src="assets/ava-welcome-screen.mp3" preload="auto"></audio>
     <audio id="ava-audio-problems" src="assets/ava-core-problem.mp3" preload="auto"></audio>
     <audio id="ava-audio-ar" src="assets/ava-ar.mp3" preload="auto"></audio>
