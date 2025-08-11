@@ -1553,3 +1553,68 @@ body.lab-page #ava-play-button {
     border-color: #ff00ff;
     box-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
 }
+
+/* ADD THIS TO style.css */
+
+/* ========================================================================== */
+/* STYLES FOR THE NEW MAIN MENU                                             */
+/* ========================================================================== */
+
+body.menu-page {
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-container {
+    width: 90%;
+    max-width: 1000px;
+    text-align: center;
+}
+
+.main-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.menu-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    padding: 30px 20px;
+    background-color: rgba(10, 30, 60, 0.7);
+    border: 1px solid rgba(0, 246, 255, 0.3);
+    border-radius: 8px;
+    color: #e0e0e0;
+    transition: all 0.3s ease;
+    height: 180px; /* Give them a fixed height */
+}
+
+.menu-button:hover {
+    transform: translateY(-10px);
+    border-color: #00f6ff;
+    background-color: rgba(10, 30, 60, 0.9);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 246, 255, 0.5);
+}
+
+.menu-button-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.menu-button-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.3rem;
+    color: #ffffff;
+    margin: 15px 0 10px 0;
+}
+
+.menu-button-desc {
+    font-size: 0.9rem;
+    color: #a0c8d0;
+    line-height: 1.4;
+}
