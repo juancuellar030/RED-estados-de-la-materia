@@ -1601,9 +1601,10 @@ body.menu-page {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 246, 255, 0.5);
 }
 
-.menu-button-icon {
-    font-size: 2.5rem;
-    line-height: 1;
+/* --- Styling for the new SVG icons in the menu --- */
+.menu-button-icon-svg {
+    width: 48px;  /* Controls the size of the icon */
+    height: 48px; /* Ensures the icon is not distorted */
 }
 
 .menu-button-title {
