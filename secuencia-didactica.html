@@ -8,10 +8,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
+    <!-- ADDED: Model-viewer script is needed here now -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 </head>
-<body class="ar-page"> <!-- Use ar-page for top-alignment -->
+<body class="ar-page"> 
     <canvas id="matrix-canvas"></canvas>
 
+    <!-- Main container now holds both the menu and the dynamic content area -->
     <main class="lab-container">
         <h1 class="page-title">Secuencia Didáctica</h1>
         <p class="subtitle">Un viaje para comprender los estados de la materia a través de la Realidad Aumentada.</p>
@@ -24,42 +27,47 @@
                 <li>Aplicar los conceptos aprendidos en un entorno de simulación interactivo.</li>
             </ul>
         </div>
-
-        <!-- REPLACEMENT for the sequence steps container -->
+        
+        <!-- MODIFICATION: This container is now the main navigation -->
         <div class="sequence-steps-container">
             
-            <!-- Step 1: Foundational Concepts -->
             <div class="sequence-step-card">
                 <div class="step-number">Paso 1</div>
                 <div class="step-content">
                     <h3>Fundamento: El Problema y la Solución</h3>
                     <p>Primero, explora los conceptos base. ¿Por qué es difícil este tema y cómo nos ayuda la tecnología? <strong>(Recursos de consulta)</strong></p>
-                    <a href="arbol-de-problemas.html" class="cta-button">1. Analizar el Problema</a>
-                    <a href="app-ra.html" class="cta-button">2. Entender la Solución AR</a>
+                    <!-- MODIFIED: Buttons now have a class and data-attribute to trigger JS -->
+                    <button class="cta-button load-content-btn" data-page="arbol-de-problemas.html">1. Analizar el Problema</button>
+                    <button class="cta-button load-content-btn" data-page="app-ra.html">2. Entender la Solución AR</button>
                 </div>
             </div>
         
-            <!-- Step 2: In-Class Activities -->
             <div class="sequence-step-card">
                 <div class="step-number">Paso 2</div>
                 <div class="step-content">
                     <h3>Aplicación: Actividades Pedagógicas</h3>
                     <p>Ahora, participa en dos actividades diseñadas para el aula que utilizan la aplicación de Realidad Aumentada para construir conocimiento de forma activa.</p>
-                    <a href="actividad-1.html" class="cta-button">Actividad 1: El Detective Digital</a>
-                    <a href="actividad-2.html" class="cta-button">Actividad 2: El Experimento de Energía</a>
+                    <button class="cta-button load-content-btn" data-page="actividad-1.html">Actividad 1: El Detective Digital</button>
+                    <button class="cta-button load-content-btn" data-page="actividad-2.html">Actividad 2: El Experimento de Energía</button>
                 </div>
             </div>
         
-            <!-- Step 3: Final Practice -->
             <div class="sequence-step-card">
                 <div class="step-number">Paso 3</div>
                 <div class="step-content">
                     <h3>Práctica Libre: Laboratorio Virtual</h3>
                     <p>Finalmente, aplica y refuerza todo lo aprendido. Ingresa a nuestro laboratorio virtual para experimentar libremente con los modelos y simulaciones.</p>
-                    <a href="laboratorio-virtual.html" class="cta-button">Ingresar al Laboratorio</a>
+                    <button class="cta-button load-content-btn" data-page="laboratorio-virtual.html">Ingresar al Laboratorio</button>
                 </div>
             </div>
         </div>
+
+        <!-- ADDED: This is the dynamic area where content will be loaded -->
+        <div id="content-display-area" class="content-display-area">
+             <!-- A placeholder message -->
+            <p class="viewer-prompt" style="margin-top: 50px;">SELECCIONE UNA ACTIVIDAD PARA COMENZAR</p>
+        </div>
+
 
         <div class="navigation-buttons">
             <a href="index.html" class="cta-button">‹ Volver al Inicio</a>
@@ -67,5 +75,8 @@
     </main>
 
     <script src="script.js"></script>
+
+    <!-- AVATAR and AUDIO elements should be here as they are persistent -->
+    <!-- (Your existing avatar/audio code from other pages would go here) -->
 </body>
 </html>
