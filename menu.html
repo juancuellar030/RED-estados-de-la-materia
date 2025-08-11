@@ -1,0 +1,65 @@
+<!-- START OF FILE menu.html (NEW FILE) -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Principal - RED Estados de la Materia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="menu-page"> <!-- A specific class for this page -->
+    <canvas id="matrix-canvas"></canvas>
+
+    <main class="menu-container">
+        <h1 class="main-title">Secuencia Didáctica</h1>
+        <p class="subtitle">Selecciona un módulo para iniciar el análisis.</p>
+
+        <nav class="main-menu-grid">
+            <!-- Button 1: Topic (Lab) -->
+            <a href="laboratorio-virtual.html" class="menu-button">
+                <span class="menu-button-icon">🔬</span>
+                <span class="menu-button-title">Tema</span>
+                <span class="menu-button-desc">Explora los materiales y sus estados en el Laboratorio Virtual.</span>
+            </a>
+
+            <!-- Button 2: Problem Tree -->
+            <a href="arbol-de-problemas.html" class="menu-button">
+                <span class="menu-button-icon">🌳</span>
+                <span class="menu-button-title">Árbol de Problemas</span>
+                <span class="menu-button-desc">Analiza las causas y efectos de las dificultades de aprendizaje.</span>
+            </a>
+
+            <!-- Button 3: Learning Goals -->
+            <a href="objetivos.html" class="menu-button">
+                <span class="menu-button-icon">🎯</span>
+                <span class="menu-button-title">Objetivos y Competencias</span>
+                <span class="menu-button-desc">Conoce las metas de aprendizaje y las habilidades a desarrollar.</span>
+            </a>
+
+            <!-- Button 4: Resources -->
+            <a href="recursos.html" class="menu-button">
+                <span class="menu-button-icon">📚</span>
+                <span class="menu-button-title">Recursos</span>
+                <span class="menu-button-desc">Consulta los materiales y herramientas de apoyo para la secuencia.</span>
+            </a>
+
+            <!-- Button 5: AR Activities -->
+            <a href="actividades.html" class="menu-button">
+                <span class="menu-button-icon">📱</span>
+                <span class="menu-button-title">Actividades AR</span>
+                <span class="menu-button-desc">Participa en las experiencias pedagógicas con Realidad Aumentada.</span>
+            </a>
+        </nav>
+        
+        <div class="navigation-buttons" style="margin-top: 40px;">
+             <a href="index.html" class="cta-button">‹ Salir de la Secuencia</a>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <!-- Avatar can be here if you want it on the menu page -->
+</body>
+</html>
