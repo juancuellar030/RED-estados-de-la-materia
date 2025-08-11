@@ -1623,21 +1623,12 @@ body.menu-page {
     width: 48px;
     height: 48px;
 
-    /* 
-     * THE GLOW EFFECT: We stack two drop-shadows.
-     * The first is a tight, brighter glow.
-     * The second is a wider, more diffuse glow.
-    */
+    /* THE KEY CHANGE: Set the fill color */
+    fill: #00f6ff; /* This sets the icon color to cyan */
+
+    /* The existing glow effect */
     filter: drop-shadow(0 0 4px #00f6ff) drop-shadow(0 0 12px rgba(0, 246, 255, 0.7));
 
-    /* This makes the glow smoothly transition on hover */
-    transition: filter 0.3s ease;
-}
-
-
-/* --- 2. Hover Style for the Icons --- */
-/* When you hover over the entire button, the icon inside gets a stronger glow */
-.menu-button:hover .menu-button-icon-svg {
-    /* We increase the size and intensity of the glow on hover */
-    filter: drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 20px #00f6ff);
+    /* THE KEY CHANGE: Add 'fill' to the transition property */
+    transition: filter 0.3s ease, fill 0.3s ease;
 }
