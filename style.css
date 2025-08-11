@@ -1601,12 +1601,6 @@ body.menu-page {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 246, 255, 0.5);
 }
 
-/* --- Styling for the new SVG icons in the menu --- */
-.menu-button-icon-svg {
-    width: 48px;  /* Controls the size of the icon */
-    height: 48px; /* Ensures the icon is not distorted */
-}
-
 .menu-button-title {
     font-family: 'Orbitron', sans-serif;
     font-size: 1.3rem;
@@ -1618,4 +1612,32 @@ body.menu-page {
     font-size: 0.9rem;
     color: #a0c8d0;
     line-height: 1.4;
+}
+
+/* ========================================================================== */
+/* STYLES FOR GLOWING SVG ICONS IN THE MENU                                 */
+/* ========================================================================== */
+
+/* --- 1. Base Style for the Icons --- */
+.menu-button-icon-svg {
+    width: 48px;
+    height: 48px;
+
+    /* 
+     * THE GLOW EFFECT: We stack two drop-shadows.
+     * The first is a tight, brighter glow.
+     * The second is a wider, more diffuse glow.
+    */
+    filter: drop-shadow(0 0 4px #00f6ff) drop-shadow(0 0 12px rgba(0, 246, 255, 0.7));
+
+    /* This makes the glow smoothly transition on hover */
+    transition: filter 0.3s ease;
+}
+
+
+/* --- 2. Hover Style for the Icons --- */
+/* When you hover over the entire button, the icon inside gets a stronger glow */
+.menu-button:hover .menu-button-icon-svg {
+    /* We increase the size and intensity of the glow on hover */
+    filter: drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 20px #00f6ff);
 }
