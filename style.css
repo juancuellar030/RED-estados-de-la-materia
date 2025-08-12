@@ -27,7 +27,7 @@ audio {
     font-family: 'Orbitron', sans-serif;
     color: #ffffff; /* Cian neón */
     font-size: 2.5rem;
-    text-shadow: 0 0 10px #00f6ff, 0 0 20px #00f6ff; /* Efecto de brillo */
+    text-shadow: 0 0 10px #B5A6FF, 0 0 20px #B5A6FF; /* Efecto de brillo */
 }
 
 .subtitle {
@@ -48,9 +48,9 @@ audio {
     display: inline-block;
     margin-top: 30px;
     padding: 15px 30px;
-    border: 2px solid #00f6ff;
+    border: 2px solid #B5A6FF;
     border-radius: 5px;
-    color: #00f6ff;
+    color: #B5A6FF;
     font-family: 'Orbitron', sans-serif;
     text-decoration: none;
     font-size: 1.2rem;
@@ -59,9 +59,9 @@ audio {
 }
 
 .cta-button:hover {
-    background-color: #00f6ff;
+    background-color: #B5A6FF;
     color: #0a0f2b;
-    box-shadow: 0 0 20px #00f6ff;
+    box-shadow: 0 0 20px #B5A6FF;
 }
 
 /* Estilos para las tarjetas del árbol de problemas */
@@ -79,7 +79,7 @@ audio {
 
 .problem-card {
     background-color: rgba(10, 30, 60, 0.5); /* Fondo semitransparente */
-    border: 1px solid #00f6ff;
+    border: 1px solid #B5A6FF;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 5px;
@@ -540,7 +540,7 @@ body.ar-page {
     
     /* Keep the scrollbar styling */
     scrollbar-width: thin;
-    scrollbar-color: #00f6ff #0a0f2b;
+    scrollbar-color: #B5A6FF ##0C0047;
 }
 
 /* --- 6. Contenido de la Pantalla (con ajustes de espacio) --- */
@@ -662,7 +662,7 @@ body.ar-page {
     cursor: pointer;
     transform: scale(1);
     transition: all 0.3s ease;
-    filter: drop-shadow(0 0 4px #00f6ff);
+    filter: drop-shadow(0 0 4px #B5A6FF);
     text-shadow: 0 0 3px #ffffff;
     
     /* --- Animation --- */
@@ -673,7 +673,7 @@ body.ar-page {
 .node:hover {
     background-color: rgba(0, 246, 255, 0.3);
     transform: scale(1.2);
-    filter: drop-shadow(0 0 12px #00f6ff);
+    filter: drop-shadow(0 0 12px #B5A6FF);
 }
 
 /* Make the top branch's lines go UP */
@@ -707,7 +707,7 @@ body.ar-page {
 /* --- 8. Barra de Scroll --- */
 .tablet-screen {
     scrollbar-width: thin;
-    scrollbar-color: #00f6ff #0a0f2b;
+    scrollbar-color: #B5A6FF ##0C0047;
 }
 
 /* ========================================================================== */
@@ -716,9 +716,9 @@ body.ar-page {
 
 /* --- 1. Definición de la animación de pulso --- */
 @keyframes glow-pulse {
-    0% { opacity: 0.4; box-shadow: 0 0 20px #00f6ff; }
-    50% { opacity: 1; box-shadow: 0 0 50px #00f6ff, 0 0 70px #00f6ff; }
-    100% { opacity: 0.4; box-shadow: 0 0 20px #00f6ff; }
+    0% { opacity: 0.4; box-shadow: 0 0 20px #B5A6FF; }
+    50% { opacity: 1; box-shadow: 0 0 50px #B5A6FF, 0 0 70px #B5A6FF; }
+    100% { opacity: 0.4; box-shadow: 0 0 20px #B5A6FF; }
 }
 
 /* --- 2. Preparar el contenedor del marco --- */
@@ -849,7 +849,7 @@ body.ar-page {
 /* La imagen del personaje (visible por defecto) */
 .ava-character-image {
     opacity: 1; /* ¡LA CLAVE! Visible por defecto */
-    filter: drop-shadow(0 0 15px #00f6ff);
+    filter: drop-shadow(0 0 15px #B5A6FF);
     animation: ava-float 6s ease-in-out infinite;
 }
 
@@ -902,9 +902,9 @@ body.home-page #ava-play-button {
 
     /* --- MODIFIED LINES --- */
     background-color: transparent;           /* Make background transparent */
-    border: 2px solid #00f6ff;               /* Apply the cyan border */
+    border: 2px solid #B5A6FF;               /* Apply the cyan border */
     backdrop-filter: blur(4px);              /* Keep the nice blur effect */
-    color: #00f6ff;                          /* Make the icon cyan */
+    color: #B5A6FF;                          /* Make the icon cyan */
     transition: all 0.3s ease;               /* Add transition for hover */
 }
 
@@ -919,7 +919,7 @@ body.home-page #ava-play-button {
     /* LA CLAVE: La altura máxima es el 90% de la ventana */
     max-height: 90vh; 
     background-color: rgba(10, 30, 60, 0.8);
-    border: 1px solid #00f6ff;
+    border: 1px solid #B5A6FF;
     box-shadow: inset 0 0 20px rgba(0, 246, 255, 0.4);
     padding: 30px 50px;
     box-sizing: border-box;
@@ -931,7 +931,7 @@ body.home-page #ava-play-button {
     
     /* Le damos estilo a la barra de scroll */
     scrollbar-width: thin;
-    scrollbar-color: #00f6ff #0a0f2b;
+    scrollbar-color: #B5A6FF ##0C0047;
 }
 .lab-container .subtitle { font-size: 1rem; color: #aaa; }
 
@@ -973,7 +973,7 @@ body.home-page #ava-play-button {
 }
 .material-card:hover {
     transform: scale(1.05);
-    border-color: #00f6ff;
+    border-color: #B5A6FF;
 }
 .material-card h3 { margin-top: 0; }
 
@@ -990,15 +990,15 @@ body.home-page #ava-play-button {
 }
 .state-button {
     background-color: transparent;
-    border: 1px solid #00f6ff;
-    color: #00f6ff;
+    border: 1px solid #B5A6FF;
+    color: #B5A6FF;
     padding: 10px 20px;
     font-family: 'Orbitron', sans-serif;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 .state-button.active, .state-button:hover {
-    background-color: #00f6ff;
+    background-color: #B5A6FF;
     color: #000;
 }
 .state-info {
@@ -1037,9 +1037,9 @@ body.home-page #ava-play-button {
     position: absolute;
     width: 10px;
     height: 10px;
-    background-color: #00f6ff;
+    background-color: #B5A6FF;
     border-radius: 50%;
-    box-shadow: 0 0 5px #00f6ff;
+    box-shadow: 0 0 5px #B5A6FF;
 }
 
 /* --- Animaciones de las partículas (sin cambios) --- */
@@ -1327,12 +1327,12 @@ body.ar-page .navigation-buttons {
 .material-viewer model-viewer {
     width: 100%;
     height: 350px;
-    filter: drop-shadow(0 0 10px #00f6ff);
+    filter: drop-shadow(0 0 10px #B5A6FF);
     background-color: transparent; /* Start with a transparent background */
 
     /* --- STYLES FOR THE BUILT-IN LOADER --- */
     --mv-progress-bar-height: 8px;
-    --mv-progress-bar-color: #00f6ff;
+    --mv-progress-bar-color: #B5A6FF;
     --mv-progress-bar-background: rgba(0, 246, 255, 0.6);
 }
 
@@ -1351,8 +1351,8 @@ body.ar-page .navigation-buttons {
     left: 0;
     width: 100%;
     height: 3px;
-    background-color: #00f6ff;
-    box-shadow: 0 0 10px #00f6ff;
+    background-color: #B5A6FF;
+    box-shadow: 0 0 10px #B5A6FF;
     animation: scan-line 5s linear infinite 1s;
     z-index: 10;
     opacity: 0.5;
@@ -1416,7 +1416,7 @@ body.lab-page #ava-play-button {
     background-color: rgba(0, 246, 255, 0.2);
     border: 1px solid rgba(0, 246, 255, 0.5);
     backdrop-filter: blur(4px);
-    color: #00f6ff;
+    color: #B5A6FF;
     transition: all 0.3s ease;
 }
 
@@ -1439,14 +1439,14 @@ body.lab-page #ava-play-button {
     background-color: rgba(0, 246, 255, 0.2);
     border: 1px solid rgba(0, 246, 255, 0.5);
     backdrop-filter: blur(4px);
-    color: #00f6ff;
+    color: #B5A6FF;
     transition: all 0.3s ease;
 }
 
 #ava-play-button:hover,
 #ava-toggle-button:hover {
-    border-color: #00f6ff;
-    box-shadow: 0 0 15px #00f6ff;
+    border-color: #B5A6FF;
+    box-shadow: 0 0 15px #B5A6FF;
     background-color: rgba(0, 246, 255, 0.4);
 }
 
@@ -1494,14 +1494,14 @@ body.lab-page #ava-play-button {
     transition: all 0.3s ease;
 }
 .sequence-step-card:hover {
-    border-color: #00f6ff;
+    border-color: #B5A6FF;
     box-shadow: 0 0 15px rgba(0, 246, 255, 0.5);
 }
 
 .step-number {
     font-family: 'Orbitron', sans-serif;
     font-size: 1.5rem;
-    color: #00f6ff;
+    color: #B5A6FF;
     background-color: rgba(10, 30, 60, 0.8);
     padding: 20px;
     display: flex;
@@ -1596,7 +1596,7 @@ body.menu-page {
 
 .menu-button:hover {
     transform: translateY(-10px);
-    border-color: #00f6ff;
+    border-color: #B5A6FF;
     background-color: rgba(10, 30, 60, 0.9);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 246, 255, 0.5);
 }
@@ -1627,7 +1627,7 @@ body.menu-page {
     fill: #ffffff; /* This sets the icon color to cyan */
 
     /* The existing glow effect */
-    filter: drop-shadow(0 0 4px #00f6ff) drop-shadow(0 0 12px rgba(0, 246, 255, 0.7));
+    filter: drop-shadow(0 0 4px #B5A6FF) drop-shadow(0 0 12px rgba(0, 246, 255, 0.7));
 
     /* THE KEY CHANGE: Add 'fill' to the transition property */
     transition: filter 0.3s ease, fill 0.3s ease;
@@ -1636,5 +1636,5 @@ body.menu-page {
 /* When you hover over the entire button, the icon inside gets a stronger glow */
 .menu-button:hover .menu-button-icon-svg {
     /* We increase the size and intensity of the glow on hover */
-    filter: drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 20px #00f6ff);
+    filter: drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 20px #B5A6FF);
 }
