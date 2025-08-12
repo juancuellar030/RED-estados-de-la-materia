@@ -122,7 +122,9 @@ function initAvaLogic() {
     const avaImage = document.querySelector('.ava-character-image');
     if (!avaPlayButton || !avaImage) return;
 
-    // BUG FIX #1: Declare ALL possible audio variables at the start.
+    // THE CRITICAL BUG FIX: Declare ALL possible audio variables at the start.
+    // This ensures that `audioLab`, `audioProblems`, etc., always exist,
+    // even if their value is `null` on pages where the tag is missing.
     const audioWelcome = document.getElementById('ava-audio-welcome');
     const audioProblems = document.getElementById('ava-audio-problems');
     const audioAr = document.getElementById('ava-audio-ar');
@@ -138,7 +140,7 @@ function initAvaLogic() {
         animationFrameId = requestAnimationFrame(visualizeGlow);
     };
     const stopVisualizer = () => {
-        if(animationFrameId) cancelAnimationFrame(animationFrameId);
+        if (animationFrameId) cancelAnimationFrame(animationFrameId);
         avaImage.style.filter = 'drop-shadow(0 0 15px #B5A6FF)';
     };
 
@@ -152,20 +154,17 @@ function initAvaLogic() {
             isAudioContextInitialized = true;
         }
         
-        // BUG FIX: Logic to select the correct audio file based on the current page's URL.
         const currentPage = window.location.pathname.split('/').pop();
         let currentAudio;
-        if (currentPage === 'arbol-de-problemas.html') {
-            currentAudio = audioProblems;
-        } else if (currentPage === 'app-ra.html') {
-            currentAudio = audioAr;
-        } else if (currentPage === 'laboratorio-virtual.html') {
-            currentAudio = audioLab;
-        } else {
-            currentAudio = audioWelcome; // Default for index.html or other pages
+        if (currentPage === 'arbol-de-problemas.html') currentAudio = audioProblems;
+        else if (currentPage === 'app-ra.html') currentAudio = audioAr;
+        else if (currentPage === 'laboratorio-virtual.html') currentAudio = audioLab;
+        else currentAudio = audioWelcome;
+
+        if (!currentAudio) {
+            console.error("Could not find the appropriate audio element for this page.");
+            return;
         }
-        
-        if (!currentAudio) return;
 
         if (currentAudio.paused) {
             if (!currentAudio.sourceNode) {
