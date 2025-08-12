@@ -1620,8 +1620,8 @@ body.menu-page {
 
 /* --- 1. Base Style for the Icons --- */
 .menu-button-icon-svg {
-    width: 48px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
 
     /* THE KEY CHANGE: Set the fill color */
     fill: #ffffff; /* This sets the icon color to cyan */
