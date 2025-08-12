@@ -78,7 +78,7 @@ audio {
 }
 
 .problem-card {
-    background-color: rgba(10, 30, 60, 0.5); /* Fondo semitransparente */
+    background-color: rgba(29, 10, 60, 0.5); /* Fondo semitransparente */
     border: 1px solid #B5A6FF;
     padding: 20px;
     margin-bottom: 20px;
@@ -438,7 +438,7 @@ body.ar-page {
     min-height: 100px;
     /* SOLUCIÓN AL CENTRADO: 'margin: auto' también aquí */
     margin: 0 auto; 
-    background-color: rgba(10, 30, 60, 0.7);
+    background-color: rgba(29, 10, 60, 0.7);
     border: 1px solid #ff00ff;
     padding: 20px;
     box-sizing: border-box;
@@ -918,7 +918,7 @@ body.home-page #ava-play-button {
     max-width: 1200px;
     /* LA CLAVE: La altura máxima es el 90% de la ventana */
     max-height: 90vh; 
-    background-color: rgba(10, 30, 60, 0.8);
+    background-color: rgba(29, 10, 60, 0.8);
     border: 1px solid #B5A6FF;
     box-shadow: inset 0 0 20px rgba(181, 166, 255, 0.4);
     padding: 30px 50px;
@@ -1338,7 +1338,7 @@ body.ar-page .navigation-buttons {
 
 /* This special selector applies styles ONLY while the model is loading */
 .material-viewer model-viewer:not(.loaded) {
-    background-color: rgba(10, 30, 60, 0.7); /* Show an overlay only during load */
+    background-color: rgba(29, 10, 60, 0.7); /* Show an overlay only during load */
 }
 
 /* AR Scanner Line Effect */
@@ -1464,7 +1464,7 @@ body.lab-page #ava-play-button {
     margin: 30px auto;
     padding: 20px;
     border: 1px solid rgba(181, 166, 255, 0.4);
-    background-color: rgba(10, 30, 60, 0.5);
+    background-color: rgba(29, 10, 60, 0.5);
     text-align: left;
 }
 .mission-objectives h3 {
@@ -1502,7 +1502,7 @@ body.lab-page #ava-play-button {
     font-family: 'Orbitron', sans-serif;
     font-size: 1.5rem;
     color: #B5A6FF;
-    background-color: rgba(10, 30, 60, 0.8);
+    background-color: rgba(29, 10, 60, 0.8);
     padding: 20px;
     display: flex;
     align-items: center;
@@ -1586,7 +1586,7 @@ body.menu-page {
     text-align: center;
     text-decoration: none;
     padding: 30px 20px;
-    background-color: rgba(10, 30, 60, 0.7);
+    background-color: rgba(29, 10, 60, 0.7);
     border: 1px solid rgba(181, 166, 255, 0.3);
     border-radius: 8px;
     color: #e0e0e0;
@@ -1597,7 +1597,7 @@ body.menu-page {
 .menu-button:hover {
     transform: translateY(-10px);
     border-color: #B5A6FF;
-    background-color: rgba(10, 30, 60, 0.9);
+    background-color: rgba(29, 10, 60, 0.9);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 20px rgba(181, 166, 255, 0.5);
 }
 
