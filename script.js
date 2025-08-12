@@ -122,7 +122,12 @@ function initAvaLogic() {
     const avaImage = document.querySelector('.ava-character-image');
     if (!avaPlayButton || !avaImage) return;
 
+    // BUG FIX #1: Declare ALL possible audio variables at the start.
     const audioWelcome = document.getElementById('ava-audio-welcome');
+    const audioProblems = document.getElementById('ava-audio-problems');
+    const audioAr = document.getElementById('ava-audio-ar');
+    const audioLab = document.getElementById('ava-audio-lab');
+
     let audioContext, analyser, dataArray, isAudioContextInitialized = false, animationFrameId;
 
     const visualizeGlow = () => {
@@ -133,7 +138,7 @@ function initAvaLogic() {
         animationFrameId = requestAnimationFrame(visualizeGlow);
     };
     const stopVisualizer = () => {
-        cancelAnimationFrame(animationFrameId);
+        if(animationFrameId) cancelAnimationFrame(animationFrameId);
         avaImage.style.filter = 'drop-shadow(0 0 15px #B5A6FF)';
     };
 
