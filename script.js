@@ -80,7 +80,7 @@ function initMatrixCanvas() {
     const draw = () => {
         ctx.fillStyle = 'rgba(10, 15, 43, 0.05)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#00f6ff';
+        ctx.fillStyle = '#B5A6FF';
         ctx.font = fontSize + 'px arial';
 
         for (let i = 0; i < drops.length; i++) {
@@ -129,7 +129,7 @@ function initAvaLogic() {
     };
     const stopVisualizer = () => {
         cancelAnimationFrame(animationFrameId);
-        avaImage.style.filter = 'drop-shadow(0 0 15px #00f6ff)';
+        avaImage.style.filter = 'drop-shadow(0 0 15px #B5A6FF)';
     };
 
     avaPlayButton.addEventListener('click', (event) => {
