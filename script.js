@@ -25,6 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
         initMatrixCanvas();
         initGlobalSounds();
 
+        // BUG FIX: Initialize AVA logic if an avatar exists on the iframe page.
+        if (document.getElementById('ava-container')) {
+            initAvaLogic();
+        }
+
         // 2. Run the router to initialize scripts for the specific page loaded
         initPageSpecificScripts();
 
@@ -142,12 +147,24 @@ function initAvaLogic() {
             isAudioContextInitialized = true;
         }
         
-        let currentAudio = audioWelcome;
+        // BUG FIX: Logic to select the correct audio file based on the current page's URL.
+        const currentPage = window.location.pathname.split('/').pop();
+        let currentAudio;
+        if (currentPage === 'arbol-de-problemas.html') {
+            currentAudio = audioProblems;
+        } else if (currentPage === 'app-ra.html') {
+            currentAudio = audioAr;
+        } else if (currentPage === 'laboratorio-virtual.html') {
+            currentAudio = audioLab;
+        } else {
+            currentAudio = audioWelcome; // Default for index.html or other pages
+        }
+        
         if (!currentAudio) return;
+
         if (currentAudio.paused) {
             if (!currentAudio.sourceNode) {
                 currentAudio.sourceNode = audioContext.createMediaElementSource(currentAudio);
-                // BUG FIX: Correctly chain the audio nodes to the output destination.
                 currentAudio.sourceNode.connect(analyser).connect(audioContext.destination);
             }
             currentAudio.play();
