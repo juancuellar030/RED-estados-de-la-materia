@@ -114,85 +114,78 @@ function initGlobalSounds() {
 }
 
 /**
- * Initializes logic for the AVA assistant, if present on the page.
- * (Currently only used on the main index.html page).
+ * Initializes all logic for the AVA assistant, including play button and toggle button.
  */
 function initAvaLogic() {
+    // Get all elements related to the avatar at the start
+    const avaContainer = document.getElementById('ava-container');
     const avaPlayButton = document.getElementById('ava-play-button');
     const avaImage = document.querySelector('.ava-character-image');
-    if (!avaPlayButton || !avaImage) return;
+    const avaToggleBtn = document.getElementById('ava-toggle-button');
 
-    // THE CRITICAL BUG FIX: Declare ALL possible audio variables at the start.
-    // This ensures that `audioLab`, `audioProblems`, etc., always exist,
-    // even if their value is `null` on pages where the tag is missing.
-    const audioWelcome = document.getElementById('ava-audio-welcome');
-    const audioProblems = document.getElementById('ava-audio-problems');
-    const audioAr = document.getElementById('ava-audio-ar');
-    const audioLab = document.getElementById('ava-audio-lab');
+    // --- 1. Play Button and Audio Visualizer Logic ---
+    if (avaPlayButton && avaImage) {
+        const audioWelcome = document.getElementById('ava-audio-welcome');
+        const audioProblems = document.getElementById('ava-audio-problems');
+        const audioAr = document.getElementById('ava-audio-ar');
+        const audioLab = document.getElementById('ava-audio-lab');
+        let audioContext, analyser, dataArray, isAudioContextInitialized = false, animationFrameId;
 
-    let audioContext, analyser, dataArray, isAudioContextInitialized = false, animationFrameId;
-
-    const visualizeGlow = () => {
-        analyser.getByteFrequencyData(dataArray);
-        let average = dataArray.reduce((a, b) => a + b, 0) / dataArray.length;
-        const glowSize = 10 + (average / 128) * 35;
-        avaImage.style.filter = `drop-shadow(0 0 ${glowSize}px #C977FF)`;
-        animationFrameId = requestAnimationFrame(visualizeGlow);
-    };
-    const stopVisualizer = () => {
-        if (animationFrameId) cancelAnimationFrame(animationFrameId);
-        avaImage.style.filter = 'drop-shadow(0 0 15px #B5A6FF)';
-    };
-
-    avaPlayButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        if (!isAudioContextInitialized) {
-            audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            analyser = audioContext.createAnalyser();
-            analyser.fftSize = 256;
-            dataArray = new Uint8Array(analyser.frequencyBinCount);
-            isAudioContextInitialized = true;
-        }
-        
-        const currentPage = window.location.pathname.split('/').pop();
-        let currentAudio;
-        if (currentPage === 'arbol-de-problemas.html') currentAudio = audioProblems;
-        else if (currentPage === 'app-ra.html') currentAudio = audioAr;
-        else if (currentPage === 'laboratorio-virtual.html') currentAudio = audioLab;
-        else currentAudio = audioWelcome;
-
-        if (!currentAudio) {
-            console.error("Could not find the appropriate audio element for this page.");
-            return;
-        }
-
-        if (currentAudio.paused) {
-            if (!currentAudio.sourceNode) {
-                currentAudio.sourceNode = audioContext.createMediaElementSource(currentAudio);
-                currentAudio.sourceNode.connect(analyser).connect(audioContext.destination);
-            }
-            currentAudio.play();
-            avaPlayButton.textContent = '■';
-            visualizeGlow();
-        } else {
-            currentAudio.pause();
-            currentAudio.currentTime = 0;
-            avaPlayButton.textContent = '▶';
-            stopVisualizer();
-        }
-        currentAudio.onended = () => {
-            avaPlayButton.textContent = '▶';
-            stopVisualizer();
+        const visualizeGlow = () => {
+            analyser.getByteFrequencyData(dataArray);
+            let average = dataArray.reduce((a, b) => a + b, 0) / dataArray.length;
+            const glowSize = 10 + (average / 128) * 35;
+            avaImage.style.filter = `drop-shadow(0 0 ${glowSize}px #C977FF)`;
+            animationFrameId = requestAnimationFrame(visualizeGlow);
         };
-    });
-}
+        const stopVisualizer = () => {
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
+            avaImage.style.filter = 'drop-shadow(0 0 15px #B5A6FF)';
+        };
 
-    // --- 2. Show/Hide Toggle Button Logic (MOVED AND INTEGRATED HERE) ---
+        avaPlayButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            if (!isAudioContextInitialized) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioContext.createAnalyser();
+                analyser.fftSize = 256;
+                dataArray = new Uint8Array(analyser.frequencyBinCount);
+                isAudioContextInitialized = true;
+            }
+            const currentPage = window.location.pathname.split('/').pop();
+            let currentAudio;
+            if (currentPage === 'arbol-de-problemas.html') currentAudio = audioProblems;
+            else if (currentPage === 'app-ra.html') currentAudio = audioAr;
+            else if (currentPage === 'laboratorio-virtual.html') currentAudio = audioLab;
+            else currentAudio = audioWelcome;
+            if (!currentAudio) return;
+            if (currentAudio.paused) {
+                if (!currentAudio.sourceNode) {
+                    currentAudio.sourceNode = audioContext.createMediaElementSource(currentAudio);
+                    currentAudio.sourceNode.connect(analyser).connect(audioContext.destination);
+                }
+                currentAudio.play();
+                avaPlayButton.textContent = '■';
+                visualizeGlow();
+            } else {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                avaPlayButton.textContent = '▶';
+                stopVisualizer();
+            }
+            currentAudio.onended = () => {
+                avaPlayButton.textContent = '▶';
+                stopVisualizer();
+            };
+        });
+    }
+
+    // --- 2. Show/Hide Toggle Button Logic (CORRECTLY PLACED HERE) ---
     if (avaToggleBtn && avaContainer) {
         const iconHide = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.974 0 9.19 3.226 10.678 7.697a.75.75 0 0 1 0 .606C21.19 17.024 16.973 20.25 12.001 20.25c-4.974 0-9.19-3.226-10.678-7.697a.75.75 0 0 1 0-.606ZM12 17.25a5.25 5.25 0 1 0 0-10.5 5.25 5.25 0 0 0 0 10.5Z" clip-rule="evenodd" /></svg>';
-        const iconShow = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3.28 2.22a.75.75 0 0 0-1.06 1.06l18 18a.75.75 0 1 0 1.06-1.06l-18-18ZM10.72 10.72a3 3 0 0 0-3.18.13l-1.91-1.91A5.25 5.25 0 0 1 12 7.5a5.25 5.25 0 0 1 5.25 5.25 5.23 5.23 0 0 1-.44 2.06l-2.62-2.62a3 3 0 0 0-3.47-3.47Z" clip-rule="evenodd" /></svg>';
+        const iconShow = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M3.28 2.22a.75.75 0 0 0-1.06 1.06l18 18a.75.75 0 1 0 1.06-1.06l-18-18ZM10.72 10.72a3 3 0 0 0-3.18.13l-1.91-1.91A5.25 5.25 0 0 1 12 7.5a5.25 5.25 0 0 1 5.25 5.25 5.23 5.23 0 0 1-.44 2.06l-2.62-2.62a3 3 0 0 0-3.47-3.47Z" clip-rule="evenodd" /><path d="m14.28 14.28.16.16a3 3 0 0 1-3.32-3.32l.16.16a3 3 0 0 1 3 3ZM11.45 20.14c-4.93-1.45-8.3-5.52-9.9-9.43a.75.75 0 0 1 0-.6c1.6-3.9 5-7.98 9.9-9.43a5.5 5.5 0 0 1 2.2 0c4.93 1.45 8.3 5.52 9.9 9.43a.75.75 0 0 1 0 .6c-1.55 3.79-4.8 7.8-9.67 9.4a5.5 5.5 0 0 1-2.43.04Z" /></svg>';
         
-        avaToggleBtn.innerHTML = iconHide; // Set initial state
+        avaToggleBtn.innerHTML = iconHide;
         
         avaToggleBtn.addEventListener('click', () => {
             avaContainer.classList.toggle('ava-hidden');
