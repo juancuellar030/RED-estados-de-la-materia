@@ -142,14 +142,13 @@ function initAvaLogic() {
             isAudioContextInitialized = true;
         }
         
-        let currentAudio = audioWelcome; // Only welcome audio is needed on this page
+        let currentAudio = audioWelcome;
         if (!currentAudio) return;
-
         if (currentAudio.paused) {
             if (!currentAudio.sourceNode) {
                 currentAudio.sourceNode = audioContext.createMediaElementSource(currentAudio);
-                currentAudio.sourceNode.connect(analyser);
-                analyser.connect(audioContext.destination);
+                // BUG FIX: Correctly chain the audio nodes to the output destination.
+                currentAudio.sourceNode.connect(analyser).connect(audioContext.destination);
             }
             currentAudio.play();
             avaPlayButton.textContent = '■';
