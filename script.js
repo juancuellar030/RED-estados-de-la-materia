@@ -187,6 +187,26 @@ function initAvaLogic() {
     });
 }
 
+    // --- 2. Show/Hide Toggle Button Logic (MOVED AND INTEGRATED HERE) ---
+    if (avaToggleBtn && avaContainer) {
+        const iconHide = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.974 0 9.19 3.226 10.678 7.697a.75.75 0 0 1 0 .606C21.19 17.024 16.973 20.25 12.001 20.25c-4.974 0-9.19-3.226-10.678-7.697a.75.75 0 0 1 0-.606ZM12 17.25a5.25 5.25 0 1 0 0-10.5 5.25 5.25 0 0 0 0 10.5Z" clip-rule="evenodd" /></svg>';
+        const iconShow = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3.28 2.22a.75.75 0 0 0-1.06 1.06l18 18a.75.75 0 1 0 1.06-1.06l-18-18ZM10.72 10.72a3 3 0 0 0-3.18.13l-1.91-1.91A5.25 5.25 0 0 1 12 7.5a5.25 5.25 0 0 1 5.25 5.25 5.23 5.23 0 0 1-.44 2.06l-2.62-2.62a3 3 0 0 0-3.47-3.47Z" clip-rule="evenodd" /></svg>';
+        
+        avaToggleBtn.innerHTML = iconHide; // Set initial state
+        
+        avaToggleBtn.addEventListener('click', () => {
+            avaContainer.classList.toggle('ava-hidden');
+            if (avaContainer.classList.contains('ava-hidden')) {
+                avaToggleBtn.innerHTML = iconShow;
+                avaToggleBtn.setAttribute('title', 'Mostrar Asistente');
+            } else {
+                avaToggleBtn.innerHTML = iconHide;
+                avaToggleBtn.setAttribute('title', 'Ocultar Asistente');
+            }
+        });
+    }
+}
+
 /**
  * Master function for the parent page (index.html) to handle the fullscreen sequence.
  */
@@ -429,49 +449,3 @@ function initVirtualLab() {
         }));
     }
 }
-
-    // === NEW PART: AVATAR SHOW/HIDE TOGGLE LOGIC (DEBUG VERSION) ===
-    const avaToggleBtn = document.getElementById('ava-toggle-button');
-    const avaContainer = document.getElementById('ava-container');
-
-    console.log('AVA Toggle Button:', avaToggleBtn);
-    console.log('AVA Container:', avaContainer);
-
-    if (avaToggleBtn && avaContainer) {
-        console.log('AVA toggle elements found, initializing...');
-        
-        // Simple SVG icons as strings (more reliable than template literals)
-        const iconHide = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.974 0 9.19 3.226 10.678 7.697a.75.75 0 0 1 0 .606C21.19 17.024 16.973 20.25 12.001 20.25c-4.974 0-9.19-3.226-10.678-7.697a.75.75 0 0 1 0-.606ZM12 17.25a5.25 5.25 0 1 0 0-10.5 5.25 5.25 0 0 0 0 10.5Z" clip-rule="evenodd" /></svg>';
-        const iconShow = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3.28 2.22a.75.75 0 0 0-1.06 1.06l18 18a.75.75 0 1 0 1.06-1.06l-18-18ZM10.72 10.72a3 3 0 0 0-3.18.13l-1.91-1.91A5.25 5.25 0 0 1 12 7.5a5.25 5.25 0 0 1 5.25 5.25 5.23 5.23 0 0 1-.44 2.06l-2.62-2.62a3 3 0 0 0-3.47-3.47Z" clip-rule="evenodd" /></svg>';
-
-        // Set initial icon
-        avaToggleBtn.innerHTML = iconHide;
-        
-        avaToggleBtn.addEventListener('click', (event) => {
-            console.log('AVA toggle button clicked!');
-            event.preventDefault();
-            event.stopPropagation();
-            
-            // Toggle the 'ava-hidden' class on the container
-            avaContainer.classList.toggle('ava-hidden');
-            console.log('AVA container classes:', avaContainer.className);
-
-            // Update the button icon and tooltip based on the new state
-            if (avaContainer.classList.contains('ava-hidden')) {
-                avaToggleBtn.innerHTML = iconShow;
-                avaToggleBtn.setAttribute('title', 'Mostrar Asistente');
-                console.log('AVA hidden');
-            } else {
-                avaToggleBtn.innerHTML = iconHide;
-                avaToggleBtn.setAttribute('title', 'Ocultar Asistente');
-                console.log('AVA shown');
-            }
-        });
-        
-        console.log('AVA toggle event listener added');
-    } else {
-        console.log('AVA toggle elements not found');
-    }
-
-    console.log('Script initialization complete!');
-});
