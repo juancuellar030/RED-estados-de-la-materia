@@ -1,3 +1,4 @@
+<!-- START OF FILE index.html (NEW SHELL ARCHITECTURE) -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,42 +13,54 @@
 <body class="home-page">
     <canvas id="matrix-canvas"></canvas>
 
-    <div class="welcome-scene-container">
-        <div id="console-projector">
-            <img src="assets/console-projector.png" alt="Console Projector">
-        </div>
-
-        <main class="screen-container" id="welcome-screen">
-            <h1 class="main-title typewriter-text">Los Estados y Propiedades de la Materia</h1>
-            
-            <div class="team-section">
-                <h2 class="typewriter-text">Presentado por:</h2>
-                <ul class="team-list">
-                    <li class="typewriter-text">KARLA CABRERA ROA</li>
-                    <li class="typewriter-text">ALEXANDRA CATALINA LOSADA</li>
-                    <li class="typewriter-text">JUAN DIEGO CUELLAR MAZABEL</li>
-                </ul>
+    <!-- This container holds the initial welcome content -->
+    <div id="welcome-content-container">
+        <div class="welcome-scene-container">
+            <div id="console-projector">
+                <img src="assets/console-projector.png" alt="Console Projector">
             </div>
+            <main class="screen-container" id="welcome-screen">
+                <h1 class="main-title typewriter-text">Los Estados y Propiedades de la Materia</h1>
+                <div class="team-section">
+                    <h2 class="typewriter-text">Presentado por:</h2>
+                    <ul class="team-list">
+                        <li class="typewriter-text">KARLA CABRERA ROA</li>
+                        <li class="typewriter-text">ALEXANDRA CATALINA LOSADA</li>
+                        <li class="typewriter-text">JUAN DIEGO CUELLAR MAZABEL</li>
+                    </ul>
+                </div>
 
-            <!-- In index.html -->
-            <a href="menu.html" class="cta-button">
-                Iniciar Secuencia Didáctica ›
-            </a>
+                <!-- THE CRUCIAL CHANGE: This is now a BUTTON, not a link -->
+                <button id="start-sequence-btn" class="cta-button">
+                    Iniciar Secuencia Didáctica ›
+                </button>
+            </main>
+        </div>
+        <!-- AVATAR is part of the welcome content -->
+        <div id="ava-container">
+            <img src="assets/ava-character.png" alt="Asistente Virtual AVA" class="ava-character-image">
+            <img src="assets/ava-teleport.png" alt="Efecto de teletransporte" class="ava-teleport-effect">
+            <button id="ava-play-button" title="Reproducir audio del asistente">▶</button>
+        </div>
+    </div>
 
-        </main>
+    <!-- THIS IS THE NEW IFRAME CONTAINER, HIDDEN BY DEFAULT -->
+    <div id="iframe-container" class="iframe-container">
+        <iframe 
+            id="content-frame"
+            name="content-frame"
+            title="Contenido de la Secuencia Didáctica"
+            allow="fullscreen"
+        ></iframe>
     </div>
  
     <script src="script.js"></script>
 
-    <!-- AVATAR AND AUDIO ELEMENTS (No changes needed here) -->
-    <div id="ava-container">
-        <img src="assets/ava-character.png" alt="Asistente Virtual AVA" class="ava-character-image">
-        <img src="assets/ava-teleport.png" alt="Efecto de teletransporte" class="ava-teleport-effect">
-        <button id="ava-play-button" title="Reproducir audio del asistente">▶</button>
-    </div>
+    <!-- All audio elements remain here as they are controlled globally -->
     <audio id="ava-audio-welcome" src="assets/ava-welcome-screen.mp3" preload="auto"></audio>
     <audio id="ava-audio-problems" src="assets/ava-core-problem.mp3" preload="auto"></audio>
     <audio id="ava-audio-ar" src="assets/ava-ar.mp3" preload="auto"></audio>
-    <audio id="ava-audio-teleport" src="assets/ava-teleport.mp3" preload="auto">
+    <audio id="ava-audio-lab" src="assets/ava-laboratorio-virtual-audio.mp3" preload="auto"></audio>
+    <audio id="ava-audio-teleport" src="assets/ava-teleport.mp3" preload="auto"></audio>
 </body>
 </html>
