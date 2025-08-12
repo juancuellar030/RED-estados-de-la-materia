@@ -302,7 +302,7 @@ a, button, .node {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(175, 250, 255, 0.9) 0%, rgba(0, 246, 255, 0.7) 40%, rgba(0, 246, 255, 0) 70%);
+    background: radial-gradient(circle, rgba(175, 250, 255, 0.9) 0%, rgba(181, 166, 255, 0.7) 40%, rgba(181, 166, 255, 0) 70%);
     position: absolute;
     top: 50%;
     left: 75%;
@@ -396,10 +396,10 @@ body.ar-page {
     height: 200px;
     
     /* FONDO: Un cian más sólido y brillante */
-    background-color: rgba(0, 246, 255, 0.7); /* Aumentamos la opacidad de 0.2 a 0.7 */
+    background-color: rgba(181, 166, 255, 0.7); /* Aumentamos la opacidad de 0.2 a 0.7 */
     
     /* BRILLO: Añadimos un box-shadow para un efecto de neón */
-    box-shadow: 0 0 15px rgba(0, 246, 255, 0.5);
+    box-shadow: 0 0 15px rgba(181, 166, 255, 0.5);
     
     border: 1px solid #ffffff; /* Borde blanco para mayor definición */
     
@@ -418,8 +418,8 @@ body.ar-page {
 
 .cube-face:hover {
     /* Al pasar el ratón, la cara se vuelve aún más brillante */
-    background-color: rgba(0, 246, 255, 0.9);
-    box-shadow: 0 0 25px rgba(0, 246, 255, 0.8), 0 0 10px #ffffff; /* Añadimos un brillo interior blanco */
+    background-color: rgba(181, 166, 255, 0.9);
+    box-shadow: 0 0 25px rgba(181, 166, 255, 0.8), 0 0 10px #ffffff; /* Añadimos un brillo interior blanco */
     border-color: #ffffff;
 }
 
@@ -526,16 +526,16 @@ body.ar-page {
     padding: 20px 40px;
     box-sizing: border-box;
     overflow-y: auto;
-    border: 1px solid rgba(0, 246, 255, 0.4);
+    border: 1px solid rgba(181, 166, 255, 0.4);
 
     /* --- REPLACEMENT BACKGROUND LOGIC --- */
-    --screen-bg-color: rgba(0, 246, 255, 0.15);
+    --screen-bg-color: rgba(181, 166, 255, 0.15);
     background-image: linear-gradient(to right, var(--screen-bg-color), var(--screen-bg-color)),
                       linear-gradient(to right, var(--screen-bg-color), var(--screen-bg-color));
     background-repeat: no-repeat;
     background-position: left top, right top;
     background-size: 0% 100%, 0% 100%;
-    box-shadow: inset 0 0 30px rgba(0, 246, 255, 0.5);
+    box-shadow: inset 0 0 30px rgba(181, 166, 255, 0.5);
     animation: wipe-in-screen 0.7s ease-out 1.2s forwards;
     
     /* Keep the scrollbar styling */
@@ -645,7 +645,7 @@ body.ar-page {
     /* --- Shape and Style --- */
     width: 60px; 
     height: 70px;
-    background-color: rgba(0, 246, 255, 0.1);
+    background-color: rgba(181, 166, 255, 0.1);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     
     /* --- Text and Centering --- */
@@ -671,7 +671,7 @@ body.ar-page {
 }
 
 .node:hover {
-    background-color: rgba(0, 246, 255, 0.3);
+    background-color: rgba(181, 166, 255, 0.3);
     transform: scale(1.2);
     filter: drop-shadow(0 0 12px #B5A6FF);
 }
@@ -920,7 +920,7 @@ body.home-page #ava-play-button {
     max-height: 90vh; 
     background-color: rgba(10, 30, 60, 0.8);
     border: 1px solid #B5A6FF;
-    box-shadow: inset 0 0 20px rgba(0, 246, 255, 0.4);
+    box-shadow: inset 0 0 20px rgba(181, 166, 255, 0.4);
     padding: 30px 50px;
     box-sizing: border-box;
     
@@ -939,7 +939,7 @@ body.home-page #ava-play-button {
 .lab-module {
     margin-top: 40px;
     padding-top: 20px;
-    border-top: 1px solid rgba(0, 246, 255, 0.3);
+    border-top: 1px solid rgba(181, 166, 255, 0.3);
     text-align: left;
 }
 .lab-module h2 {
@@ -965,8 +965,8 @@ body.home-page #ava-play-button {
     flex-wrap: wrap;
 }
 .material-card {
-    background-color: rgba(0, 246, 255, 0.05);
-    border: 1px solid rgba(0, 246, 255, 0.2);
+    background-color: rgba(181, 166, 255, 0.05);
+    border: 1px solid rgba(181, 166, 255, 0.2);
     padding: 15px;
     flex-basis: 200px; /* Ancho base de cada tarjeta */
     transition: all 0.3s ease;
@@ -1005,7 +1005,7 @@ body.home-page #ava-play-button {
     flex-grow: 1;
     background-color: rgba(0, 0, 0, 0.3);
     padding: 20px;
-    border: 1px solid rgba(0, 246, 255, 0.1);
+    border: 1px solid rgba(181, 166, 255, 0.1);
 }
 .state-description { display: none; }
 .state-description.active { display: block; }
@@ -1025,7 +1025,7 @@ body.home-page #ava-play-button {
     width: 100%;
     height: 150px;
     background-color: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(0, 246, 255, 0.2);
+    border: 1px solid rgba(181, 166, 255, 0.2);
     position: relative;
     overflow: hidden;
 }
@@ -1138,7 +1138,7 @@ body.home-page #ava-play-button {
     margin-top: 30px;
 }
 .state-node {
-    background-color: rgba(0, 246, 255, 0.2);
+    background-color: rgba(181, 166, 255, 0.2);
     padding: 20px;
     font-family: 'Orbitron', sans-serif;
 }
@@ -1297,7 +1297,7 @@ body.ar-page .navigation-buttons {
     width: 100%;
     margin-top: 20px;
     background-color: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(0, 246, 255, 0.3);
+    border: 1px solid rgba(181, 166, 255, 0.3);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1318,7 +1318,7 @@ body.ar-page .navigation-buttons {
 
 .viewer-prompt {
     font-family: 'Orbitron', sans-serif;
-    color: rgba(0, 246, 255, 0.5);
+    color: rgba(181, 166, 255, 0.5);
     font-size: 1.5rem;
     text-align: center;
     padding: 20px;
@@ -1333,7 +1333,7 @@ body.ar-page .navigation-buttons {
     /* --- STYLES FOR THE BUILT-IN LOADER --- */
     --mv-progress-bar-height: 8px;
     --mv-progress-bar-color: #B5A6FF;
-    --mv-progress-bar-background: rgba(0, 246, 255, 0.6);
+    --mv-progress-bar-background: rgba(181, 166, 255, 0.6);
 }
 
 /* This special selector applies styles ONLY while the model is loading */
@@ -1413,8 +1413,8 @@ body.lab-page #ava-play-button {
     border-radius: 50%;
     font-size: 1.2rem;
     line-height: 1;
-    background-color: rgba(0, 246, 255, 0.2);
-    border: 1px solid rgba(0, 246, 255, 0.5);
+    background-color: rgba(181, 166, 255, 0.2);
+    border: 1px solid rgba(181, 166, 255, 0.5);
     backdrop-filter: blur(4px);
     color: #B5A6FF;
     transition: all 0.3s ease;
@@ -1436,8 +1436,8 @@ body.lab-page #ava-play-button {
     padding: 10px;
     margin: 0;
     border-radius: 50%;
-    background-color: rgba(0, 246, 255, 0.2);
-    border: 1px solid rgba(0, 246, 255, 0.5);
+    background-color: rgba(181, 166, 255, 0.2);
+    border: 1px solid rgba(181, 166, 255, 0.5);
     backdrop-filter: blur(4px);
     color: #B5A6FF;
     transition: all 0.3s ease;
@@ -1447,7 +1447,7 @@ body.lab-page #ava-play-button {
 #ava-toggle-button:hover {
     border-color: #B5A6FF;
     box-shadow: 0 0 15px #B5A6FF;
-    background-color: rgba(0, 246, 255, 0.4);
+    background-color: rgba(181, 166, 255, 0.4);
 }
 
 #ava-toggle-button svg {
@@ -1463,7 +1463,7 @@ body.lab-page #ava-play-button {
     width: 80%;
     margin: 30px auto;
     padding: 20px;
-    border: 1px solid rgba(0, 246, 255, 0.4);
+    border: 1px solid rgba(181, 166, 255, 0.4);
     background-color: rgba(10, 30, 60, 0.5);
     text-align: left;
 }
@@ -1488,14 +1488,14 @@ body.lab-page #ava-play-button {
 
 .sequence-step-card {
     display: flex;
-    background-color: rgba(0, 246, 255, 0.05);
-    border: 1px solid rgba(0, 246, 255, 0.2);
+    background-color: rgba(181, 166, 255, 0.05);
+    border: 1px solid rgba(181, 166, 255, 0.2);
     border-radius: 5px;
     transition: all 0.3s ease;
 }
 .sequence-step-card:hover {
     border-color: #B5A6FF;
-    box-shadow: 0 0 15px rgba(0, 246, 255, 0.5);
+    box-shadow: 0 0 15px rgba(181, 166, 255, 0.5);
 }
 
 .step-number {
@@ -1507,7 +1507,7 @@ body.lab-page #ava-play-button {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-right: 1px solid rgba(0, 246, 255, 0.2);
+    border-right: 1px solid rgba(181, 166, 255, 0.2);
 }
 
 .step-content {
@@ -1529,7 +1529,7 @@ body.lab-page #ava-play-button {
 .content-display-area {
     margin-top: 40px;
     padding-top: 20px;
-    border-top: 1px solid rgba(0, 246, 255, 0.3);
+    border-top: 1px solid rgba(181, 166, 255, 0.3);
     /* Smooth transition for content changes */
     transition: opacity 0.3s ease-out;
 }
@@ -1587,7 +1587,7 @@ body.menu-page {
     text-decoration: none;
     padding: 30px 20px;
     background-color: rgba(10, 30, 60, 0.7);
-    border: 1px solid rgba(0, 246, 255, 0.3);
+    border: 1px solid rgba(181, 166, 255, 0.3);
     border-radius: 8px;
     color: #e0e0e0;
     transition: all 0.3s ease;
@@ -1598,7 +1598,7 @@ body.menu-page {
     transform: translateY(-10px);
     border-color: #B5A6FF;
     background-color: rgba(10, 30, 60, 0.9);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 246, 255, 0.5);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 20px rgba(181, 166, 255, 0.5);
 }
 
 .menu-button-title {
@@ -1627,7 +1627,7 @@ body.menu-page {
     fill: #ffffff; /* This sets the icon color to cyan */
 
     /* The existing glow effect */
-    filter: drop-shadow(0 0 4px #B5A6FF) drop-shadow(0 0 12px rgba(0, 246, 255, 0.7));
+    filter: drop-shadow(0 0 4px #B5A6FF) drop-shadow(0 0 12px rgba(181, 166, 255, 0.7));
 
     /* THE KEY CHANGE: Add 'fill' to the transition property */
     transition: filter 0.3s ease, fill 0.3s ease;
