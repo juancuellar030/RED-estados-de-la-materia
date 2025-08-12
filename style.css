@@ -1624,11 +1624,17 @@ body.menu-page {
     height: 48px;
 
     /* THE KEY CHANGE: Set the fill color */
-    fill: #00f6ff; /* This sets the icon color to cyan */
+    fill: #ffffff; /* This sets the icon color to cyan */
 
     /* The existing glow effect */
     filter: drop-shadow(0 0 4px #00f6ff) drop-shadow(0 0 12px rgba(0, 246, 255, 0.7));
 
     /* THE KEY CHANGE: Add 'fill' to the transition property */
     transition: filter 0.3s ease, fill 0.3s ease;
+}
+
+/* When you hover over the entire button, the icon inside gets a stronger glow */
+.menu-button:hover .menu-button-icon-svg {
+    /* We increase the size and intensity of the glow on hover */
+    filter: drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 20px #00f6ff);
 }
