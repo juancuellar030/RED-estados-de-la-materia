@@ -124,7 +124,7 @@ function initAvaLogic() {
         analyser.getByteFrequencyData(dataArray);
         let average = dataArray.reduce((a, b) => a + b, 0) / dataArray.length;
         const glowSize = 10 + (average / 128) * 35;
-        avaImage.style.filter = `drop-shadow(0 0 ${glowSize}px #77FAFF)`;
+        avaImage.style.filter = `drop-shadow(0 0 ${glowSize}px #C977FF)`;
         animationFrameId = requestAnimationFrame(visualizeGlow);
     };
     const stopVisualizer = () => {
