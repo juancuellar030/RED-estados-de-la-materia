@@ -211,70 +211,62 @@ a, button, .node {
     text-align: center;
 }
 
+/* --- Styles for the standalone tablet screen on the index page --- */
+.tablet-screen.standalone {
+    width: 80vw;
+    max-width: 1200px;
+    height: 80vh;
+    max-height: 700px;
+    padding: 20px 40px; /* You can adjust padding as needed */
+}
+
+/* REPLACE the old animation block with this NEW one in style.css */
+
 /* ========================================================================== */
-/* ENTRANCE ANIMATIONS FOR THE NEW INDEX.HTML TABLET SCREEN                 */
+/* ENTRANCE ANIMATIONS FOR THE STANDALONE INDEX.HTML SCREEN                 */
 /* ========================================================================== */
 
 /* --- 1. Target the elements on the home page specifically --- */
-/* This ensures these styles ONLY apply on index.html */
-body.home-page .tablet-container,
-body.home-page .tablet-frame-container,
 body.home-page #welcome-tablet-screen,
-body.home-page .screen-content-wrapper > * { /* Targets direct children like h1, div, button */
-    opacity: 0; /* All elements start invisible */
-    animation-fill-mode: forwards; /* They will stay visible after animating */
+body.home-page .screen-content-wrapper > * {
+    opacity: 0;
+    animation-fill-mode: forwards;
 }
 
+/* --- 2. Define the new, faster animation sequence --- */
 
-/* --- 2. Define the staggered animation sequence --- */
-
-/* The main tablet container fades in first (subtly) */
-body.home-page .tablet-container {
-    animation: fadeInContent 0.5s ease-out 0.2s forwards;
-}
-
-/* The left and right frames slide in from the bottom */
-body.home-page .tablet-frame-container {
-    animation: slideInFromBottom 1s ease-out 0.5s forwards;
-}
-
-/* The tablet screen itself "wipes" into view */
+/* The screen wipes into view much sooner now */
 body.home-page #welcome-tablet-screen {
-    /* We have to re-declare the animation here to apply the delay */
-    animation: wipe-in-screen 0.7s ease-out 1.2s forwards;
+    animation: wipe-in-screen 0.7s ease-out 0.5s forwards; /* Was 1.2s delay */
 }
 
-/* The content inside the screen fades in after the screen appears */
-/* We target the wrapper to apply a single animation to all its children */
+/* The content inside the screen fades in after */
 body.home-page .screen-content-wrapper {
     opacity: 0;
-    animation: fadeInContent 0.5s ease-out 1.9s forwards;
+    animation: fadeInContent 0.5s ease-out 1.2s forwards; /* Was 1.9s delay */
 }
 
 /* --- 3. Stagger the typewriter animation visibility --- */
-/* This ensures the typewriter text doesn't flash before its animation starts */
 body.home-page .typewriter-text {
     visibility: hidden;
 }
 
-/* --- 4. Entrance animation for the Avatar on the home page --- */
-/* The timing is adjusted slightly to match the new tablet animations */
+/* --- 4. Entrance animation for the Avatar with adjusted timing --- */
+body.home-page .ava-teleport-effect {
+    opacity: 0;
+    animation: fade-in-out 1.5s ease-in-out 1.5s forwards; /* Was 2.0s delay */
+}
 
 body.home-page .ava-character-image {
     opacity: 0;
     animation: 
-        fadeInContent 0.5s ease-out 2.8s forwards, /* Was 3.0s */
-        ava-float 6s ease-in-out 3.3s infinite;   /* Was 3.5s */
-}
-
-body.home-page .ava-teleport-effect {
-    opacity: 0; /* Ensures it starts invisible */
-    animation: fade-in-out 1.5s ease-in-out 2.0s forwards;
+        fadeInContent 0.5s ease-out 2.2s forwards, /* Was 2.8s delay */
+        ava-float 6s ease-in-out 2.7s infinite;
 }
 
 body.home-page #ava-play-button {
     opacity: 0;
-    animation: fadeInContent 0.5s ease-out 3.3s forwards; /* Was 3.5s */
+    animation: fadeInContent 0.5s ease-out 2.7s forwards; /* Was 3.3s delay */
 }
 
 /* 2. Estilo para el cursor parpadeante */
