@@ -1659,11 +1659,12 @@ body.menu-page {
 /* --- Style for the console projector --- */
 #console-projector {
     position: absolute;
-    /* Position it to the left of the screen */
+    /* THE FIX IS HERE: Change 'top' to a negative value to move it up */
+    top: -60px; 
     left: -140px; 
     width: 200px;
     z-index: 20;
-    opacity: 0;
+    opacity: 1;
     animation: slideInFromLeft 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
