@@ -1551,7 +1551,7 @@ body.menu-page {
     align-items: flex-start;
 
     /* Add some padding at the top for better visual spacing */
-    padding-top: 5vh; 
+    padding-top: 4vh; 
 
     /* Allow scrolling on the menu page if the screen is very short */
     overflow-y: auto;
@@ -1567,7 +1567,7 @@ body.menu-page {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .menu-button {
@@ -1583,7 +1583,7 @@ body.menu-page {
     border-radius: 8px;
     color: #e0e0e0;
     transition: all 0.3s ease;
-    height: 180px; /* Give them a fixed height */
+    height: 170px; /* Give them a fixed height */
 }
 
 .menu-button:hover {
