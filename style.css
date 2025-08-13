@@ -249,9 +249,27 @@ body.home-page .screen-content-wrapper {
 
 /* --- 3. Typewriter animation visibility (FIXED) --- */
 body.home-page .typewriter-text {
-    /* CHANGED: Start with visible but transparent instead of hidden */
-    visibility: visible;
-    opacity: 0;
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+    color: #ffffff !important; /* Make sure text color is visible */
+    /* Remove any potential transform that might hide text */
+    transform: none !important;
+}
+
+/* Make sure the team list items are properly displayed */
+body.home-page .team-list li {
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: list-item !important;
+    color: #ffffff !important;
+}
+
+/* Ensure the team section itself is visible */
+body.home-page .team-section {
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
 }
 
 /* --- 4. Updated timing for smoother entrance sequence --- */
