@@ -1547,8 +1547,14 @@ body.lab-page #ava-play-button {
 /* ========================================================================== */
 
 body.menu-page {
-    justify-content: center;
-    align-items: center;
+    /* This is the key fix: Aligns the entire menu container to the top */
+    align-items: flex-start;
+
+    /* Add some padding at the top for better visual spacing */
+    padding-top: 5vh; 
+
+    /* Allow scrolling on the menu page if the screen is very short */
+    overflow-y: auto;
 }
 
 .menu-container {
