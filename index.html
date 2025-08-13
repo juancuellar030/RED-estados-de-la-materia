@@ -1,4 +1,4 @@
-<!-- START OF FILE index.html (NEW SHELL ARCHITECTURE) -->
+<!-- START OF FILE index.html (FINAL STANDALONE SCREEN ARCHITECTURE) -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RED: Los Estados de la Materia</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:,">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
@@ -13,9 +14,13 @@
 <body class="home-page">
     <canvas id="matrix-canvas"></canvas>
 
-        <!-- This container holds the initial welcome content -->
-        <div id="welcome-tablet-screen" class="tablet-screen">
-            <!-- A wrapper to center the content -->
+    <!-- The main container for the welcome experience -->
+    <div id="welcome-content-container">
+        
+        <!-- THE KEY CHANGE: A single <main> element now acts as the standalone screen -->
+        <!-- We give it a new 'standalone' class for specific styling -->
+        <main id="welcome-tablet-screen" class="tablet-screen standalone">
+            <!-- The content wrapper remains the same -->
             <div class="screen-content-wrapper">
                 <h1 class="main-title typewriter-text">Los Estados y Propiedades de la Materia</h1>
                 <div class="team-section">
@@ -30,8 +35,9 @@
                     Iniciar Secuencia Didáctica ›
                 </button>
             </div>
-        </div>
-        <!-- AVATAR is part of the welcome content -->
+        </main>
+        
+        <!-- The Avatar remains outside the screen -->
         <div id="ava-container">
             <img src="assets/ava-character.png" alt="Asistente Virtual AVA" class="ava-character-image">
             <img src="assets/ava-teleport.png" alt="Efecto de teletransporte" class="ava-teleport-effect">
@@ -39,7 +45,7 @@
         </div>
     </div>
 
-    <!-- THIS IS THE NEW IFRAME CONTAINER, HIDDEN BY DEFAULT -->
+    <!-- The iframe container for the sequence (no changes needed here) -->
     <div id="iframe-container" class="iframe-container">
         <iframe 
             id="content-frame"
@@ -51,7 +57,7 @@
  
     <script src="script.js"></script>
 
-    <!-- All audio elements remain here as they are controlled globally -->
+    <!-- Audio elements (no changes needed here) -->
     <audio id="ava-audio-welcome" src="assets/ava-welcome-screen.mp3" preload="auto"></audio>
     <audio id="ava-audio-problems" src="assets/ava-core-problem.mp3" preload="auto"></audio>
     <audio id="ava-audio-ar" src="assets/ava-ar.mp3" preload="auto"></audio>
