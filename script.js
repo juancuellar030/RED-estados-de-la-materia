@@ -284,8 +284,11 @@ function initWelcomePage() {
         }
         if(finalButton) finalButton.style.opacity = '1';
     }
-    // The tablet screen animation finishes at 1.9s, so 2.3s is a good time to start typing.
-    setTimeout(startTypingSequence, 2300); 
+    
+    // THE FIX IS HERE: Change the timeout value.
+    // The screen content fades in at 1.9s (1.2s delay + 0.7s duration).
+    // Starting the typewriter at 2.1s gives a nice, smooth transition.
+    setTimeout(startTypingSequence, 2100); 
 
     // --- Screen and Teleport Sounds (logic updated for new element) ---
     const screenSound = new Audio('assets/sci-fi-screen.mp3');
@@ -297,7 +300,7 @@ function initWelcomePage() {
 
     const teleportSound = document.getElementById('ava-audio-teleport');
     if (teleportSound) {
-        // This timing still works perfectly with the new animations.
+        // The teleport animation starts at 2.0s, so this timing is still perfect.
         setTimeout(() => { 
             teleportSound.volume = 0.5; 
             teleportSound.play().catch(error => console.warn("Teleport sound autoplay was blocked.", error));
