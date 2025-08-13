@@ -249,12 +249,13 @@ function initFullscreenLauncher() {
  * Initializes animations for the Welcome Page (index.html).
  */
 function initWelcomePage() {
-    const welcomeScreen = document.getElementById('welcome-screen');
-    if (!welcomeScreen) return;
+    // New target: the tablet screen on the welcome page.
+    const welcomeTabletScreen = document.getElementById('welcome-tablet-screen');
+    if (!welcomeTabletScreen) return;
 
-    // Typewriter Effect
-    const textElements = welcomeScreen.querySelectorAll('.typewriter-text');
-    const finalButton = welcomeScreen.querySelector('.cta-button');
+    // --- Typewriter Effect (logic is the same, just targets elements inside the tablet) ---
+    const textElements = welcomeTabletScreen.querySelectorAll('.typewriter-text');
+    const finalButton = welcomeTabletScreen.querySelector('.cta-button');
     let originalTexts = [];
     textElements.forEach(el => { originalTexts.push(el.textContent); el.textContent = ''; });
     if(finalButton) finalButton.style.opacity = '0';
@@ -283,19 +284,24 @@ function initWelcomePage() {
         }
         if(finalButton) finalButton.style.opacity = '1';
     }
-    setTimeout(startTypingSequence, 2300);
+    // The tablet screen animation finishes at 1.9s, so 2.3s is a good time to start typing.
+    setTimeout(startTypingSequence, 2300); 
 
-    // Screen and Teleport Sounds
+    // --- Screen and Teleport Sounds (logic updated for new element) ---
     const screenSound = new Audio('assets/sci-fi-screen.mp3');
     screenSound.volume = 0.4;
-    welcomeScreen.addEventListener('animationstart', () => {
-        screenSound.currentTime = 0;
-        screenSound.play();
+    // The animation is now on the tablet screen itself.
+    welcomeTabletScreen.addEventListener('animationstart', () => {
+        screenSound.play().catch(error => console.warn("Screen sound autoplay was blocked.", error));
     }, { once: true });
 
     const teleportSound = document.getElementById('ava-audio-teleport');
     if (teleportSound) {
-        setTimeout(() => { teleportSound.volume = 0.5; teleportSound.play(); }, 2000);
+        // This timing still works perfectly with the new animations.
+        setTimeout(() => { 
+            teleportSound.volume = 0.5; 
+            teleportSound.play().catch(error => console.warn("Teleport sound autoplay was blocked.", error));
+        }, 2000);
     }
 }
 
