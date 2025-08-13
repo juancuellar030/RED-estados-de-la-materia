@@ -247,12 +247,21 @@ body.home-page .screen-content-wrapper {
     animation: fadeInContent 0.5s ease-out 1.9s forwards;
 }
 
-/* --- 3. Typewriter animation visibility --- */
+/* --- 3. Typewriter animation visibility (FIXED) --- */
 body.home-page .typewriter-text {
-    visibility: hidden;
+    /* CHANGED: Start with visible but transparent instead of hidden */
+    visibility: visible;
+    opacity: 0;
 }
 
-/* --- 4. Entrance animation for the Avatar with adjusted timing --- */
+/* --- 4. Updated timing for smoother entrance sequence --- */
+/* The screen content wrapper fades in first */
+body.home-page .screen-content-wrapper {
+    opacity: 0;
+    animation: fadeInContent 0.5s ease-out 1.9s forwards;
+}
+
+/* --- 5. Avatar timing adjustments for better coordination --- */
 body.home-page .ava-teleport-effect {
     opacity: 0;
     animation: fade-in-out 1.5s ease-in-out 2.0s forwards;
@@ -270,9 +279,9 @@ body.home-page #ava-play-button {
     animation: fadeInContent 0.5s ease-out 3.3s forwards;
 }
 
-/* 2. Estilo para el cursor parpadeante */
+/* The typewriter cursor animation remains the same */
 .typing::after {
-    content: '_'; /* Puedes usar '_' o '|' */
+    content: '_';
     font-weight: bold;
     display: inline-block;
     vertical-align: bottom;
@@ -280,7 +289,6 @@ body.home-page #ava-play-button {
     margin-left: 3px;
 }
 
-/* 3. Animación de parpadeo */
 @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
