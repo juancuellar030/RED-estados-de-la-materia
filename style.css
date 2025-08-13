@@ -272,6 +272,17 @@ body.home-page .team-section {
     display: block !important;
 }
 
+.typewriter-text {
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+    color: #ffffff !important;
+}
+
+.team-list li.typewriter-text {
+    display: list-item !important;
+}
+
 /* --- 4. Updated timing for smoother entrance sequence --- */
 /* The screen content wrapper fades in first */
 body.home-page .screen-content-wrapper {
