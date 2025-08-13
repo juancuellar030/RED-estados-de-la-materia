@@ -1721,5 +1721,5 @@ body.menu-page {
 
 /* This rule specifically targets the navigation buttons on the menu page */
 body.menu-page .navigation-buttons {
-    margin-top: 20px; /* Reduced from 40px to bring the button higher */
+    margin-top: 10px; /* Reduced from 40px to bring the button higher */
 }
