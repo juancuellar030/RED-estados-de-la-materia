@@ -1644,3 +1644,34 @@ body.menu-page {
 .lab-container .navigation-buttons.lab-content {
     animation-delay: 1s;
 }
+
+/* ADD THIS TO style.css */
+
+/* --- Positioning context for the console and screen --- */
+#welcome-content-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- Style for the console projector --- */
+#console-projector {
+    position: absolute;
+    /* Position it to the left of the screen */
+    left: -140px; 
+    width: 200px;
+    z-index: 20;
+    opacity: 0;
+    animation: slideInFromLeft 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+#console-projector img {
+    width: 100%;
+}
+
+/* --- Animation for the console --- */
+@keyframes slideInFromLeft {
+    from { transform: translateX(-100%); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
+}
