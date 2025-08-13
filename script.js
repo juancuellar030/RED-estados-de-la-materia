@@ -288,7 +288,13 @@ function initWelcomePage() {
             let i = 0;
             element.classList.add('typing');
             
-            console.log(`Starting to type: "${text}"`); // Debug log
+            // FORCE VISIBILITY
+            element.style.visibility = 'visible';
+            element.style.opacity = '1';
+            element.style.display = element.tagName === 'LI' ? 'list-item' : 'block';
+            element.style.color = '#ffffff';
+            
+            console.log(`Starting to type: "${text}"`);
             
             const timer = setInterval(() => {
                 if (i < text.length) {
@@ -297,7 +303,7 @@ function initWelcomePage() {
                 } else {
                     clearInterval(timer);
                     element.classList.remove('typing');
-                    console.log(`Finished typing: "${text}"`); // Debug log
+                    console.log(`Finished typing: "${text}"`);
                     resolve();
                 }
             }, 50);
