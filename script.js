@@ -245,42 +245,59 @@ function initFullscreenLauncher() {
     });
 }
 
-/**
- * Initializes animations for the Welcome Page (index.html).
- */
+// Complete replacement for the initWelcomePage function in script.js
+
 function initWelcomePage() {
     // New target: the tablet screen on the welcome page.
     const welcomeTabletScreen = document.getElementById('welcome-tablet-screen');
     if (!welcomeTabletScreen) return;
 
-    // --- Typewriter Effect (FIXED VERSION) ---
+    // --- Typewriter Effect (COMPLETELY REWRITTEN FOR RELIABILITY) ---
     const textElements = welcomeTabletScreen.querySelectorAll('.typewriter-text');
     const finalButton = welcomeTabletScreen.querySelector('.cta-button');
     let originalTexts = [];
     
-    // Store original texts and clear them
-    textElements.forEach(el => { 
-        originalTexts.push(el.textContent); 
-        el.textContent = ''; 
-        // KEY FIX: Set visibility to visible but opacity to 0 initially
+    console.log('Found text elements:', textElements.length); // Debug log
+    
+    // Store original texts and prepare elements
+    textElements.forEach((el, index) => { 
+        const originalText = el.textContent.trim();
+        originalTexts.push(originalText);
+        console.log(`Element ${index}: "${originalText}"`); // Debug log
+        
+        // Clear text and set initial styles
+        el.textContent = '';
         el.style.visibility = 'visible';
-        el.style.opacity = '0';
+        el.style.opacity = '1';  // Make sure it's visible
+        el.style.display = 'block'; // Ensure it's displayed
     });
     
-    if(finalButton) finalButton.style.opacity = '0';
+    if(finalButton) {
+        finalButton.style.opacity = '0';
+        finalButton.style.visibility = 'visible';
+    }
     
     function typeWriter(element, text) {
         return new Promise(resolve => {
+            if (!text || text.length === 0) {
+                console.warn('No text to type for element:', element);
+                resolve();
+                return;
+            }
+            
             let i = 0;
-            // Make element visible when typing starts
-            element.style.opacity = '1';
             element.classList.add('typing');
+            
+            console.log(`Starting to type: "${text}"`); // Debug log
+            
             const timer = setInterval(() => {
                 if (i < text.length) {
-                    element.textContent += text.charAt(i++);
+                    element.textContent += text.charAt(i);
+                    i++;
                 } else {
                     clearInterval(timer);
                     element.classList.remove('typing');
+                    console.log(`Finished typing: "${text}"`); // Debug log
                     resolve();
                 }
             }, 50);
@@ -288,19 +305,40 @@ function initWelcomePage() {
     }
 
     async function startTypingSequence() {
+        console.log('Starting typing sequence...'); // Debug log
+        
         for (let i = 0; i < textElements.length; i++) {
-            await typeWriter(textElements[i], originalTexts[i]);
-            await new Promise(resolve => setTimeout(resolve, 200));
+            const element = textElements[i];
+            const text = originalTexts[i];
+            
+            console.log(`Typing element ${i + 1}/${textElements.length}: "${text}"`);
+            
+            // Make sure the element is visible before typing
+            element.style.opacity = '1';
+            element.style.visibility = 'visible';
+            element.style.display = 'block';
+            
+            await typeWriter(element, text);
+            
+            // Small pause between each text element
+            await new Promise(resolve => setTimeout(resolve, 300));
         }
+        
+        // Show the button after all text is done
         if(finalButton) {
+            console.log('Showing final button...'); // Debug log
             finalButton.style.transition = 'opacity 0.5s ease';
             finalButton.style.opacity = '1';
         }
+        
+        console.log('Typing sequence complete!'); // Debug log
     }
     
-    // TIMING FIX: Start typewriter after screen content is fully visible
-    // Screen content fades in at 1.9s, so we start typing at 2.2s for smoother transition
-    setTimeout(startTypingSequence, 2200); 
+    // Start the typing sequence after screen content is visible
+    setTimeout(() => {
+        console.log('Timeout reached, starting typing sequence...');
+        startTypingSequence();
+    }, 2200); 
 
     // --- Screen and Teleport Sounds (unchanged) ---
     const screenSound = new Audio('assets/sci-fi-screen.mp3');
