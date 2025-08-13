@@ -200,125 +200,81 @@ a, button, .node {
 
 /* === ANIMACIÓN DE LA PANTALLA DE BIENVENIDA (ESTRUCTURA CORREGIDA) === */
 
-/* --- 1. Contenedor de la escena (el nuevo padre) --- */
-.welcome-scene-container {
-    /* La regla más importante: establece el contexto de posicionamiento */
-    position: relative;
-    /* Usamos flexbox para alinear los ítems, pero no es estrictamente necesario */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* --- 2. Estilos para los elementos animados --- */
-
-/* Estilo para la consola proyectora */
-#console-projector {
-    position: absolute;
-    /* Usamos valores negativos para colocarlo FUERA del borde de la pantalla */
-    top: -60px;
-    left: -140px;
-    width: 200px;
-    z-index: 20;
-    opacity: 0;
-
-    animation: slideInFromLeft 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-}
-
-/* Estilo para la imagen dentro del contenedor de la consola */
-#console-projector img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Estilo para la pantalla de bienvenida (Ahora es un contenedor) */
-#welcome-screen {
-    /* Lo hacemos un contenedor relativo para su pseudo-elemento */
-    position: relative; 
-    /* Lo hacemos transparente, el pseudo-elemento tendrá el fondo */
-    background-color: transparent; 
-    /* Importante para que la animación de barrido no se desborde */
-    overflow: hidden; 
-}
-
-/* El panel de barrido que contiene la imagen de la pantalla */
-#welcome-screen::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
+/* --- Wrapper for centering content inside a tablet screen --- */
+.screen-content-wrapper {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
-    background-image: url('assets/futuristic-screen.svg');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center;
+/* ========================================================================== */
+/* ENTRANCE ANIMATIONS FOR THE NEW INDEX.HTML TABLET SCREEN                 */
+/* ========================================================================== */
 
-    transform-origin: left;
+/* --- 1. Target the elements on the home page specifically --- */
+/* This ensures these styles ONLY apply on index.html */
+body.home-page .tablet-container,
+body.home-page .tablet-frame-container,
+body.home-page #welcome-tablet-screen,
+body.home-page .screen-content-wrapper > * { /* Targets direct children like h1, div, button */
+    opacity: 0; /* All elements start invisible */
+    animation-fill-mode: forwards; /* They will stay visible after animating */
+}
+
+
+/* --- 2. Define the staggered animation sequence --- */
+
+/* The main tablet container fades in first (subtly) */
+body.home-page .tablet-container {
+    animation: fadeInContent 0.5s ease-out 0.2s forwards;
+}
+
+/* The left and right frames slide in from the bottom */
+body.home-page .tablet-frame-container {
+    animation: slideInFromBottom 1s ease-out 0.5s forwards;
+}
+
+/* The tablet screen itself "wipes" into view */
+body.home-page #welcome-tablet-screen {
+    /* We have to re-declare the animation here to apply the delay */
+    animation: wipe-in-screen 0.7s ease-out 1.2s forwards;
+}
+
+/* The content inside the screen fades in after the screen appears */
+/* We target the wrapper to apply a single animation to all its children */
+body.home-page .screen-content-wrapper {
+    opacity: 0;
+    animation: fadeInContent 0.5s ease-out 1.9s forwards;
+}
+
+/* --- 3. Stagger the typewriter animation visibility --- */
+/* This ensures the typewriter text doesn't flash before its animation starts */
+body.home-page .typewriter-text {
+    visibility: hidden;
+}
+
+/* --- 4. Entrance animation for the Avatar on the home page --- */
+/* The timing is adjusted slightly to match the new tablet animations */
+
+body.home-page .ava-character-image {
     opacity: 0;
     animation: 
-        wipe-from-left 1s ease-out 1.2s forwards,
-        fadeInContent 1s ease-out 1.2s forwards;
-    
-    /* ¡LA SOLUCIÓN! Empuja esta capa al fondo */
-    z-index: -1; 
+        fadeInContent 0.5s ease-out 2.8s forwards, /* Was 3.0s */
+        ava-float 6s ease-in-out 3.3s infinite;   /* Was 3.5s */
 }
 
-/* --- 3. Animaciones (sin cambios) --- */
-
-@keyframes slideInFromLeft {
-    from { transform: translateX(-100%); opacity: 0; }
-    to   { transform: translateX(0); opacity: 1; }
+body.home-page .ava-teleport-effect {
+    opacity: 0; /* Ensures it starts invisible */
+    animation: fade-in-out 1.5s ease-in-out 2.0s forwards;
 }
 
-@keyframes projectScreen {
-    from { transform: scale(0.5); opacity: 0; }
-    to   { transform: scale(1); opacity: 1; }
-}
-
-/* --- 4. Animación de la llamarada (sin cambios, seguirá funcionando) --- */
-@keyframes lens-flare-effect {
-    0%   { opacity: 0; transform: translate(-50%, -50%) scale(0); }
-    50%  { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
-    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-}
-
-@keyframes pulsating-flare {
-    0%   { opacity: 0.3; transform: translate(-50%, -50%) scale(0.5); }
-    50%  { opacity: 0.9; transform: translate(-50%, -50%) scale(1); }
-    100% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.5); }
-}
-
-/* Nueva animación para el barrido de la pantalla de inicio */
-@keyframes wipe-from-left {
-    from { transform: scaleX(0); }
-    to   { transform: scaleX(1); }
-}
-
-#console-projector::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(175, 250, 255, 0.9) 0%, rgba(181, 166, 255, 0.7) 40%, rgba(181, 166, 255, 0) 70%);
-    position: absolute;
-    top: 50%;
-    left: 75%;
-    transform: translate(-50%, -50%) scale(0);
+body.home-page #ava-play-button {
     opacity: 0;
-    
-    animation:
-        lens-flare-effect 1s ease-in-out 1.2s forwards,
-        pulsating-flare 2.5s ease-in-out 2.2s infinite;
-}
-
-/* === ESTILOS PARA LA ANIMACIÓN DE MÁQUINA DE ESCRIBIR === */
-
-/* 1. Oculta el texto inicialmente */
-#welcome-screen .typewriter-text {
-    visibility: hidden;
+    animation: fadeInContent 0.5s ease-out 3.3s forwards; /* Was 3.5s */
 }
 
 /* 2. Estilo para el cursor parpadeante */
