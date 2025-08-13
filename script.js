@@ -253,16 +253,27 @@ function initWelcomePage() {
     const welcomeTabletScreen = document.getElementById('welcome-tablet-screen');
     if (!welcomeTabletScreen) return;
 
-    // --- Typewriter Effect (logic is the same, just targets elements inside the tablet) ---
+    // --- Typewriter Effect (FIXED VERSION) ---
     const textElements = welcomeTabletScreen.querySelectorAll('.typewriter-text');
     const finalButton = welcomeTabletScreen.querySelector('.cta-button');
     let originalTexts = [];
-    textElements.forEach(el => { originalTexts.push(el.textContent); el.textContent = ''; });
+    
+    // Store original texts and clear them
+    textElements.forEach(el => { 
+        originalTexts.push(el.textContent); 
+        el.textContent = ''; 
+        // KEY FIX: Set visibility to visible but opacity to 0 initially
+        el.style.visibility = 'visible';
+        el.style.opacity = '0';
+    });
+    
     if(finalButton) finalButton.style.opacity = '0';
     
     function typeWriter(element, text) {
         return new Promise(resolve => {
             let i = 0;
+            // Make element visible when typing starts
+            element.style.opacity = '1';
             element.classList.add('typing');
             const timer = setInterval(() => {
                 if (i < text.length) {
@@ -278,29 +289,28 @@ function initWelcomePage() {
 
     async function startTypingSequence() {
         for (let i = 0; i < textElements.length; i++) {
-            textElements[i].style.visibility = 'visible';
             await typeWriter(textElements[i], originalTexts[i]);
             await new Promise(resolve => setTimeout(resolve, 200));
         }
-        if(finalButton) finalButton.style.opacity = '1';
+        if(finalButton) {
+            finalButton.style.transition = 'opacity 0.5s ease';
+            finalButton.style.opacity = '1';
+        }
     }
     
-    // THE FIX IS HERE: Change the timeout value.
-    // The screen content fades in at 1.9s (1.2s delay + 0.7s duration).
-    // Starting the typewriter at 2.1s gives a nice, smooth transition.
-    setTimeout(startTypingSequence, 2100); 
+    // TIMING FIX: Start typewriter after screen content is fully visible
+    // Screen content fades in at 1.9s, so we start typing at 2.2s for smoother transition
+    setTimeout(startTypingSequence, 2200); 
 
-    // --- Screen and Teleport Sounds (logic updated for new element) ---
+    // --- Screen and Teleport Sounds (unchanged) ---
     const screenSound = new Audio('assets/sci-fi-screen.mp3');
     screenSound.volume = 0.4;
-    // The animation is now on the tablet screen itself.
     welcomeTabletScreen.addEventListener('animationstart', () => {
         screenSound.play().catch(error => console.warn("Screen sound autoplay was blocked.", error));
     }, { once: true });
 
     const teleportSound = document.getElementById('ava-audio-teleport');
     if (teleportSound) {
-        // The teleport animation starts at 2.0s, so this timing is still perfect.
         setTimeout(() => { 
             teleportSound.volume = 0.5; 
             teleportSound.play().catch(error => console.warn("Teleport sound autoplay was blocked.", error));
