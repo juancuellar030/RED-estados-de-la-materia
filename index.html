@@ -13,13 +13,10 @@
 <body class="home-page">
     <canvas id="matrix-canvas"></canvas>
 
-    <!-- This container holds the initial welcome content -->
-    <div id="welcome-content-container">
-        <div class="welcome-scene-container">
-            <div id="console-projector">
-                <img src="assets/console-projector.png" alt="Console Projector">
-            </div>
-            <main class="screen-container" id="welcome-screen">
+        <!-- This container holds the initial welcome content -->
+        <div id="welcome-tablet-screen" class="tablet-screen">
+            <!-- A wrapper to center the content -->
+            <div class="screen-content-wrapper">
                 <h1 class="main-title typewriter-text">Los Estados y Propiedades de la Materia</h1>
                 <div class="team-section">
                     <h2 class="typewriter-text">Presentado por:</h2>
@@ -29,12 +26,10 @@
                         <li class="typewriter-text">JUAN DIEGO CUELLAR MAZABEL</li>
                     </ul>
                 </div>
-
-                <!-- THE CRUCIAL CHANGE: This is now a BUTTON, not a link -->
                 <button id="start-sequence-btn" class="cta-button">
                     Iniciar Secuencia Didáctica ›
                 </button>
-            </main>
+            </div>
         </div>
         <!-- AVATAR is part of the welcome content -->
         <div id="ava-container">
